@@ -223,53 +223,79 @@ def main():
     match_count_np = np.zeros(1, dtype=np.int32)
     match_count_buffer = cl.Buffer(ctx, mf.READ_WRITE | mf.COPY_HOST_PTR, hostbuf=match_count_np)
     
-    print(f"Executing deep optimized sweep of ~4,000,000,000 (4.0 Billion) matrix permutations via GPU...")
-    print(f"This will launch 2000 consecutive 2-million iteration blocks to guarantee OS stability.")
-    t0 = time.time()
+    grand_total_decryptions = 0
+    t_start_all = time.time()
+    pass_number = 1
     
-    global_size = (total_work_items,)
-    local_size = None # Auto-determine optimal local group size natively
+    print(f"Executing deep optimized continuous sweep. Press Ctrl+C to stop.")
+    print(f"Each pass launches 2000 consecutive 2-million iteration blocks to guarantee OS stability.")
     
-    global_matches = 0
-    total_decryptions = 0
-    
-    decrypt_kernel = cl.Kernel(prg, "decrypt_bifid")
-    
-    for sweep in range(2000):
-        # We invoke the OpenCL kernel back-to-back, fully saturating the GPU
-        decrypt_kernel(queue, global_size, local_size, 
-                          k4_buffer, squares_buffer, periods_buffer, np.int32(num_periods), 
-                          np.int32(num_base_squares), matches_buffer, match_count_buffer, 
-                          np.int32(sweep))
-        
-        # Finish the queue to force execution check and definitively prevent Windows TDR resets
-        queue.finish()
-                          
-        total_decryptions += total_work_items
-        
-        if sweep % 200 == 0:
-            print(f"... completed block {sweep}/2000 ({total_decryptions:,} keys)")
-    
-    queue.finish()
-    
-    # Final copy off the VRAM
-    cl.enqueue_copy(queue, match_count_np, match_count_buffer).wait()
-    global_matches = match_count_np[0]
-    
-    if global_matches > 0:
-        cl.enqueue_copy(queue, matches_np, matches_buffer).wait()
-        print(f"Found {global_matches} matches! Raw GIDs: {matches_np[:min(global_matches, 1000)]}")
-    
-    t1 = time.time()
-    elapsed = t1 - t0
-    
-    print("\n--- Massive 4.2 Billion GPU Sweep Metrics ---")
-    print(f"Total Decryptions: {total_decryptions:,}")
-    print(f"Time Elapsed:      {elapsed:.4f} seconds")
-    if elapsed > 0:
-        speed = total_decryptions / elapsed
-        print(f"Decryption Speed:  {speed:,.2f} decryptions/second")
-    print(f"Total Matches:     {global_matches}")
+    try:
+        while True:
+            print(f"\n--- Starting Pass {pass_number} ---")
+            t0 = time.time()
+            
+            global_size = (total_work_items,)
+            local_size = None # Auto-determine optimal local group size natively
+            
+            global_matches = 0
+            total_decryptions = 0
+            
+            decrypt_kernel = cl.Kernel(prg, "decrypt_bifid")
+            
+            # Start sweep at a different offset each pass to ensure new permutations
+            sweep_offset = (pass_number - 1) * 2000
+            
+            for sweep in range(2000):
+                # We invoke the OpenCL kernel back-to-back, fully saturating the GPU
+                decrypt_kernel(queue, global_size, local_size, 
+                                  k4_buffer, squares_buffer, periods_buffer, np.int32(num_periods), 
+                                  np.int32(num_base_squares), matches_buffer, match_count_buffer, 
+                                  np.int32(sweep_offset + sweep))
+                
+                # Finish the queue to force execution check and definitively prevent Windows TDR resets
+                queue.finish()
+                                  
+                total_decryptions += total_work_items
+                
+                if (sweep + 1) % 200 == 0:
+                    print(f"... completed block {sweep + 1}/2000 ({total_decryptions:,} keys)")
+            
+            queue.finish()
+            
+            # Final copy off the VRAM
+            cl.enqueue_copy(queue, match_count_np, match_count_buffer).wait()
+            global_matches = match_count_np[0]
+            
+            if global_matches > 0:
+                cl.enqueue_copy(queue, matches_np, matches_buffer).wait()
+                print(f"Found {global_matches} matches! Raw GIDs: {matches_np[:min(global_matches, 1000)]}")
+            
+            t1 = time.time()
+            elapsed = t1 - t0
+            
+            grand_total_decryptions += total_decryptions
+            total_elapsed = time.time() - t_start_all
+            
+            print(f"\n--- Pass {pass_number} Metrics ---")
+            print(f"Decryptions per pass: {total_decryptions:,}")
+            print(f"Time for this pass:   {elapsed:.4f} seconds")
+            if elapsed > 0:
+                speed = total_decryptions / elapsed
+                print(f"Decryption Speed:     {speed:,.2f} decryptions/second")
+            print(f"Total Matches:        {global_matches}")
+            print(f"\n--- Grand Total Metrics ---")
+            print(f"Total Decryptions:    {grand_total_decryptions:,}")
+            print(f"Total Elapsed Time:   {total_elapsed:.4f} seconds")
+            
+            pass_number += 1
+
+    except KeyboardInterrupt:
+        print("\nSweep interrupted by user. Exiting...")
+        total_elapsed = time.time() - t_start_all
+        print(f"\n--- Final Grand Total Metrics ---")
+        print(f"Total Decryptions:    {grand_total_decryptions:,}")
+        print(f"Total Elapsed Time:   {total_elapsed:.4f} seconds")
     
 if __name__ == "__main__":
     main()
