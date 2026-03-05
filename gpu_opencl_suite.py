@@ -32,18 +32,57 @@ def load_dictionary(filepath):
 kernel_code = """
 __kernel void decrypt_bifid(
     __constant const uchar* k4,
-    __global const uchar* squares, 
+    __global const uchar* base_squares, 
     __constant const int* periods,
     const int num_periods,
-    __global int* match_results
+    const int num_base_squares,
+    __global int* match_results,
+    volatile __global int* match_count,
+    const int sweep_idx
 ) {
     int gid = get_global_id(0);
     
     int p_idx = gid % num_periods;
     int square_idx = gid / num_periods;
     
+    int base_square_idx = square_idx % num_base_squares;
+    int copy_idx = square_idx / num_base_squares;
+    int mut_id = sweep_idx * 17 + copy_idx; // 17 copies per sweep
+    
     int period = periods[p_idx];
-    __global const uchar* square = &squares[square_idx * 25];
+    __global const uchar* global_square = &base_squares[base_square_idx * 25];
+    uchar local_square[25];
+    for (int i=0; i<25; i++) local_square[i] = global_square[i];
+    
+    // Mutate the square deterministically based on mut_id
+    if (mut_id > 0) {
+        // Apply multiple seeded swaps to generate distinct combinations
+        ulong seed = mut_id * 19937 + 123456789;
+        for (int s=0; s<4; s++) {
+            seed = (seed * 1103515245 + 12345) & 0x7FFFFFFF;
+            int swap1 = seed % 25;
+            seed = (seed * 1103515245 + 12345) & 0x7FFFFFFF;
+            int swap2 = seed % 25;
+            uchar tmp = local_square[swap1];
+            local_square[swap1] = local_square[swap2];
+            local_square[swap2] = tmp;
+        }
+    }
+    
+    // O(1) Inverse Map for Polybius Square
+    uchar r_map[26];
+    uchar c_map[26];
+    for (int i = 0; i < 26; i++) {
+        r_map[i] = 255; 
+        c_map[i] = 255;
+    }
+    for (int sq = 0; sq < 25; ++sq) {
+        int ch_idx = local_square[sq] - 'A';
+        if (ch_idx >= 0 && ch_idx < 26) {
+            r_map[ch_idx] = sq / 5;
+            c_map[ch_idx] = sq % 5;
+        }
+    }
     
     uchar plaintext[97];
     
@@ -60,70 +99,60 @@ __kernel void decrypt_bifid(
             uchar ch = k4[block_start + i];
             if (ch == 'J') ch = 'I';
             
-            // get coords
-            int r_val = -1, c_val = -1;
-            for(int sq = 0; sq < 25; ++sq) {
-                if(square[sq] == ch) {
-                    r_val = sq / 5;
-                    c_val = sq % 5;
-                    break;
+            // get coords via O(1) memory lookup
+            int ch_idx = ch - 'A';
+            if (ch_idx >= 0 && ch_idx < 26) {
+                uchar r_val = r_map[ch_idx];
+                uchar c_val = c_map[ch_idx];
+                if (r_val != 255) {
+                    r[valid_len] = r_val;
+                    c[valid_len] = c_val;
+                    valid_len++;
                 }
-            }
-            if(r_val != -1) {
-                r[valid_len] = r_val;
-                c[valid_len] = c_val;
-                valid_len++;
             }
         }
         
         uchar stream[194];
         for(int i=0; i<valid_len; ++i) {
-            stream[i] = r[i];
-            stream[valid_len + i] = c[i];
+            stream[2 * i] = r[i];
+            stream[2 * i + 1] = c[i];
         }
         
-        int block_pt_idx = 0;
-        for(int i=0; i<valid_len * 2 - 1; i+=2) {
+        for(int i=0; i<valid_len; ++i) {
             int row_idx = stream[i];
-            int col_idx = stream[i+1];
-            plaintext[block_start + block_pt_idx] = square[row_idx * 5 + col_idx];
-            block_pt_idx++;
+            int col_idx = stream[valid_len + i];
+            plaintext[block_start + i] = local_square[row_idx * 5 + col_idx];
         }
     }
     
     bool match = false;
-    // EASTNORTHEAST
-    uchar target1[13] = {'E','A','S','T','N','O','R','T','H','E','A','S','T'};
+    // EASTNORTHEAST loop unrolled
     for(int i = 0; i <= 97 - 13; ++i) {
-        bool sub_match = true;
-        for(int j = 0; j < 13; ++j) {
-            if(plaintext[i+j] != target1[j]) {
-                sub_match = false;
-                break;
-            }
+        if(plaintext[i] == 'E' && plaintext[i+1] == 'A' && plaintext[i+2] == 'S' && plaintext[i+3] == 'T' && 
+           plaintext[i+4] == 'N' && plaintext[i+5] == 'O' && plaintext[i+6] == 'R' && plaintext[i+7] == 'T' && 
+           plaintext[i+8] == 'H' && plaintext[i+9] == 'E' && plaintext[i+10] == 'A' && plaintext[i+11] == 'S' && plaintext[i+12] == 'T') {
+            match = true; 
+            break; 
         }
-        if(sub_match) { match = true; break; }
     }
     
     if(!match) {
-        // BERLINCLOCK
-        uchar target2[11] = {'B','E','R','L','I','N','C','L','O','C','K'};
+        // BERLINCLOCK loop unrolled
         for(int i = 0; i <= 97 - 11; ++i) {
-            bool sub_match = true;
-            for(int j = 0; j < 11; ++j) {
-                if(plaintext[i+j] != target2[j]) {
-                    sub_match = false;
-                    break;
-                }
+            if(plaintext[i] == 'B' && plaintext[i+1] == 'E' && plaintext[i+2] == 'R' && plaintext[i+3] == 'L' && 
+               plaintext[i+4] == 'I' && plaintext[i+5] == 'N' && plaintext[i+6] == 'C' && plaintext[i+7] == 'L' && 
+               plaintext[i+8] == 'O' && plaintext[i+9] == 'C' && plaintext[i+10] == 'K') {
+                match = true; 
+                break;
             }
-            if(sub_match) { match = true; break;}
         }
     }
     
     if(match) {
-        match_results[gid] = 1;
-    } else {
-        match_results[gid] = 0;
+        int idx = atomic_add(match_count, 1);
+        if(idx < 1000) {
+            match_results[idx] = gid;
+        }
     }
 }
 """
@@ -165,14 +194,13 @@ def main():
     words = load_dictionary("k4_dictionary.txt")
     print(f"Loaded {len(words)} standard dictionary words.")
     
-    # Core loop buffer setup (42M permutations per pass to fit safely within VRAM)
-    BASE_BLOCK_PERMUTATIONS = 42_000_000 
+    # Core loop buffer setup (reduced to 2M to definitively prevent Windows TDR driver freezes)
+    BASE_BLOCK_PERMUTATIONS = 2_000_000 
     
     periods = np.array([5, 6, 7, 8, 9, 10, 11, 14, 21, 24, 28, 97], dtype=np.int32)
     periods_buffer = cl.Buffer(ctx, mf.READ_ONLY | mf.COPY_HOST_PTR, hostbuf=periods)
     
     num_periods = len(periods)
-    target_squares_count = BASE_BLOCK_PERMUTATIONS // num_periods
     
     print("Compressing dictionary buffer for continuous VRAM feed...")
     
@@ -180,18 +208,23 @@ def main():
     for w in words:
         base_squares.append(generate_polybius_square(w))
         
-    repeated_squares = (base_squares * ((target_squares_count // len(base_squares)) + 1))[:target_squares_count]
-    
-    squares_bytes = b"".join(sq.encode('ascii') for sq in repeated_squares)
+    squares_bytes = b"".join(sq.encode('ascii') for sq in base_squares)
     squares_np = np.frombuffer(squares_bytes, dtype=np.uint8)
     squares_buffer = cl.Buffer(ctx, mf.READ_ONLY | mf.COPY_HOST_PTR, hostbuf=squares_np)
     
-    total_work_items = target_squares_count * num_periods
-    matches_np = np.zeros(total_work_items, dtype=np.int32)
+    # Run 17 mutated variants of the 9510 words per kernel launch to reach ~2 million items
+    num_base_squares = len(base_squares)
+    copies_per_sweep = 17
+    total_work_items = num_base_squares * copies_per_sweep * num_periods
+    
+    matches_np = np.zeros(1000, dtype=np.int32)
     matches_buffer = cl.Buffer(ctx, mf.WRITE_ONLY, matches_np.nbytes)
     
-    print(f"Executing deep optimized sweep of 4,200,000,000 (4.2 Billion) matrix permutations via GPU...")
-    print(f"This will launch 100 consecutive 42-million iteration blocks.")
+    match_count_np = np.zeros(1, dtype=np.int32)
+    match_count_buffer = cl.Buffer(ctx, mf.READ_WRITE | mf.COPY_HOST_PTR, hostbuf=match_count_np)
+    
+    print(f"Executing deep optimized sweep of ~4,000,000,000 (4.0 Billion) matrix permutations via GPU...")
+    print(f"This will launch 2000 consecutive 2-million iteration blocks to guarantee OS stability.")
     t0 = time.time()
     
     global_size = (total_work_items,)
@@ -200,22 +233,32 @@ def main():
     global_matches = 0
     total_decryptions = 0
     
-    for sweep in range(100):
-        # We invoke the OpenCL kernel 100 times back-to-back, fully saturating the GPU
-        prg.decrypt_bifid(queue, global_size, local_size, 
-                          k4_buffer, squares_buffer, periods_buffer, np.int32(num_periods), matches_buffer)
+    decrypt_kernel = cl.Kernel(prg, "decrypt_bifid")
+    
+    for sweep in range(2000):
+        # We invoke the OpenCL kernel back-to-back, fully saturating the GPU
+        decrypt_kernel(queue, global_size, local_size, 
+                          k4_buffer, squares_buffer, periods_buffer, np.int32(num_periods), 
+                          np.int32(num_base_squares), matches_buffer, match_count_buffer, 
+                          np.int32(sweep))
+        
+        # Finish the queue to force execution check and definitively prevent Windows TDR resets
+        queue.finish()
                           
         total_decryptions += total_work_items
         
-        # We only copy memory back off the GPU if we want to read it every block
-        if sweep % 10 == 0:
-            print(f"... completed block {sweep}/100 ({total_decryptions:,} keys)")
+        if sweep % 200 == 0:
+            print(f"... completed block {sweep}/2000 ({total_decryptions:,} keys)")
     
     queue.finish()
     
     # Final copy off the VRAM
-    cl.enqueue_copy(queue, matches_np, matches_buffer).wait()
-    global_matches += np.sum(matches_np)
+    cl.enqueue_copy(queue, match_count_np, match_count_buffer).wait()
+    global_matches = match_count_np[0]
+    
+    if global_matches > 0:
+        cl.enqueue_copy(queue, matches_np, matches_buffer).wait()
+        print(f"Found {global_matches} matches! Raw GIDs: {matches_np[:min(global_matches, 1000)]}")
     
     t1 = time.time()
     elapsed = t1 - t0
