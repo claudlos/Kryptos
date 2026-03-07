@@ -1,4 +1,4 @@
-# Native Linux Benchmark Scaffold
+﻿# Native Linux Benchmark Scaffold
 # Built for strict native MLIR/LLVM compilation on Ubuntu.
 # Run: `mojo build linux_native_suite.mojo -o kryptos_benchmark_scaffold`
 

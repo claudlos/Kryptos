@@ -1,0 +1,38 @@
+[
+  {
+    "id": "official",
+    "source_url": "https://www.documentcloud.org/documents/26229389-adobe-scan-nov-12-2025/",
+    "license": "public-facts",
+    "retrieved_at": "2026-03-06",
+    "kind": "official",
+    "normalization": "uppercase-alpha-only",
+    "local_path": "runs/corpora/official.txt"
+  },
+  {
+    "id": "carter",
+    "source_url": "https://www.griffith.ox.ac.uk/discoveringtut/journals-and-diaries/season-1/journal.html",
+    "license": "public-domain-or-archival-facts",
+    "retrieved_at": "2026-03-06",
+    "kind": "historical",
+    "normalization": "uppercase-alpha-only",
+    "local_path": "runs/corpora/carter.txt"
+  },
+  {
+    "id": "berlin_geo",
+    "source_url": "https://download.geonames.org/export/dump/",
+    "license": "CC-BY-4.0-and-public-facts",
+    "retrieved_at": "2026-03-06",
+    "kind": "geo",
+    "normalization": "uppercase-alpha-only",
+    "local_path": "runs/corpora/berlin_geo.txt"
+  },
+  {
+    "id": "general_english",
+    "source_url": "https://github.com/rspeer/wordfreq",
+    "license": "MIT-plus-public-word-lists",
+    "retrieved_at": "2026-03-06",
+    "kind": "language",
+    "normalization": "uppercase-alpha-only",
+    "local_path": "runs/corpora/general_english.txt"
+  }
+]

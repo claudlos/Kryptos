@@ -1,80 +1,54 @@
-# Kryptos constants
-KRYPTOS_ALPHABET = "KRYPTOSABCDEFGHIJLMNQUVWXZ" 
-K4 = "OBKRUOXOGHULBSOLIFBBWFLRVQQPRNGKSSOTWTQSJQSSEKZZWATJKLUDIAWINFBNYPVTTMZFPKWGDKZXTJCDIGKUHUAUEKCAR"
+﻿from __future__ import annotations
 
-def build_tableau():
-    tableau = []
-    for i in range(26):
-        row = KRYPTOS_ALPHABET[i:] + KRYPTOS_ALPHABET[:i]
-        tableau.append(row)
-    return tableau
+from kryptos.catalog import get_strategy_spec
+from kryptos.common import (
+    build_quagmire_tableau,
+    clue_overlap_score,
+    decrypt_quagmire_autokey,
+    extract_clue_hits,
+    format_result,
+    preview_text,
+)
+from kryptos.constants import DEFAULT_PRIMERS, K4
+from kryptos.models import SearchMetrics, StrategyResult
 
-def decrypt_quagmire_char(cipher_char, key_char, tableau):
-    if key_char not in KRYPTOS_ALPHABET or cipher_char not in KRYPTOS_ALPHABET:
-        return cipher_char
-    row_idx = KRYPTOS_ALPHABET.index(key_char)
-    row = tableau[row_idx]
-    if cipher_char in row:
-        col_idx = row.index(cipher_char)
-        return KRYPTOS_ALPHABET[col_idx]
-    return cipher_char
+SPEC = get_strategy_spec("4")
 
-def decrypt_quagmire_autokey(ciphertext, primer, mode="plain"):
-    """
-    Decrypts using Quagmire III with an autokey.
-    mode="plain": Key(i) = Plaintext(i - len(primer)). 
-                  The key is [Primer] + [Plaintext]
-    mode="cipher": Key(i) = Ciphertext(i - len(primer)).
-                  The key is [Primer] + [Ciphertext]
-    """
-    tableau = build_tableau()
-    plaintext = ""
-    current_key = list(primer.upper())
-    
-    for i, c in enumerate(ciphertext):
-        if i < len(current_key):
-            key_char = current_key[i]
-        else:
-            # We should have generated enough key by now
-            key_char = current_key[i]
-            
-        p_char = decrypt_quagmire_char(c, key_char, tableau)
-        plaintext += p_char
-        
-        # Extend the key for future letters
-        if mode == "plain":
-            current_key.append(p_char)
-        elif mode == "cipher":
-            current_key.append(c)
-            
-    return plaintext
 
-def main():
-    primers = [
-        "KRYPTOS", "PALIMPSEST", "ABSCISSA", "BERLIN", "CLOCK", "EAST", "NORTHEAST",
-        "SANBORN", "CIA", "LANGLEY", "ILLUSION", "SHADOWFORCES", "LUCENT", "RQ"
-    ]
-    
-    print(f"Testing {len(primers)} Primers with Plain-Autokey and Cipher-Autokey Quagmire III...\n")
-    
-    found = False
-    for primer in primers:
-        # Test Plain Autokey
-        pt_plain = decrypt_quagmire_autokey(K4, primer, mode="plain")
-        if "EASTNORTHEAST" in pt_plain or "BERLINCLOCK" in pt_plain:
-            print(f"MATCH (Plain-Autokey) with primer '{primer}': {pt_plain}")
-            found = True
-            
-        # Test Cipher Autokey
-        pt_cipher = decrypt_quagmire_autokey(K4, primer, mode="cipher")
-        if "EASTNORTHEAST" in pt_cipher or "BERLINCLOCK" in pt_cipher:
-            print(f"MATCH (Cipher-Autokey) with primer '{primer}': {pt_cipher}")
-            found = True
-            
-    if not found:
-        print("No matches found for Autokey Quagmire with the tested primers.")
-        print("\nSnippet of plaintext with 'KRYPTOS' primer (Plain-Autokey):")
-        print(decrypt_quagmire_autokey(K4, "KRYPTOS", mode="plain")[:50])
+def run() -> StrategyResult:
+    tableau = build_quagmire_tableau()
+    candidates: dict[str, str] = {}
+    for primer in DEFAULT_PRIMERS:
+        for mode in ("plain", "cipher"):
+            label = f"{primer} ({mode})"
+            candidates[label] = decrypt_quagmire_autokey(K4, primer, mode=mode, tableau=tableau)
+
+    best_label, best_text = max(candidates.items(), key=lambda item: clue_overlap_score(item[1]))
+    matched_label = next((label for label, text in candidates.items() if extract_clue_hits(text)), None)
+    matched_clues = extract_clue_hits(candidates[matched_label]) if matched_label else []
+    summary = (
+        f"Matched {', '.join(matched_clues)} with {matched_label}."
+        if matched_clues
+        else "No plain-autokey or cipher-autokey primer produced the known K4 anchors."
+    )
+    return StrategyResult(
+        strategy_id=SPEC["id"],
+        name=SPEC["name"],
+        objective=SPEC["objective"],
+        hypothesis=SPEC["hypothesis"],
+        status="match" if matched_clues else "no_match",
+        summary=summary,
+        best_preview=preview_text(best_text),
+        matched_clues=matched_clues,
+        metrics=SearchMetrics(attempts=len(candidates), unique_attempts=len(candidates)),
+        notes=[f"Evaluated {len(DEFAULT_PRIMERS)} primers in both plain and cipher autokey modes."],
+        artifacts={"best_candidate": best_label},
+    )
+
+
+def main() -> None:
+    print(format_result(run()))
+
 
 if __name__ == "__main__":
     main()

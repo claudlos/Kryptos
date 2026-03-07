@@ -1,77 +1,73 @@
-import itertools
+﻿from __future__ import annotations
 
-# K4 Ciphertext (97 chars) + 1 padding char (?) at the end to make it 98 (7x14)
-CIPHERTEXT = "OBKRUOXOGHULBSOLIFBBWFLRVQQPRNGKSSOTWTQSJQSSEKZZWATJKLUDIAWINFBNYPVTTMZFPKWGDKZXTJCDIGKUHUAUEKCAR?"
-# The target cipher strings for EASTNORTHEAST and BERLINCLOCK
-TARGET_EN = "FLRVQQPRNGKSS"
-TARGET_BC = "NYPVTTMZFPK"
+from kryptos.catalog import get_strategy_spec
+from kryptos.common import format_result, preview_text, score_substrings
+from kryptos.constants import KNOWN_PLAINTEXT_CLUES, K4_PADDED
+from kryptos.models import SearchMetrics, StrategyResult
 
-def create_matrices():
-    """Create basic 7x14 and 14x7 matrices."""
-    m_7x14 = [list(CIPHERTEXT[i:i+14]) for i in range(0, 98, 14)]
-    m_14x7 = [list(CIPHERTEXT[i:i+7]) for i in range(0, 98, 7)]
-    return m_7x14, m_14x7
+SPEC = get_strategy_spec("2")
+TARGET_CIPHERTEXTS = [details["ciphertext"] for details in KNOWN_PLAINTEXT_CLUES.values()]
 
-def read_columns(matrix):
-    """Read matrix down the columns (from left to right)."""
-    cols = len(matrix[0])
-    rows = len(matrix)
-    result = ""
-    for c in range(cols):
-        for r in range(rows):
-            result += matrix[r][c]
-    return result
 
-def read_diagonals(matrix):
-    """Read a matrix diagonally."""
+def create_matrices() -> tuple[list[list[str]], list[list[str]]]:
+    matrix_7x14 = [list(K4_PADDED[index:index + 14]) for index in range(0, 98, 14)]
+    matrix_14x7 = [list(K4_PADDED[index:index + 7]) for index in range(0, 98, 7)]
+    return matrix_7x14, matrix_14x7
+
+
+def read_columns(matrix: list[list[str]]) -> str:
+    return "".join(matrix[row][col] for col in range(len(matrix[0])) for row in range(len(matrix)))
+
+
+def read_diagonals(matrix: list[list[str]]) -> str:
     rows = len(matrix)
     cols = len(matrix[0])
-    result = ""
-    for d in range(rows + cols - 1):
-        for r in range(max(0, d - cols + 1), min(rows, d + 1)):
-            c = d - r
-            result += matrix[r][c]
-    return result
+    result = []
+    for diagonal in range(rows + cols - 1):
+        for row in range(max(0, diagonal - cols + 1), min(rows, diagonal + 1)):
+            col = diagonal - row
+            result.append(matrix[row][col])
+    return "".join(result)
 
-def check_targets(text, method_name):
-    """Check if the transposed text contains the raw ciphertext targets."""
-    # We strip the '?' just in case it interferes, though it shouldn't for finding the targets
-    text_clean = text.replace("?", "")
-    
-    found_en = TARGET_EN in text_clean or TARGET_EN[::-1] in text_clean
-    found_bc = TARGET_BC in text_clean or TARGET_BC[::-1] in text_clean
-    
-    if found_en or found_bc:
-        print(f"\n[!] MATCH FOUND via {method_name}")
-        if found_en:
-            print(f"  -> Contains EASTNORTHEAST cipher string '{TARGET_EN}'")
-        if found_bc:
-            print(f"  -> Contains BERLINCLOCK cipher string '{TARGET_BC}'")
-        return True
-    return False
 
-def main():
-    print(f"Initial Cipertext length (padded): {len(CIPHERTEXT)}")
-    m_7x14, m_14x7 = create_matrices()
-    
-    methods = [
-        ("7x14 Read Columns (Left-to-Right)", read_columns(m_7x14)),
-        ("7x14 Read Columns (Right-to-Left)", read_columns([row[::-1] for row in m_7x14])),
-        ("7x14 Read Diagonals", read_diagonals(m_7x14)),
-        ("14x7 Read Columns (Left-to-Right)", read_columns(m_14x7)),
-        ("14x7 Read Columns (Right-to-Left)", read_columns([row[::-1] for row in m_14x7])),
-        ("14x7 Read Diagonals", read_diagonals(m_14x7)),
-    ]
-    
-    found_any = False
-    for name, result_text in methods:
-        if check_targets(result_text, name):
-            found_any = True
-            
-    if not found_any:
-        print("\nNo direct spatial re-assembly found the 1D target ciphertext strings.")
-        print("This implies the targets are either broken across lines (which they are natively),")
-        print("or the primary cipher is not *just* a simple 7x14 structural rearrangement.")
+def run() -> StrategyResult:
+    matrix_7x14, matrix_14x7 = create_matrices()
+    methods = {
+        "7x14 columns": read_columns(matrix_7x14),
+        "7x14 reverse columns": read_columns([row[::-1] for row in matrix_7x14]),
+        "7x14 diagonals": read_diagonals(matrix_7x14),
+        "14x7 columns": read_columns(matrix_14x7),
+        "14x7 reverse columns": read_columns([row[::-1] for row in matrix_14x7]),
+        "14x7 diagonals": read_diagonals(matrix_14x7),
+    }
+    best_name, best_text = max(
+        methods.items(),
+        key=lambda item: score_substrings(item[1].replace("?", ""), TARGET_CIPHERTEXTS),
+    )
+    matched = [target for target in TARGET_CIPHERTEXTS if target in best_text.replace("?", "")]
+    summary = (
+        f"Matched raw clue ciphertext via {best_name}."
+        if matched
+        else "No simple 7x14 or 14x7 read order reconstructed the clue ciphertext as a contiguous run."
+    )
+    return StrategyResult(
+        strategy_id=SPEC["id"],
+        name=SPEC["name"],
+        objective=SPEC["objective"],
+        hypothesis=SPEC["hypothesis"],
+        status="match" if matched else "no_match",
+        summary=summary,
+        best_preview=preview_text(best_text.replace("?", "")),
+        matched_clues=matched,
+        metrics=SearchMetrics(attempts=len(methods), unique_attempts=len(methods)),
+        notes=["Tested padded 7x14 and 14x7 matrices with column and diagonal reads."],
+        artifacts={"best_method": best_name},
+    )
+
+
+def main() -> None:
+    print(format_result(run()))
+
 
 if __name__ == "__main__":
     main()

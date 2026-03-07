@@ -1,0 +1,103 @@
+{
+  "title": "Kryptos Colab AI Workbench",
+  "repo_url": "https://github.com/claudlos/Kryptos.git",
+  "repo_ref": "main",
+  "workdir": "/content/Kryptos",
+  "bootstrap_command": [
+    "-m",
+    "pip",
+    "install",
+    "--upgrade",
+    "pip",
+    "setuptools>=69",
+    "wheel"
+  ],
+  "gpu_install_command": [
+    "-m",
+    "pip",
+    "install",
+    "numpy",
+    "pyopencl"
+  ],
+  "smoke_command": [
+    "-m",
+    "kryptos.benchmark_cli",
+    "--runner",
+    "gpu-opencl",
+    "--profile",
+    "smoke",
+    "--json",
+    "--output",
+    "runs/colab_gpu_smoke.json",
+    "--sweeps-per-pass",
+    "1"
+  ],
+  "heavy_command": [
+    "-m",
+    "kryptos.benchmark_cli",
+    "--runner",
+    "gpu-opencl",
+    "--profile",
+    "default",
+    "--json",
+    "--output",
+    "runs/colab_gpu_default_50sweeps.json",
+    "--sweeps-per-pass",
+    "50"
+  ],
+  "cpu_fallback_command": [
+    "-m",
+    "kryptos.benchmark_cli",
+    "--runner",
+    "cpu-strategy",
+    "--profile",
+    "default",
+    "--json",
+    "--output",
+    "runs/colab_cpu_default.json",
+    "--dataset-profile",
+    "full-public",
+    "--scorer-profile",
+    "anchor-first"
+  ],
+  "smoke_output": "runs/colab_gpu_smoke.json",
+  "heavy_output": "runs/colab_gpu_default_50sweeps.json",
+  "cpu_fallback_output": "runs/colab_cpu_default.json",
+  "ai_model": "google/gemini-2.0-flash",
+  "local_snapshot_name": "colab_repo_snapshot_posix.zip",
+  "local_snapshot_path": "runs/colab_repo_snapshot_posix.zip",
+  "primary_runner": "gpu-opencl",
+  "primary_profile": "default",
+  "include_drive_mount": true,
+  "local_baseline_summary": {
+    "artifact_path": "runs/gpu_50sweep_default_baseline.json",
+    "attempts": 97002000,
+    "elapsed_seconds": 67.271848,
+    "attempts_per_second": 1441940.47407,
+    "qualified_candidate_count": 919,
+    "hydrated_candidate_count": 64,
+    "displacement_examples": [
+      {
+        "keyword": "PERIPHERALS",
+        "period": 24,
+        "displacement_hint": 155,
+        "best_displacement": -9
+      },
+      {
+        "keyword": "BUILDINGS",
+        "period": 7,
+        "displacement_hint": 181,
+        "best_displacement": -9
+      },
+      {
+        "keyword": "PROTECTION",
+        "period": 21,
+        "displacement_hint": 155,
+        "best_displacement": -9
+      }
+    ]
+  },
+  "source_notebook": "https://colab.research.google.com/github/googlecolab/colabtools/blob/main/notebooks/Getting_started_with_google_colab_ai.ipynb",
+  "source_release_notes": "https://colab.google/release-notes/",
+  "local_snapshot_size_bytes": 1640680
+}

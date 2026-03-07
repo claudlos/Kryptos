@@ -1,63 +1,65 @@
-import itertools
+﻿from __future__ import annotations
 
-# K4 Ciphertext (padded to 98 to fit exact 7x14 matrix)
-K4 = "OBKRUOXOGHULBSOLIFBBWFLRVQQPRNGKSSOTWTQSJQSSEKZZWATJKLUDIAWINFBNYPVTTMZFPKWGDKZXTJCDIGKUHUAUEKCAR?"
-target_en = "FLRVQQPRNGKSS"
-target_bc = "NYPVTTMZFPK"
+from kryptos.catalog import get_strategy_spec
+from kryptos.common import format_result, preview_text, score_substrings
+from kryptos.constants import KNOWN_PLAINTEXT_CLUES, K4_PADDED
+from kryptos.models import SearchMetrics, StrategyResult
 
-def get_grid(text, rows, cols):
-    return [list(text[i:i+cols]) for i in range(0, rows*cols, cols)]
+SPEC = get_strategy_spec("5")
+TARGET_CIPHERTEXTS = [details["ciphertext"] for details in KNOWN_PLAINTEXT_CLUES.values()]
 
-def generate_masks(rows, cols):
-    """
-    Generates logical grille masks.
-    A true grille involves holes. If we slide a mask over 98 characters and read out
-    the letters underneath the holes, we get a new string.
-    There are an astronomical number of grilles. For this script we will try:
-    1. A mask of every Nth letter (e.g. 2, 3, 4, 5, 7)
-    2. Reading specific matrix blocks (top half, left half, every other column)
-    """
+
+def generate_masks(rows: int, cols: int) -> list[dict[str, object]]:
     masks = []
-    
-    # Simple modulus masks
-    for n in range(2, 8):
+    for step in range(2, 8):
         masks.append({
-            "name": f"Every {n}th character",
-            "indices": [i for i in range(rows * cols) if i % n == 0]
+            "name": f"Every {step}th character",
+            "indices": [index for index in range(rows * cols) if index % step == 0],
         })
-        
-    # Column specific masks
     for start_col in range(4):
-        # Taking every 2nd or 3rd column
         indices = []
-        for r in range(rows):
-            for c in range(start_col, cols, 2): # stride of 2
-                indices.append(r * cols + c)
+        for row in range(rows):
+            for col in range(start_col, cols, 2):
+                indices.append(row * cols + col)
         masks.append({"name": f"Every 2nd column starting at {start_col}", "indices": indices})
-        
     return masks
 
-def apply_mask(text, indices):
-    return "".join([text[i] for i in indices if i < len(text)])
 
-def main():
-    print(f"Total Characters: {len(K4)}")
+def apply_mask(text: str, indices: list[int]) -> str:
+    return "".join(text[index] for index in indices if index < len(text))
+
+
+def run() -> StrategyResult:
     masks = generate_masks(7, 14)
-    print(f"Testing {len(masks)} geometric/mathematical masks on the K4 matrix...")
-    
-    found = False
-    for mask in masks:
-        masked_text = apply_mask(K4, mask["indices"])
-        if target_en in masked_text or target_bc in masked_text:
-            print(f"MATCH FOUND with mask: {mask['name']}")
-            print(f"Result length: {len(masked_text)} - {masked_text}")
-            found = True
-            
-    if not found:
-        print("\nNo continuous clue strings found under the tested mask geometries.")
-        # Print an example of one mask output
-        example = apply_mask(K4, masks[0]["indices"])
-        print(f"Example output ({masks[0]['name']}): {example}")
+    outputs = {mask["name"]: apply_mask(K4_PADDED, mask["indices"]) for mask in masks}
+    best_name, best_text = max(
+        outputs.items(),
+        key=lambda item: score_substrings(item[1].replace("?", ""), TARGET_CIPHERTEXTS),
+    )
+    matched = [target for target in TARGET_CIPHERTEXTS if target in best_text]
+    summary = (
+        f"Matched raw clue ciphertext with mask '{best_name}'."
+        if matched
+        else "No tested grille mask extracted the clue ciphertext as a continuous sequence."
+    )
+    return StrategyResult(
+        strategy_id=SPEC["id"],
+        name=SPEC["name"],
+        objective=SPEC["objective"],
+        hypothesis=SPEC["hypothesis"],
+        status="match" if matched else "no_match",
+        summary=summary,
+        best_preview=preview_text(best_text.replace("?", "")),
+        matched_clues=matched,
+        metrics=SearchMetrics(attempts=len(outputs), unique_attempts=len(outputs)),
+        notes=["Used simple modulus masks plus alternating-column masks over a padded 7x14 grid."],
+        artifacts={"best_mask": best_name},
+    )
+
+
+def main() -> None:
+    print(format_result(run()))
+
 
 if __name__ == "__main__":
     main()

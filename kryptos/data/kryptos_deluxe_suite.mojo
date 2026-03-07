@@ -1,4 +1,4 @@
-def generate_polybius_square(keyword):
+﻿def generate_polybius_square(keyword):
     square_str = ""
     for char in keyword:
         if char == 'J': char = 'I'

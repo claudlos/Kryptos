@@ -15,9 +15,23 @@ venv.bak/
 # Generated files
 k4_dictionary.txt
 output*.txt
+runs/corpora/
+tmp_codex_write_test.txt
 
 # IDEs
 .idea/
 .vscode/
 *.swp
 *.swo
+
+# Packaging
+build/
+dist/
+*.egg-info/
+
+# Local validation artifacts
+.test_tmp_colab/
+runs/colab_repo_snapshot_posix.zip
+out.txt
+runs/test_tmp/
+runs/colab_repo_snapshot.zip

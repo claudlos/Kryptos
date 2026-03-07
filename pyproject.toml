@@ -1,0 +1,56 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "kryptos-k4-toolkit"
+version = "0.3.0"
+description = "Structured Kryptos K4 research toolkit, dashboard exporter, and benchmark runners."
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [{ name = "Carlos" }]
+dependencies = []
+
+[project.optional-dependencies]
+gpu = ["numpy", "pyopencl"]
+dev = ["ruff"]
+
+[project.scripts]
+kryptos-toolkit = "kryptos_toolkit:main"
+kryptos-analyze = "k4_analyzer:main"
+kryptos-dictionary = "generate_k4_dictionary:main"
+kryptos-gpu = "gpu_opencl_suite:main"
+kryptos-benchmark = "kryptos.benchmark_cli:main"
+kryptos-colab = "kryptos.colab:main"
+
+[tool.setuptools]
+packages = ["kryptos", "kryptos.data"]
+py-modules = [
+  "generate_k4_dictionary",
+  "gpu_opencl_suite",
+  "k4_analyzer",
+  "kryptos_toolkit",
+  "strategy1_quagmire",
+  "strategy2_matrix",
+  "strategy3_ioc_hillclimb",
+  "strategy4_autokey",
+  "strategy5_grilles",
+  "strategy6_chained_autokey",
+  "strategy7_segmented",
+  "strategy8_shifted_running_key",
+  "strategy9_external_keyer",
+  "strategy10_fractionation",
+  "strategy11_corpus_running_key",
+  "strategy12_periodic_transposition_hillclimb",
+  "strategy13_hybrid_pipeline_search",
+]
+include-package-data = true
+
+[tool.setuptools.package-data]
+kryptos = [
+  "data/*.txt",
+  "data/*.mojo",
+  "data/*.json",
+  "data/corpora/*.txt",
+  "data/corpora/*.json",
+]

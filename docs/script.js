@@ -1,141 +1,170 @@
-// Assault Strategies Data parsed directly from walkthrough.md
-const strategies = [
-    {
-        num: 2,
-        name: "Spatial Matrix Masking",
-        objective: "Determine if the K4 text is a 2D matrix where known plaintext clues are geometrically arranged prior to substitution.",
-        result: "FAILURE. No direct spatial re-assembly generated the native 1D contiguous arrays of the target ciphertext."
-    },
-    {
-        num: 3,
-        name: "Index of Coincidence (IoC) Maximization",
-        objective: "Use a randomized hill-climbing algorithm over 300,000 permutations to search for transposition grid-widths that maximize English standard IoC.",
-        result: "FAILURE. Period 11 scored highest (0.0440) but algorithm could not reassemble contiguous key segments from a scrambled state."
-    },
-    {
-        num: 1,
-        name: "Quagmire III Running Key Tests",
-        objective: "Hypothesized a Running Key cipher using the plaintexts of previously decrypted panels (K1, K2, K3).",
-        result: "FAILURE. None of the resultant plaintexts aligned with Jim Sanborn's known anchors."
-    },
-    {
-        num: 4,
-        name: "Quagmire III Autokey",
-        objective: "Determine if K4 plaintext/ciphertext acts as its own running key using 14 standard theme-relevant primers.",
-        result: "FAILURE. Plaintexts remained highly scrambled."
-    },
-    {
-        num: 5,
-        name: "Vigenère Grille / Geometric Masking",
-        objective: "Simulate a physical cut-out grille mask over a 7x14 geometric extraction grid.",
-        result: "FAILURE. Mathematical grilles failed to reconstruct the contiguous known sequences."
-    },
-    {
-        num: 6,
-        name: "Chained / Multi-layered Autokey",
-        objective: "Test the hypothesis of nested Autokey-on-Autokey encryption chain via 49 primer permutations.",
-        result: "FAILURE. Dual-layered substitution yielded deeply randomized plaintexts."
-    },
-    {
-        num: 7,
-        name: "Segmented / Delimiter-based Decryption",
-        objective: "Test theory that the character 'W' acts as a cipher reset/delimiter by splitting into 6 segments.",
-        result: "FAILURE. Local segment decryption failed to yield continuous substrings."
-    },
-    {
-        num: 8,
-        name: "Shifted Running Keys",
-        objective: "Exhaustively test every single possible starting offset of the K1, K2, and K3 plaintexts acting as key material.",
-        result: "FAILURE. All offsets mathematically eliminated."
-    },
-    {
-        num: 9,
-        name: "External Text Running Key",
-        objective: "Extract full historical text of Howard Carter's diary and use as a massive offset running key.",
-        result: "FAILURE. Historical diary did not unlock plaintexts at any offset."
-    },
-    {
-        num: 10,
-        name: "Fractionated Polygraphic Solvers",
-        objective: "Test if K4 breaks characters into coordinates before substitution (Bifid/Playfair) to flatten the IoC.",
-        result: "FAILURE. Cipher mechanism remains resistant to positional diffusion."
-    },
-    {
-        num: 11,
-        name: "Deluxe Suite & Mojo Acceleration",
-        objective: "Shatter Python computational ceilings via SIMD-vectorized Mojo structs on WSL.",
-        result: "FAILURE. Million-key compiled sweeps processed fast, but did not crack K4."
-    },
-    {
-        num: 12,
-        name: "Massive Dictionary Fractionation Sweep",
-        objective: "Combine Bifid matrices with 9,510 unified Custom Keys against 12 transposition periods (114,120 permutations).",
-        result: "FAILURE. Swept 84 Million algorithmic matrix calculations simultaneously. Zero decipherments synthesized."
-    },
-    {
-        num: 13,
-        name: "Native Windows GPU Acceleration (OpenCL)",
-        objective: "Target the AMD Radeon Graphic Card within Windows to natively run OpenCL C kernels.",
-        result: "FAILURE. Processed 4,200,000,000 distinct permutations in 540 seconds (7.77M/sec). 4.2 Billion keys produced no plaintexts."
-    }
-];
+﻿const state = {
+    dashboard: null,
+};
 
-document.addEventListener("DOMContentLoaded", () => {
-    // Populate the Assault Log Timeline
-    const timelineContainer = document.getElementById("timeline-container");
-    
-    strategies.forEach(strategy => {
-        const item = document.createElement("div");
-        item.className = "timeline-item";
-        
-        // Stagger entrance animations
-        item.style.opacity = "0";
-        item.style.transform = "translateY(20px)";
-        item.style.transition = "all 0.6s cubic-bezier(0.16, 1, 0.3, 1)";
-        
-        item.innerHTML = `
-            <div class="strategy-num">STRATEGY ${String(strategy.num).padStart(2, '0')}</div>
-            <h3>${strategy.name}</h3>
-            <p><strong>Objective:</strong> ${strategy.objective}</p>
-            <div class="timeline-result">${strategy.result}</div>
-        `;
-        timelineContainer.appendChild(item);
-    });
+const formatNumber = value => new Intl.NumberFormat("en-US").format(value ?? 0);
+const formatSeconds = value => `${(value ?? 0).toFixed(4)}s`;
 
-    // Intersection Observer for Scroll Animations
-    const observerOptions = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.1
-    };
+function renderHero(project, latestRun) {
+    document.getElementById("project-title").textContent = project.title;
+    document.getElementById("project-tagline").textContent = project.tagline;
+    document.getElementById("repo-link").href = project.repo_url;
+    document.getElementById("footer-copy").textContent = `Dashboard generated from ${latestRun?.result_count ?? 0} structured strategy results.`;
 
-    const observer = new IntersectionObserver((entries, obs) => {
+    const metrics = [
+        {
+            label: "Strategies",
+            value: latestRun?.result_count ?? 0,
+        },
+        {
+            label: "Attempts",
+            value: formatNumber(latestRun?.totals?.attempts ?? 0),
+        },
+        {
+            label: "Unique Attempts",
+            value: formatNumber(latestRun?.totals?.unique_attempts ?? 0),
+        },
+        {
+            label: "Elapsed",
+            value: formatSeconds(latestRun?.totals?.elapsed_seconds ?? 0),
+        },
+    ];
+
+    document.getElementById("hero-metrics").innerHTML = metrics
+        .map(metric => `
+            <article class="metric-card">
+                <p class="metric-label">${metric.label}</p>
+                <p class="metric-value">${metric.value}</p>
+            </article>
+        `)
+        .join("");
+}
+
+function renderAnchors(anchors) {
+    const container = document.getElementById("anchor-grid");
+    container.innerHTML = anchors
+        .map(anchor => `
+            <article class="anchor-card">
+                <p class="anchor-range">${anchor.start_index}-${anchor.end_index}</p>
+                <h3>${anchor.plaintext}</h3>
+                <p class="mono">Cipher: ${anchor.ciphertext}</p>
+                <p class="mono">Shift letters: ${anchor.shift_letters}</p>
+            </article>
+        `)
+        .join("");
+}
+
+function renderBenchmarks(benchmarks) {
+    const maxSpeed = Math.max(...benchmarks.map(item => item.speed_per_second));
+    document.getElementById("benchmark-grid").innerHTML = benchmarks
+        .map(benchmark => {
+            const width = Math.max(12, Math.round((benchmark.speed_per_second / maxSpeed) * 100));
+            return `
+                <article class="benchmark-card">
+                    <div class="benchmark-topline">
+                        <h3>${benchmark.label}</h3>
+                        <p class="mono">${benchmark.display_speed}</p>
+                    </div>
+                    <div class="benchmark-bar">
+                        <span style="width:${width}%"></span>
+                    </div>
+                    <p>${benchmark.notes}</p>
+                </article>
+            `;
+        })
+        .join("");
+}
+
+function renderLatestRun(latestRun, generatedAt) {
+    document.getElementById("run-generated-at").textContent = `Generated ${new Date(generatedAt).toLocaleString()}`;
+    document.getElementById("run-summary").innerHTML = `
+        <article class="summary-card">
+            <p class="summary-label">Selection</p>
+            <p class="summary-value">${latestRun.strategy_selection}</p>
+        </article>
+        <article class="summary-card">
+            <p class="summary-label">Attempts</p>
+            <p class="summary-value">${formatNumber(latestRun.totals.attempts)}</p>
+        </article>
+        <article class="summary-card">
+            <p class="summary-label">Unique Attempts</p>
+            <p class="summary-value">${formatNumber(latestRun.totals.unique_attempts)}</p>
+        </article>
+        <article class="summary-card">
+            <p class="summary-label">Elapsed</p>
+            <p class="summary-value">${formatSeconds(latestRun.totals.elapsed_seconds)}</p>
+        </article>
+    `;
+
+    document.getElementById("run-results").innerHTML = latestRun.results
+        .map(result => `
+            <tr>
+                <td>
+                    <strong>[${result.strategy_id}] ${result.name}</strong>
+                    <p>${result.summary}</p>
+                </td>
+                <td><span class="status ${result.status}">${result.status.replace("_", " ")}</span></td>
+                <td class="mono">${formatNumber(result.metrics.attempts)}</td>
+                <td class="mono">${formatSeconds(result.metrics.elapsed_seconds ?? 0)}</td>
+                <td class="mono preview-cell">${result.best_preview || "-"}</td>
+            </tr>
+        `)
+        .join("");
+}
+
+function renderCatalog(strategyCatalog, latestRun) {
+    const resultsById = new Map((latestRun?.results ?? []).map(result => [result.strategy_id, result]));
+    document.getElementById("catalog-grid").innerHTML = strategyCatalog
+        .map(spec => {
+            const result = resultsById.get(spec.id);
+            return `
+                <article class="catalog-card">
+                    <p class="catalog-id">Strategy ${spec.id}</p>
+                    <h3>${spec.name}</h3>
+                    <p>${spec.objective}</p>
+                    <p class="catalog-hypothesis">${spec.hypothesis}</p>
+                    <div class="catalog-meta">
+                        <span>${spec.category}</span>
+                        <span class="status ${result?.status ?? "pending"}">${result?.status ?? "pending"}</span>
+                    </div>
+                </article>
+            `;
+        })
+        .join("");
+}
+
+function revealOnScroll() {
+    const observer = new IntersectionObserver(entries => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.style.opacity = "1";
-                entry.target.style.transform = "translateY(0)";
-                
-                // If this is the analytics section, trigger the bar widths
-                if (entry.target.id === 'analytics') {
-                    setTimeout(() => {
-                        const bars = document.querySelectorAll('.bar');
-                        // Widths are hardcoded inline in HTML for initial 0, let's trigger
-                        // Actually, I put styles inline. Let's just let css transition handle it.
-                    }, 200);
-                }
-                
-                obs.unobserve(entry.target);
+                entry.target.classList.add("visible");
+                observer.unobserve(entry.target);
             }
         });
-    }, observerOptions);
+    }, { threshold: 0.12 });
 
-    // Observe timeline items and sections
-    document.querySelectorAll('.timeline-item, .section').forEach(el => {
-        if (!el.id || el.id !== 'hero-panel') {
-            el.style.opacity = "0";
-            el.style.transform = "translateY(20px)";
-            el.style.transition = "opacity 0.8s ease-out, transform 0.8s ease-out";
-            observer.observe(el);
-        }
-    });
+    document.querySelectorAll(".reveal").forEach(element => observer.observe(element));
+}
+
+async function bootstrap() {
+    const response = await fetch("data/dashboard.json", { cache: "no-store" });
+    if (!response.ok) {
+        throw new Error(`Failed to load dashboard data: ${response.status}`);
+    }
+
+    state.dashboard = await response.json();
+    const { project, anchors, benchmarks, latest_run: latestRun, strategy_catalog: strategyCatalog, generated_at: generatedAt } = state.dashboard;
+
+    renderHero(project, latestRun);
+    renderAnchors(anchors);
+    renderBenchmarks(benchmarks);
+    renderLatestRun(latestRun, generatedAt);
+    renderCatalog(strategyCatalog, latestRun);
+    revealOnScroll();
+}
+
+bootstrap().catch(error => {
+    document.body.classList.add("load-error");
+    document.getElementById("project-tagline").textContent = error.message;
+    document.getElementById("run-generated-at").textContent = "Dashboard data could not be loaded.";
 });

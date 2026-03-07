@@ -1,125 +1,85 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kryptos K4: The 4.2 Billion Parameter Assault</title>
-    <meta name="description" content="A comprehensive cryptanalytic assault on the unsolved 4th panel of the CIA Kryptos sculpture, encompassing 13 defeated mathematical strategies and 4.2 billion Native GPU permutations.">
-    
-    <!-- Modern Typography: Google Fonts -->
+    <title>Kryptos K4 Research Dashboard</title>
+    <meta name="description" content="Structured run results, clue anchors, and benchmark notes for the Kryptos K4 research repository.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&family=Outfit:wght@400;700;900&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <div class="site-shell">
+        <div class="ambient ambient-one"></div>
+        <div class="ambient ambient-two"></div>
 
-    <!-- Dynamic Animated Grid Background -->
-    <div class="bg-grid"></div>
-    <div class="bg-glow"></div>
-
-    <header class="hero">
-        <div class="glass-panel" id="hero-panel">
-            <h3 class="subtitle">PROJECT: ENIGMA ZERO</h3>
-            <h1 class="title">KRYPTOS <span class="gradient-text">K4</span></h1>
-            <p class="hero-desc">The 4.2 Billion Parameter Cryptanalysis Assault</p>
-            <p class="hero-stats">13 Defeated Strategies. 4,200,000,000 Native GPU Permutations. 1 Unsolved Mystery.</p>
+        <header class="hero reveal">
+            <p class="eyebrow">Kryptos K4</p>
+            <h1 id="project-title">Research Dashboard</h1>
+            <p class="hero-copy" id="project-tagline">Loading structured research metadata...</p>
             <div class="hero-actions">
-                <a href="#cryptogram" class="btn primary">View The Cipher</a>
-                <a href="#assault-log" class="btn secondary">Read Assault Log</a>
+                <a class="button primary" href="#latest-run">Latest Run</a>
+                <a class="button secondary" id="raw-data-link" href="data/dashboard.json">Raw JSON</a>
             </div>
-        </div>
-    </header>
+            <div class="hero-metrics" id="hero-metrics"></div>
+        </header>
 
-    <main>
-        <section id="cryptogram" class="section">
-            <h2 class="section-title">01 / The Cipher</h2>
-            <p class="section-desc">The 97-character unsolved string from Jim Sanborn's CIA courtyard sculpture.</p>
-            
-            <div class="cipher-box glass-panel">
-                <div class="cipher-grid" id="cipher-text">
-                    OBKRUOXOGHULBSOLIFBBWFLRVQQPRNGKSSOTWTQSJQSSEKZZWATJKLUDIAWINFBNYPVTTMZFPKWGDKZXTJCDIGKUHUAUEKCAR
+        <main>
+            <section class="panel reveal" id="anchors-section">
+                <div class="section-header">
+                    <p class="section-kicker">Known Plaintext</p>
+                    <h2>Anchor Explorer</h2>
                 </div>
-                <div class="cipher-anchors">
-                    <h4>Known Plaintext Anchors:</h4>
-                    <p><code class="anchor">EASTNORTHEAST</code> (Index 22-34)</p>
-                    <p><code class="anchor">BERLINCLOCK</code> (Index 64-74)</p>
+                <div class="anchor-grid" id="anchor-grid"></div>
+            </section>
+
+            <section class="panel reveal" id="benchmarks-section">
+                <div class="section-header">
+                    <p class="section-kicker">Execution Paths</p>
+                    <h2>Benchmark Notes</h2>
                 </div>
-            </div>
-        </section>
+                <div class="benchmark-grid" id="benchmark-grid"></div>
+            </section>
 
-        <section id="analytics" class="section">
-            <h2 class="section-title">02 / Compute Analytics</h2>
-            <p class="section-desc">Evolution of the decryptor scaling architecture.</p>
-            
-            <div class="analytics-container">
-                <div class="chart-glass">
-                    <h3>Decryption Velocity (Permutations / Second)</h3>
-                    
-                    <div class="bar-row">
-                        <span class="label">Native Python (CPU)</span>
-                        <div class="bar-track">
-                            <div class="bar python" style="width: 2%;"></div>
-                        </div>
-                        <span class="value">18,133/sec</span>
-                    </div>
-
-                    <div class="bar-row">
-                        <span class="label">Mojo MLIR/LLVM (Compiled)</span>
-                        <div class="bar-track">
-                            <div class="bar mojo" style="width: 15%;"></div>
-                        </div>
-                        <span class="value">~1,500,000/sec</span>
-                    </div>
-
-                    <div class="bar-row">
-                        <span class="label">OpenCL AMD GPU (Radeon)</span>
-                        <div class="bar-track">
-                            <div class="bar gpu" style="width: 100%;"></div>
-                        </div>
-                        <span class="value">7,777,777/sec</span>
-                    </div>
+            <section class="panel reveal" id="latest-run">
+                <div class="section-header">
+                    <p class="section-kicker">Run Artifact</p>
+                    <h2>Latest Structured Sweep</h2>
+                    <p class="section-copy" id="run-generated-at"></p>
                 </div>
-            </div>
-        </section>
-
-        <section id="arsenal" class="section">
-            <h2 class="section-title">03 / The Arsenal</h2>
-            <p class="section-desc">Custom tools engineered for massive scale parameter sweeps.</p>
-            
-            <div class="cards-grid">
-                <div class="card glass-panel">
-                    <div class="card-icon">🐍</div>
-                    <h3>kryptos_toolkit.py</h3>
-                    <p>A unified CLI wrapper executing 10 distinct Python cryptanalysis engines, from Quagmire III to Shifted Running Keys.</p>
+                <div class="run-summary" id="run-summary"></div>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Strategy</th>
+                                <th>Status</th>
+                                <th>Attempts</th>
+                                <th>Elapsed</th>
+                                <th>Preview</th>
+                            </tr>
+                        </thead>
+                        <tbody id="run-results"></tbody>
+                    </table>
                 </div>
-                <div class="card glass-panel">
-                    <div class="card-icon">🔥</div>
-                    <h3>linux_native_suite.mojo</h3>
-                    <p>Subsystem bypassing struct natively compiled against LLVM for massive CPU vectorization and parallel threads.</p>
+            </section>
+
+            <section class="panel reveal" id="catalog-section">
+                <div class="section-header">
+                    <p class="section-kicker">Research Catalog</p>
+                    <h2>Implemented Strategies</h2>
                 </div>
-                <div class="card glass-panel">
-                    <div class="card-icon">⚙️</div>
-                    <h3>gpu_opencl_suite.py</h3>
-                    <p>The crown jewel. A native Windows GPU compute shader dispatching massive Dictionary Fractionation across AMD Radeon VRAM.</p>
-                </div>
-            </div>
-        </section>
+                <div class="catalog-grid" id="catalog-grid"></div>
+            </section>
+        </main>
 
-        <section id="assault-log" class="section">
-            <h2 class="section-title">04 / Assault Log</h2>
-            <p class="section-desc">13 empirical approaches scientifically mathematically eliminated.</p>
-
-            <div class="timeline" id="timeline-container">
-                <!-- Javascript will populate timeline items here -->
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <p>Operation: Kryptos K4 Cryptanalysis | <a href="https://github.com/Carlos/Kryptos" target="_blank">View GitHub Repo</a></p>
-    </footer>
+        <footer class="footer reveal">
+            <p id="footer-copy">Structured data powers this dashboard.</p>
+            <a id="repo-link" href="https://github.com/Carlos/Kryptos" target="_blank" rel="noreferrer">Repository</a>
+        </footer>
+    </div>
 
     <script src="script.js"></script>
 </body>

@@ -1,87 +1,186 @@
-# Kryptos K4 Decryption Suite
+﻿# Kryptos K4 Research Toolkit
 
-A Python and OpenCL based repository containing a suite of tools designed to analyze and attempt to crack the final unsolved section (K4) of the famous Kryptos sculpture at the CIA headquarters.
+A Python-first research repo for experimenting with possible solutions to the unsolved K4 section of Jim Sanborn's Kryptos sculpture.
 
 ## Overview
 
-🌐 **Live Project Website & Web App:** [https://claudlos.github.io/Kryptos/](https://claudlos.github.io/Kryptos/)
+Live dashboard: [https://claudlos.github.io/Kryptos/](https://claudlos.github.io/Kryptos/)
 
-This project implements various classical cryptography strategies and utilizes an OpenCL-accelerated GPU brute-forcing tool to perform massive-scale decryptions.
+The repository now exposes its research state through structured CLI results and a static dashboard backed by generated JSON instead of hand-maintained copy.
 
-### Included Strategies
-- Quagmire / Vigénere variants
-- Matrix transposition
-- Index of Coincidence (IoC) Hill Climbing
-- Autokey & Chained Autokey
-- Grilles
-- Segmented approach
-- Shifted Running Key
-- External Keyer
-- Fractionation
+## Repository Layout
 
-## Prerequisites
-
-- Python 3.x
-- `numpy`
-- `pyopencl` (requires OpenCL drivers for your hardware, whether CPU or GPU)
-- `mojo` (optional, for running the parallel Mojo variants)
+- `kryptos_toolkit.py`: primary CLI for running the Python strategies and exporting structured JSON.
+- `k4_analyzer.py`: clue-position and Vigenere-shift analysis for the known anchors.
+- `generate_k4_dictionary.py`: builds the dictionary used by the CPU and GPU fractionation runs.
+- `gpu_opencl_suite.py`: OpenCL Bifid sweep with explicit pass accounting and finite defaults.
+- `kryptos_deluxe_suite.mojo`: Mojo-based mutated sweep prototype.
+- `linux_native_suite.mojo`: benchmark scaffold, not a full K4 decryptor.
+- `docs/`: static dashboard site powered by `docs/data/dashboard.json`.
+- `tests/`: `unittest` coverage for core invariants and CLI behavior.
 
 ## Installation
 
-1. Clone the repository:
-   ```bash
-   git clone <your-repo-url>
-   cd Kryptos
-   ```
+Base install:
 
-2. Install the required Python packages:
+```bash
+pip install -e .
+```
+
+GPU-enabled install:
+
+```bash
+pip install -e .[gpu]
+```
+
+Legacy dependency path:
+
+1. Install the package plus GPU extras:
    ```bash
    pip install -r requirements.txt
    ```
-
-3. Generate the required K4 dictionary file (which is git-ignored by default):
+2. Generate the dictionary file if you need to rebuild it:
    ```bash
    python generate_k4_dictionary.py
    ```
 
-## Usage
+## CLI Usage
 
-You can use the `kryptos_toolkit.py` central script to run the classical Python strategies:
+List strategies:
+
 ```bash
-python kryptos_toolkit.py --strategy all
+python kryptos_toolkit.py --list-strategies
 ```
 
-For massive-scale OpenCL-based GPU processing:
+Installed console script:
+
 ```bash
-python gpu_opencl_suite.py
+kryptos-toolkit --list-strategies
 ```
 
-## 🔬 Novel Research & Unpublicized Ground
+Run one strategy and emit JSON:
 
-While K4 remains officially unsolved, this repository documents multiple deeply theoretical, previously unpublicized strategies that drastically expand upon existing public research. 
+```bash
+python kryptos_toolkit.py --strategy 1 --json
+```
 
-### 1. Definitively Ruling out Basic and Combinatorial Strategies
-A core component of our research involved scientifically and mathematically eliminating 13 empirical approaches. Through extensive scripting and statistical analysis, we have definitively ruled out:
-- **Spatial Matrix Masking & Grilles**: No direct spatial geometry or hardware grille simulation (such as a 7x14 extraction grid overlay) yielded the contiguous native 1D arrays of the target ciphertexts.
-- **Index of Coincidence (IoC) Maximization**: K4 exhibits an abnormally low IoC of `0.0361` (compared to English at ~0.0667 and pure random at ~0.0385). Randomized hill-climbing algorithms over 300,000 permutations attempting to reconstruct structural transpositions failed completely.
-- **Quagmire III Variants & Running Keys**: Hypotheses connecting K4 to the Quagmire III framework of K1 and K2—including Autokeying with thematic primers and shifted running keys derived from K1-K3 plaintexts—were all mathematically eliminated as they failed to align with known anchors (`BERLINCLOCK`, `EASTNORTHEAST`).
-- **Segmented Processing**: Testing theories that the letter `W` acts as a segment delimiter/reset mechanism failed. 
-- **The "Howard Carter Diaries" Keyer Overlay**: Stemming from the `Slowly, desperately slowly` K3 clue, Strategy 9 ingested full blocks of external texts—specifically Howard Carter’s original November 1922 diary entries—applying them as exhaustive running keys. This historical overlay hypothesis was fully eliminated.
+Run the full Python suite, save a run artifact, and refresh the dashboard data:
 
-### 2. Massive-Scale Native OpenCL GPU Acceleration Utilizing 4.2 Billion Permutations
-Recognizing that standard Python CPU engines (peaking at ~18k permutations/sec) and even Mojo MLIR/LLVM compiling architectures (~1.5M keys/sec) were insufficient for complex combination ciphers, an entirely new acceleration framework was engineered:
-- **Windows OpenCL Dispatches**: A native OpenCL brute-forcer was engineered to bypass inherent WSL threading bottlenecks on Windows, tapping directly into consumer GPUs (e.g., AMD Radeon 680M).
-- **Fractionated Polygraphic Matings**: To combat the 0.0361 IoC, the GPU suite mated Bifid coordinate fractionation with 9,510 unified Custom Keys across multiple transposition periods.
-- **The 4.2 Billion Sweep**: At a decryption velocity of `7,777,777` permutations per second, the GPU OpenCL C-kernels executed a continuous brute force of 4,200,000,000 distinct permutations in roughly 540 seconds. While producing no clear plaintexts, this represents a major benchmark in amateur Kryptos permutation assaults.
+```bash
+python kryptos_toolkit.py --strategy all \
+  --output runs/latest_run.json \
+  --dashboard-output docs/data/dashboard.json
+```
 
-### 3. Debunking The 2025 Grok 3 AI "Solution" Claim
-In February 2025, a claim surfaced asserting that an AI model (Grok 3) had decrypted K4 to read: *"THIS IS A GUIDE TO THE BERLIN CLOCK WHICH IS NORTHEAST OF HERE AT CIA LANGLEY VIRGINIA"*. 
+Generate clue analysis data:
 
-Through mathematical modeling in this repository, **we conclusively debunk this claim**:
-1. **Mathematical Impossibility (Length Mismatch)**: The K4 ciphertext consists of **exactly 97 characters**. The proposed Grok 3 plaintext is only **82 alphabetic characters**. An exact 1:1 encryption scheme (substitution, Vigenere, transposition, fractionation) inherently requires equal lengths; resolving this discrepancy mandates massive, undocumented null padding.
-2. **Contradiction of Official Anchors**: Jim Sanborn officially verified that character indices 22-34 map *exactly* to `EASTNORTHEAST`. The AI's purported plaintext contains the word `NORTHEAST` but entirely omits the preceding `EAST`. 
+```bash
+python k4_analyzer.py --json
+```
 
-This repository's mathematical analyses confirm the Grok 3 string is an AI hallucination—a thematic guess that fails fundamental cryptographic scrutiny.
+Installed console script:
 
----
-This suite is aimed at pushing the computational boundaries of amateur Kryptos research, documenting mathematically eliminated avenues, and automating the most complex combinatory cipher theories.
+```bash
+kryptos-analyze --json
+```
+
+Run the GPU sweep for one pass:
+
+```bash
+python gpu_opencl_suite.py --passes 1
+```
+
+Run the GPU sweep continuously until interrupted:
+
+```bash
+python gpu_opencl_suite.py --continuous
+```
+
+Installed console script:
+
+```bash
+kryptos-gpu --profile smoke --json
+```
+
+## Benchmark Profiles
+
+Use the unified benchmark entry point to plan or run comparable benchmark profiles:
+
+Plan a GPU smoke benchmark:
+
+```bash
+python -m kryptos.benchmark_cli --runner gpu-opencl --profile smoke --plan-only --json
+```
+
+Plan a Mojo deluxe smoke benchmark:
+
+```bash
+python -m kryptos.benchmark_cli --runner mojo-deluxe --profile smoke --plan-only --json
+```
+
+If the console scripts are installed:
+
+```bash
+kryptos-benchmark --runner gpu-opencl --profile smoke --plan-only
+```
+
+Available runners:
+
+- `gpu-opencl`
+- `mojo-deluxe`
+- `mojo-scaffold`
+
+Available profiles per runner:
+
+- `smoke`
+- `default`
+- `deep`
+
+Generated benchmark plan artifacts in this repo:
+
+- `runs/gpu_benchmark_plan.json`
+- `runs/mojo_deluxe_benchmark_plan.json`
+- `runs/mojo_scaffold_benchmark_plan.json`
+
+## Google Colab AI Workbench
+
+Generate the Colab notebook/config artifacts and a local snapshot zip for upload to Colab:
+
+```bash
+python -m kryptos.colab --include-drive-mount --json
+```
+
+Installed console script:
+
+```bash
+kryptos-colab --include-drive-mount --json
+```
+
+Default outputs:
+
+- `notebooks/kryptos_colab_ai_workbench.ipynb`
+- `runs/colab_workbench_config.json`
+- `runs/colab_repo_snapshot_posix.zip` (local-only upload artifact; keep it out of public commits)
+
+The generated notebook is designed around Google's `google.colab.ai` workflow and adds Kryptos-specific cells to:
+
+- clone and install this repo in Colab
+- upload and unpack the generated local snapshot zip when the local working tree is ahead of GitHub or you are testing unpushed changes
+- probe OpenCL availability before running the GPU benchmark
+- run a smoke pass and a heavier benchmark pass
+- fall back to the `cpu-strategy` runner if OpenCL is unavailable
+- summarize retained candidates with `google.colab.ai`
+
+## Testing
+
+```bash
+python -m unittest discover -s tests -v
+```
+
+## Notes
+
+- The Python toolkit returns structured results for each strategy, including attempts, elapsed time, previews, and clue hits.
+- The dashboard in `docs/` reads its data from `docs/data/dashboard.json`, which can be regenerated directly from `kryptos_toolkit.py`.
+- The historical speed figures in the site are repository benchmark notes, not guarantees for every machine.
+- `linux_native_suite.mojo` is intentionally labeled as a benchmark scaffold so the docs do not overstate what it does.
+- `pyproject.toml` defines installable console scripts for the toolkit, analyzer, dictionary generator, GPU runner, and benchmark orchestrator.

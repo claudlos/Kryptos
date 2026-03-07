@@ -1,0 +1,397 @@
+{
+  "generated_at": "2026-03-06T04:41:23.072200+00:00",
+  "project": {
+    "title": "Kryptos K4 Research Dashboard",
+    "tagline": "A grounded view of the repository's hypotheses, benchmarks, and latest structured runs.",
+    "repo_url": "https://github.com/Carlos/Kryptos",
+    "website_url": "https://claudlos.github.io/Kryptos/"
+  },
+  "benchmarks": [
+    {
+      "label": "Python CPU sweep",
+      "speed_per_second": 18133,
+      "display_speed": "18,133/sec",
+      "kind": "historical",
+      "notes": "Repository baseline for the pre-compiled Python heuristics."
+    },
+    {
+      "label": "Mojo benchmark scaffold",
+      "speed_per_second": 1500000,
+      "display_speed": "~1,500,000/sec",
+      "kind": "historical",
+      "notes": "Compiled benchmark path; not presented as a full native K4 decryptor."
+    },
+    {
+      "label": "OpenCL GPU sweep",
+      "speed_per_second": 7777777,
+      "display_speed": "7,777,777/sec",
+      "kind": "historical",
+      "notes": "Native OpenCL pass targeting an AMD Radeon 680M."
+    }
+  ],
+  "anchors": [
+    {
+      "plaintext": "EASTNORTHEAST",
+      "start_index": 22,
+      "end_index": 34,
+      "ciphertext": "FLRVQQPRNGKSS",
+      "shift_letters": "BLZCDCYYGCKAZ"
+    },
+    {
+      "plaintext": "BERLINCLOCK",
+      "start_index": 64,
+      "end_index": 74,
+      "ciphertext": "NYPVTTMZFPK",
+      "shift_letters": "MUYKLGKORNA"
+    }
+  ],
+  "strategy_catalog": [
+    {
+      "id": "1",
+      "module": "strategy1_quagmire",
+      "slug": "quagmire-running-keys",
+      "name": "Quagmire III Running Keys",
+      "objective": "Test whether the solved K1-K3 plaintexts can act as direct running keys for K4.",
+      "hypothesis": "K4 reuses the Kryptos mixed alphabet and one of the earlier panel plaintexts as its key material.",
+      "category": "classical"
+    },
+    {
+      "id": "2",
+      "module": "strategy2_matrix",
+      "slug": "matrix-mask-reassembly",
+      "name": "Spatial Matrix Reassembly",
+      "objective": "Read padded 7x14 and 14x7 layouts in alternate orders to search for clue-bearing ciphertext runs.",
+      "hypothesis": "K4 may hide anchor substrings through simple geometric rearrangement before substitution.",
+      "category": "transposition"
+    },
+    {
+      "id": "3",
+      "module": "strategy3_ioc_hillclimb",
+      "slug": "hybrid-transposition-search",
+      "name": "Hybrid Transposition Search",
+      "objective": "Use hill climbing with clue overlap and local IoC heuristics to rank candidate column orders.",
+      "hypothesis": "A clue-bearing transposition may surface when column order improves both anchor overlap and local English-like structure.",
+      "category": "transposition"
+    },
+    {
+      "id": "4",
+      "module": "strategy4_autokey",
+      "slug": "quagmire-autokey",
+      "name": "Quagmire III Autokey",
+      "objective": "Test theme-relevant primers under plain-autokey and cipher-autokey Quagmire variants.",
+      "hypothesis": "K4 may bootstrap its own key stream from a short thematic primer.",
+      "category": "classical"
+    },
+    {
+      "id": "5",
+      "module": "strategy5_grilles",
+      "slug": "geometric-grilles",
+      "name": "Geometric Grilles",
+      "objective": "Apply logical masks across a padded 7x14 grid to test simple grille-style extractions.",
+      "hypothesis": "A repeated mask pattern might expose the clue ciphertext as a contiguous extraction.",
+      "category": "masking"
+    },
+    {
+      "id": "6",
+      "module": "strategy6_chained_autokey",
+      "slug": "chained-autokey",
+      "name": "Chained Autokey",
+      "objective": "Test double-layer Quagmire autokey combinations across theme-relevant primer pairs.",
+      "hypothesis": "K4 could be a nested autokey construction requiring two sequential decryptions.",
+      "category": "classical"
+    },
+    {
+      "id": "7",
+      "module": "strategy7_segmented",
+      "slug": "segmented-resets",
+      "name": "Segmented Resets",
+      "objective": "Split K4 on 'W' and retry running-key and autokey decryption with per-segment resets.",
+      "hypothesis": "The repeated 'W' characters may mark segment boundaries or key resets.",
+      "category": "segmentation"
+    },
+    {
+      "id": "8",
+      "module": "strategy8_shifted_running_key",
+      "slug": "shifted-running-keys",
+      "name": "Shifted Running Keys",
+      "objective": "Exhaustively test all offsets of K1-K3 plaintexts and the KRYPTOS primer as running key material.",
+      "hypothesis": "The right offset into prior Kryptos text may align K4 with a standard running-key construction.",
+      "category": "classical"
+    },
+    {
+      "id": "9",
+      "module": "strategy9_external_keyer",
+      "slug": "external-running-key",
+      "name": "External Text Running Key",
+      "objective": "Slide a historical text window across Howard Carter diary excerpts as candidate running keys.",
+      "hypothesis": "An external text tied to the K3 clue may supply the real running key stream for K4.",
+      "category": "historical"
+    },
+    {
+      "id": "10",
+      "module": "strategy10_fractionation",
+      "slug": "bifid-fractionation",
+      "name": "Bifid Fractionation",
+      "objective": "Test Polybius/Bifid-style fractionation across theme-derived keywords and multiple periods.",
+      "hypothesis": "K4 may flatten its statistics through coordinate fractionation before substitution.",
+      "category": "fractionation"
+    }
+  ],
+  "latest_run": {
+    "strategy_selection": "all",
+    "result_count": 10,
+    "totals": {
+      "attempts": 154441,
+      "unique_attempts": 154441,
+      "elapsed_seconds": 23.056557
+    },
+    "results": [
+      {
+        "strategy_id": "1",
+        "name": "Quagmire III Running Keys",
+        "objective": "Test whether the solved K1-K3 plaintexts can act as direct running keys for K4.",
+        "hypothesis": "K4 reuses the Kryptos mixed alphabet and one of the earlier panel plaintexts as its key material.",
+        "status": "no_match",
+        "summary": "No prior Kryptos plaintext produced the known K4 anchors as a direct running key.",
+        "best_preview": "ZLUTTPHQAEHJRYHICUPESDGGENCEQTQQRQYWLXGNODUXDENUCKKOABKMAVVTCBQBEXZNPIME...",
+        "matched_clues": [],
+        "metrics": {
+          "attempts": 3,
+          "unique_attempts": 3,
+          "repeated_attempts": null,
+          "elapsed_seconds": 0.000202
+        },
+        "notes": [
+          "Checked K1, K2, and K3 plaintexts as direct repeating running keys."
+        ],
+        "artifacts": {
+          "samples": {
+            "K1 Plaintext": "WWVTDQOZMSLKWKLDOWIUJNAWBCGUUBQLURNGBLSYZOUKAFHSYKEAIFCUUJYCTAIELZZNNZNL...",
+            "K2 Plaintext": "JTPQIRNRSWTINGCYCWKLFXFTJJSVWJBQKLWGFKSUHZKURVEHFKPFFEPPYHFETPVTLFFSKTHW...",
+            "K3 Plaintext": "ZLUTTPHQAEHJRYHICUPESDGGENCEQTQQRQYWLXGNODUXDENUCKKOABKMAVVTCBQBEXZNPIME..."
+          },
+          "best_candidate": "K3 Plaintext"
+        }
+      },
+      {
+        "strategy_id": "2",
+        "name": "Spatial Matrix Reassembly",
+        "objective": "Read padded 7x14 and 14x7 layouts in alternate orders to search for clue-bearing ciphertext runs.",
+        "hypothesis": "K4 may hide anchor substrings through simple geometric rearrangement before substitution.",
+        "status": "no_match",
+        "summary": "No simple 7x14 or 14x7 read order reconstructed the clue ciphertext as a contiguous run.",
+        "best_preview": "OBOKLRRINSUFGSIOBKEAZXBSKWFIOWSZIPGGFOZNKKHLTWFWUURWABGHLVTTNDUBQQJYKASQ...",
+        "matched_clues": [],
+        "metrics": {
+          "attempts": 6,
+          "unique_attempts": 6,
+          "repeated_attempts": null,
+          "elapsed_seconds": 0.000188
+        },
+        "notes": [
+          "Tested padded 7x14 and 14x7 matrices with column and diagonal reads."
+        ],
+        "artifacts": {
+          "best_method": "7x14 diagonals"
+        }
+      },
+      {
+        "strategy_id": "3",
+        "name": "Hybrid Transposition Search",
+        "objective": "Use hill climbing with clue overlap and local IoC heuristics to rank candidate column orders.",
+        "hypothesis": "A clue-bearing transposition may surface when column order improves both anchor overlap and local English-like structure.",
+        "status": "no_match",
+        "summary": "No known anchors surfaced; the best candidate came from width 7 with local IoC 0.1582.",
+        "best_preview": "XSWPOQWDBMDDAXOOOFRTSAINZKIUULBQSSZLNTWJHABGLLNWSTAYFZGEOBBQSJZUFTGCURRU...",
+        "matched_clues": [],
+        "metrics": {
+          "attempts": 150036,
+          "unique_attempts": 150036,
+          "repeated_attempts": null,
+          "elapsed_seconds": 22.739981
+        },
+        "notes": [
+          "Original ciphertext IoC: 0.0361.",
+          "Fitness combines clue overlap with chunked IoC so the objective matches the documented heuristic."
+        ],
+        "artifacts": {
+          "best_width": 7,
+          "best_order": [
+            6,
+            0,
+            4,
+            1,
+            5,
+            3,
+            2
+          ],
+          "best_score": 15830,
+          "best_local_ioc": 0.158249
+        }
+      },
+      {
+        "strategy_id": "4",
+        "name": "Quagmire III Autokey",
+        "objective": "Test theme-relevant primers under plain-autokey and cipher-autokey Quagmire variants.",
+        "hypothesis": "K4 may bootstrap its own key stream from a short thematic primer.",
+        "status": "no_match",
+        "summary": "No plain-autokey or cipher-autokey primer produced the known K4 anchors.",
+        "best_preview": "XKQMSZMXBSUJGRAFYXGLISFDABFUTAVZDFERVEASDHRYHVONAGXDILVEMKNZNUGCGVZIESLN...",
+        "matched_clues": [],
+        "metrics": {
+          "attempts": 28,
+          "unique_attempts": 28,
+          "repeated_attempts": null,
+          "elapsed_seconds": 0.002085
+        },
+        "notes": [
+          "Evaluated 14 primers in both plain and cipher autokey modes."
+        ],
+        "artifacts": {
+          "best_candidate": "ABSCISSA (cipher)"
+        }
+      },
+      {
+        "strategy_id": "5",
+        "name": "Geometric Grilles",
+        "objective": "Apply logical masks across a padded 7x14 grid to test simple grille-style extractions.",
+        "hypothesis": "A repeated mask pattern might expose the clue ciphertext as a contiguous extraction.",
+        "status": "no_match",
+        "summary": "No tested grille mask extracted the clue ciphertext as a continuous sequence.",
+        "best_preview": "ROOHLSFBFRQPKSTTSQKZAJLDIFNPTMKGKXJDUUUKA",
+        "matched_clues": [],
+        "metrics": {
+          "attempts": 10,
+          "unique_attempts": 10,
+          "repeated_attempts": null,
+          "elapsed_seconds": 0.000351
+        },
+        "notes": [
+          "Used simple modulus masks plus alternating-column masks over a padded 7x14 grid."
+        ],
+        "artifacts": {
+          "best_mask": "Every 2nd column starting at 3"
+        }
+      },
+      {
+        "strategy_id": "6",
+        "name": "Chained Autokey",
+        "objective": "Test double-layer Quagmire autokey combinations across theme-relevant primer pairs.",
+        "hypothesis": "K4 could be a nested autokey construction requiring two sequential decryptions.",
+        "status": "no_match",
+        "summary": "No chained autokey primer pair surfaced the known K4 anchors.",
+        "best_preview": "XZMIYQFKCHSHNIAPHMZXKZCVICHUOXKDRXJVXEWOFXOTPZKACBQAJLIYDSFCYSEZADJGOUMF...",
+        "matched_clues": [],
+        "metrics": {
+          "attempts": 196,
+          "unique_attempts": 196,
+          "repeated_attempts": null,
+          "elapsed_seconds": 0.024196
+        },
+        "notes": [
+          "Evaluated 49 primer pairs across four mode combinations each."
+        ],
+        "artifacts": {
+          "best_candidate": "L1=KRYPTOS (plain), L2=ABSCISSA (cipher)"
+        }
+      },
+      {
+        "strategy_id": "7",
+        "name": "Segmented Resets",
+        "objective": "Split K4 on 'W' and retry running-key and autokey decryption with per-segment resets.",
+        "hypothesis": "The repeated 'W' characters may mark segment boundaries or key resets.",
+        "status": "no_match",
+        "summary": "Resetting the cipher at 'W' boundaries did not recover the known anchors.",
+        "best_preview": "QRQWRTTBFDLCVVHBNJQKWRDUMNDBCKPMWSYFWNGKFRNSZZSNWVWDVUXKNFWTFSTIJWMIHUAW...",
+        "matched_clues": [],
+        "metrics": {
+          "attempts": 12,
+          "unique_attempts": 12,
+          "repeated_attempts": null,
+          "elapsed_seconds": 0.000566
+        },
+        "notes": [
+          "Split K4 into 6 segments on 'W'."
+        ],
+        "artifacts": {
+          "segment_lengths": [
+            20,
+            15,
+            11,
+            9,
+            15,
+            22
+          ],
+          "best_candidate": "EAST segmented autokey"
+        }
+      },
+      {
+        "strategy_id": "8",
+        "name": "Shifted Running Keys",
+        "objective": "Exhaustively test all offsets of K1-K3 plaintexts and the KRYPTOS primer as running key material.",
+        "hypothesis": "The right offset into prior Kryptos text may align K4 with a standard running-key construction.",
+        "status": "no_match",
+        "summary": "No running-key offset over K1-K3 or KRYPTOS produced the known K4 anchors.",
+        "best_preview": "AJAAWZEAOXDNMZATYODMDRTHESBWDVWTUDVFEJZUUXEAUTBKDMBZTNFKUIMRPQIZGFEVETLN...",
+        "matched_clues": [],
+        "metrics": {
+          "attempts": 1556,
+          "unique_attempts": 1556,
+          "repeated_attempts": null,
+          "elapsed_seconds": 0.108401
+        },
+        "notes": [
+          "Evaluated every cyclic offset for the K1-K3 plaintexts and the KRYPTOS primer under Quagmire and Vigenere rules."
+        ],
+        "artifacts": {
+          "best_candidate": "KRYPTOS Primer offset 5 (Vigenere)"
+        }
+      },
+      {
+        "strategy_id": "9",
+        "name": "External Text Running Key",
+        "objective": "Slide a historical text window across Howard Carter diary excerpts as candidate running keys.",
+        "hypothesis": "An external text tied to the K3 clue may supply the real running key stream for K4.",
+        "status": "no_match",
+        "summary": "Sliding a Howard Carter diary window across K4 did not recover the known anchors.",
+        "best_preview": "TTSRBUGLGJHXGOCKEOIUWMLQHWXPFFDCAQAYSCMPIMFOERSZLOFRRSNZDSFQUYHUYWCTRCVC...",
+        "matched_clues": [],
+        "metrics": {
+          "attempts": 2522,
+          "unique_attempts": 2522,
+          "repeated_attempts": null,
+          "elapsed_seconds": 0.173552
+        },
+        "notes": [
+          "Tested 1261 diary offsets under Quagmire and Vigenere rules."
+        ],
+        "artifacts": {
+          "best_candidate": "Diary offset 181 (Vigenere)",
+          "clean_text_length": 1357
+        }
+      },
+      {
+        "strategy_id": "10",
+        "name": "Bifid Fractionation",
+        "objective": "Test Polybius/Bifid-style fractionation across theme-derived keywords and multiple periods.",
+        "hypothesis": "K4 may flatten its statistics through coordinate fractionation before substitution.",
+        "status": "no_match",
+        "summary": "No tested Bifid keyword/period pair produced the full known K4 anchors.",
+        "best_preview": "KZIRKORGSWPYBUEIPGGVYADWLPBKWBMLOHTMTHMXRXUFUOUHEAQTBZHHIQPZDBFVLLDLXTXV...",
+        "matched_clues": [],
+        "metrics": {
+          "attempts": 72,
+          "unique_attempts": 72,
+          "repeated_attempts": null,
+          "elapsed_seconds": 0.007035
+        },
+        "notes": [
+          "Evaluated 6 keywords across 12 periods."
+        ],
+        "artifacts": {
+          "best_candidate": "BERLIN / period 10"
+        }
+      }
+    ]
+  }
+}

@@ -1,42 +1,50 @@
-import urllib.request
+﻿from __future__ import annotations
+
+import argparse
 import re
+import urllib.request
 
-K1_3_WORDS = [
-    "BETWEEN", "SUBTLE", "SHADING", "AND", "THE", "ABSENCE", "OF", "LIGHT", "LIES", "NUANCE", "IQLUSION", "ILLUSION",
-    "IT", "WAS", "TOTALLY", "INVISIBLE", "HOWS", "THAT", "POSSIBLE", "THEY", "USED", "EARTHS", "MAGNETIC", "FIELD",
-    "INFORMATION", "GATHERED", "TRANSMITTED", "UNDERGRUUND", "UNDERGROUND", "TO", "AN", "UNKNOWN", "LOCATION",
-    "DOES", "LANGLEY", "KNOW", "ABOUT", "THIS", "SHOULD", "ITS", "BURIED", "OUT", "THERE", "SOMEWHERE", "WHO",
-    "KNOWS", "EXACT", "ON", "WYWW", "HIS", "LAST", "MESSAGE", "THIRTY", "EIGHT", "DEGREES", "FIFTY", "SEVEN",
-    "MINUTES", "SIX", "POINT", "FIVE", "SECONDS", "NORTH", "SEVENTY", "FORTY", "FOUR", "WEST", "LAYER", "TWO",
-    "SLOWLY", "DESPARATLY", "DESPERATELY", "REMAINS", "PASSAGE", "DEBRIS", "ENCUMBERED", "LOWER", "PART", "DOORWAY",
-    "WERE", "REMOVED", "WITH", "TREMBLING", "HANDS", "I", "MADE", "A", "TINY", "BREACH", "IN", "UPPER", "LEFT",
-    "HAND", "CORNER", "THEN", "WIDENING", "HOLE", "LITTLE", "INSERTED", "CANDLE", "PEERED", "HOT", "AIR", "ESCAPING",
-    "FROM", "CHAMBER", "CAUSED", "FLAME", "FLICKER", "BUT", "PRESENTLY", "DETAILS", "ROOM", "WITHIN", "EMERGED",
-    "MIST", "CAN", "YOU", "SEE", "ANYTHING", "KRYPTOS", "PALIMPSEST", "ABSCISSA", "BERLIN", "CLOCK", "SANBORN",
-    "EAST", "NORTHEAST", "EGYPT", "TOMB", "CARTER", "HOWARD", "TUTANKHAMUN", "ILLUSION", "DIG"
-]
+from kryptos.constants import K1_3_WORDS
+from kryptos.paths import DEFAULT_DICTIONARY_PATH, ensure_parent
 
-def main():
+WORDLIST_URL = "https://raw.githubusercontent.com/first20hours/google-10000-english/master/google-10000-english-no-swears.txt"
+
+
+def build_dictionary(skip_download: bool = False) -> tuple[list[str], list[str]]:
     words = set(K1_3_WORDS)
-    
-    print("Downloading standard English wordlist...")
-    try:
-        url = "https://raw.githubusercontent.com/first20hours/google-10000-english/master/google-10000-english-no-swears.txt"
-        req = urllib.request.urlopen(url)
-        english_words = req.read().decode('utf-8').splitlines()
-        for w in english_words:
-            clean_w = re.sub(r'[^A-Z]', '', w.upper())
-            if len(clean_w) >= 3: # Ignore tiny words
-                words.add(clean_w)
-    except Exception as e:
-        print(f"Error fetching english words: {e}")
-        
-    # Write dictionary
-    with open("k4_dictionary.txt", "w") as f:
-        for w in sorted(list(words)):
-            f.write(w + "\n")
-            
-    print(f"Successfully generated k4_dictionary.txt with {len(words)} unique uppercase words.")
+    notes: list[str] = []
+    if skip_download:
+        notes.append("Skipped downloading the external English word list.")
+    else:
+        try:
+            with urllib.request.urlopen(WORDLIST_URL) as response:
+                english_words = response.read().decode("utf-8").splitlines()
+            for word in english_words:
+                clean_word = re.sub(r"[^A-Z]", "", word.upper())
+                if len(clean_word) >= 3:
+                    words.add(clean_word)
+            notes.append(f"Fetched supplemental words from {WORDLIST_URL}.")
+        except Exception as exc:  # pragma: no cover - network-dependent fallback
+            notes.append(f"Falling back to the built-in word list because the download failed: {exc}")
+    return sorted(words), notes
+
+
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(description="Build the K4 dictionary file used by the CPU and GPU sweeps.")
+    parser.add_argument("--output", default=str(DEFAULT_DICTIONARY_PATH), help="Destination dictionary path.")
+    parser.add_argument("--skip-download", action="store_true", help="Use only the built-in Kryptos word list.")
+    return parser.parse_args()
+
+
+def main() -> None:
+    args = parse_args()
+    words, notes = build_dictionary(skip_download=args.skip_download)
+    output_path = ensure_parent(args.output)
+    output_path.write_text("\n".join(words) + "\n", encoding="utf-8")
+    print(f"Wrote {len(words)} words to {output_path}")
+    for note in notes:
+        print(f"- {note}")
+
 
 if __name__ == "__main__":
     main()

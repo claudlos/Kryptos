@@ -1,83 +1,58 @@
-KRYPTOS_ALPHABET = "KRYPTOSABCDEFGHIJLMNQUVWXZ"
-K4 = "OBKRUOXOGHULBSOLIFBBWFLRVQQPRNGKSSOTWTQSJQSSEKZZWATJKLUDIAWINFBNYPVTTMZFPKWGDKZXTJCDIGKUHUAUEKCAR"
+﻿from __future__ import annotations
 
-def build_tableau():
-    tableau = []
-    for i in range(26):
-        row = KRYPTOS_ALPHABET[i:] + KRYPTOS_ALPHABET[:i]
-        tableau.append(row)
-    return tableau
+from kryptos.catalog import get_strategy_spec
+from kryptos.common import (
+    build_quagmire_tableau,
+    clue_overlap_score,
+    decrypt_quagmire_autokey,
+    decrypt_quagmire_running,
+    extract_clue_hits,
+    format_result,
+    preview_text,
+)
+from kryptos.constants import K4
+from kryptos.models import SearchMetrics, StrategyResult
 
-def decrypt_quagmire_char(cipher_char, key_char, tableau):
-    if key_char not in KRYPTOS_ALPHABET or cipher_char not in KRYPTOS_ALPHABET:
-        return cipher_char
-    row_idx = KRYPTOS_ALPHABET.index(key_char)
-    row = tableau[row_idx]
-    if cipher_char in row:
-        col_idx = row.index(cipher_char)
-        return KRYPTOS_ALPHABET[col_idx]
-    return cipher_char
+SPEC = get_strategy_spec("7")
+KEYWORDS = ["KRYPTOS", "ABSCISSA", "PALIMPSEST", "BERLIN", "CLOCK", "EAST"]
 
-def decrypt_quagmire_running(ciphertext, keyword):
-    """Standard Vigenere/Quagmire string decryption."""
-    tableau = build_tableau()
-    plaintext = ""
-    for i, c in enumerate(ciphertext):
-        k = keyword[i % len(keyword)]
-        plaintext += decrypt_quagmire_char(c, k, tableau)
-    return plaintext
 
-def decrypt_quagmire_autokey(ciphertext, primer, mode="plain"):
-    tableau = build_tableau()
-    plaintext = ""
-    current_key = list(primer.upper())
-    for i, c in enumerate(ciphertext):
-        key_char = current_key[i] if i < len(current_key) else current_key[i]
-        p_char = decrypt_quagmire_char(c, key_char, tableau)
-        plaintext += p_char
-        if mode == "plain": current_key.append(p_char)
-        elif mode == "cipher": current_key.append(c)
-    return plaintext
+def run() -> StrategyResult:
+    tableau = build_quagmire_tableau()
+    segments = K4.split("W")
+    candidates: dict[str, str] = {}
+    for keyword in KEYWORDS:
+        standard_segments = [decrypt_quagmire_running(segment, keyword, tableau) for segment in segments]
+        candidates[f"{keyword} segmented running key"] = "W".join(standard_segments)
+        autokey_segments = [decrypt_quagmire_autokey(segment, keyword, mode="plain", tableau=tableau) for segment in segments]
+        candidates[f"{keyword} segmented autokey"] = "W".join(autokey_segments)
 
-def main():
-    # Split K4 by the character 'W'
-    # Important: 'W' exists in K4 at indices 20, 36, 45, 59, 74
-    # OBKRUOXOGHULBSOLIFBB [W] FLRVQQPRNGKSSOT [W] TQSJQSSEKZZ [W] ATJKLUDIA [W] INFBNYPVTTMZFPK [W] GDKZXTJCDIGKUHUAUEKCAR
-    
-    segments = K4.split('W')
-    print(f"K4 Split by 'W' results in {len(segments)} segments:\n")
-    for i, seg in enumerate(segments):
-        print(f"Segment {i+1} ({len(seg)} chars): {seg}")
-        
-    print("\nTesting Segmented Decryption (Resetting Cipher per Segment)...")
-    
-    keywords = ["KRYPTOS", "ABSCISSA", "PALIMPSEST", "BERLIN", "CLOCK", "EAST"]
-    
-    found = False
-    
-    for kw in keywords:
-        # Test 1: Standard Quagmire III per segment (Keyword restarts at beginning of each segment)
-        pt_standard = []
-        for seg in segments:
-            pt_standard.append(decrypt_quagmire_running(seg, kw))
-        full_pt_std = "W".join(pt_standard) # Rejoin them with W to easily search
-        
-        if "EASTNORTHEAST" in full_pt_std or "BERLINCLOCK" in full_pt_std:
-            print(f"MATCH (Segmented Standard) with keyword '{kw}':\n{full_pt_std}\n")
-            found = True
-            
-        # Test 2: Autokey per segment (Primer restarts at beginning of each segment)
-        pt_auto_plain = []
-        for seg in segments:
-            pt_auto_plain.append(decrypt_quagmire_autokey(seg, kw, mode="plain"))
-        full_pt_auto = "W".join(pt_auto_plain)
-        
-        if "EASTNORTHEAST" in full_pt_auto or "BERLINCLOCK" in full_pt_auto:
-            print(f"MATCH (Segmented Plain-Autokey) with primer '{kw}':\n{full_pt_auto}\n")
-            found = True
+    best_label, best_text = max(candidates.items(), key=lambda item: clue_overlap_score(item[1]))
+    matched_label = next((label for label, text in candidates.items() if extract_clue_hits(text)), None)
+    matched_clues = extract_clue_hits(candidates[matched_label]) if matched_label else []
+    summary = (
+        f"Matched {', '.join(matched_clues)} with {matched_label}."
+        if matched_clues
+        else "Resetting the cipher at 'W' boundaries did not recover the known anchors."
+    )
+    return StrategyResult(
+        strategy_id=SPEC["id"],
+        name=SPEC["name"],
+        objective=SPEC["objective"],
+        hypothesis=SPEC["hypothesis"],
+        status="match" if matched_clues else "no_match",
+        summary=summary,
+        best_preview=preview_text(best_text),
+        matched_clues=matched_clues,
+        metrics=SearchMetrics(attempts=len(candidates), unique_attempts=len(candidates)),
+        notes=[f"Split K4 into {len(segments)} segments on 'W'."],
+        artifacts={"segment_lengths": [len(segment) for segment in segments], "best_candidate": best_label},
+    )
 
-    if not found:
-        print("No matches found for Segmented Decryption with tested keywords.")
+
+def main() -> None:
+    print(format_result(run()))
+
 
 if __name__ == "__main__":
     main()
