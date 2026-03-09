@@ -171,6 +171,37 @@ class GpuOpenClTests(unittest.TestCase):
         self.assertEqual(sorted_entries[0]["raw_gid"], 10)
         self.assertEqual(sorted_entries[1]["raw_gid"], 11)
 
+    def test_resolve_profile_config_applies_adaptive_gpu_budget(self) -> None:
+        args = argparse.Namespace(
+            profile="smoke",
+            dictionary="k4_dictionary.txt",
+            passes=None,
+            continuous=False,
+            sweeps_per_pass=None,
+            copies_per_sweep=None,
+            match_limit=12,
+            score_threshold=1500,
+            top_candidates=3,
+            hydrate_limit=4,
+            min_anchor_hits=4,
+            max_post_key_length=8,
+            ledger_input="runs/research_ledger.json",
+            ledger_output=None,
+            json=False,
+            output=None,
+        )
+        guidance = {
+            "enabled": True,
+            "preferred_stage_families": ["periodic_transposition", "key-layer", "bifid"],
+        }
+        config = resolve_profile_config(args, adaptive_guidance=guidance)
+        self.assertEqual(config["hydrate_limit"], 9)
+        self.assertEqual(config["top_candidate_limit"], 6)
+        self.assertEqual(config["score_threshold"], 1460)
+        self.assertEqual(config["adaptive_hydrate_bonus"], 5)
+        self.assertEqual(config["adaptive_top_candidate_bonus"], 3)
+        self.assertEqual(config["adaptive_threshold_delta"], 40)
+
 
 if __name__ == "__main__":
     unittest.main()

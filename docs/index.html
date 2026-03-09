@@ -20,6 +20,7 @@
             <h1 id="project-title">Research Dashboard</h1>
             <p class="hero-copy" id="project-tagline">Loading structured research metadata...</p>
             <div class="hero-actions">
+                <a class="button secondary" href="#plan-section">Next Experiments</a>
                 <a class="button primary" href="#latest-run">Latest Run</a>
                 <a class="button secondary" id="raw-data-link" href="data/dashboard.json">Raw JSON</a>
             </div>
@@ -41,6 +42,25 @@
                     <h2>Benchmark Notes</h2>
                 </div>
                 <div class="benchmark-grid" id="benchmark-grid"></div>
+            </section>
+
+            <section class="panel reveal" id="memory-section">
+                <div class="section-header">
+                    <p class="section-kicker">Research Memory</p>
+                    <h2>Consensus Frontier</h2>
+                    <p class="section-copy" id="memory-generated-at"></p>
+                </div>
+                <div class="run-summary" id="memory-summary"></div>
+                <div class="memory-grid" id="memory-grid"></div>
+            </section>
+
+            <section class="panel reveal" id="plan-section">
+                <div class="section-header">
+                    <p class="section-kicker">Research Planner</p>
+                    <h2>Recommended Next Experiments</h2>
+                    <p class="section-copy" id="plan-generated-at"></p>
+                </div>
+                <div class="plan-grid" id="plan-grid"></div>
             </section>
 
             <section class="panel reveal" id="latest-run">
@@ -77,7 +97,7 @@
 
         <footer class="footer reveal">
             <p id="footer-copy">Structured data powers this dashboard.</p>
-            <a id="repo-link" href="https://github.com/Carlos/Kryptos" target="_blank" rel="noreferrer">Repository</a>
+            <a id="repo-link" href="https://github.com/claudlos/Kryptos" target="_blank" rel="noreferrer">Repository</a>
         </footer>
     </div>
 

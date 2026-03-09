@@ -47,6 +47,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--plan-only", action="store_true", help="Emit the resolved benchmark plan without executing it.")
     parser.add_argument("--json", action="store_true", help="Emit JSON to stdout.")
     parser.add_argument("--output", help="Write the resolved or completed benchmark record to a JSON file.")
+    parser.add_argument("--ledger-input", help="GPU runner only: load adaptive guidance from an existing research ledger JSON file.")
+    parser.add_argument("--ledger-output", help="GPU runner only: merge hydrated GPU candidates into a persistent research ledger JSON file.")
     return parser.parse_args()
 
 
@@ -156,6 +158,10 @@ def build_command(args: argparse.Namespace, profile_name: str, config: dict[str,
             command.extend(["--min-anchor-hits", str(args.min_anchor_hits)])
         if args.max_post_key_length is not None:
             command.extend(["--max-post-key-length", str(args.max_post_key_length)])
+        if args.ledger_input:
+            command.extend(["--ledger-input", str(args.ledger_input)])
+        if args.ledger_output:
+            command.extend(["--ledger-output", str(args.ledger_output)])
         return command
 
     script_path = resolve_runner_script(args)

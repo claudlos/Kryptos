@@ -9,6 +9,7 @@ from kryptos.catalog import list_strategy_specs
 from kryptos.common import ensure_top_candidates, format_result
 from kryptos.constants import DATASET_PROFILES, DEFAULT_DATASET_PROFILE, DEFAULT_SCORER_PROFILE, SCORER_PROFILES
 from kryptos.dashboard import build_dashboard_payload, serialize_run_summary, write_json
+from kryptos.ledger import build_adaptive_guidance, build_experiment_plan, build_ledger_summary, load_ledger, merge_run_into_ledger, write_ledger
 from kryptos.runtime import StrategyRuntimeConfig, call_strategy
 
 STRATEGY_SPECS = list_strategy_specs()
@@ -28,6 +29,9 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--json", action="store_true", help="Emit structured JSON instead of plain text.")
     parser.add_argument("--output", help="Write the structured run summary to a JSON file.")
     parser.add_argument("--dashboard-output", help="Write dashboard data, including the latest run, to a JSON file.")
+    parser.add_argument("--plan-output", help="Write ranked recommended next experiments to a JSON file.")
+    parser.add_argument("--ledger-input", help="Load adaptive search guidance from an existing research ledger JSON file.")
+    parser.add_argument("--ledger-output", help="Merge retained candidates into a persistent research ledger JSON file.")
     parser.add_argument("--dataset-profile", choices=DATASET_PROFILES, default=DEFAULT_DATASET_PROFILE, help="Corpus bundle profile to load for corpus-backed strategies.")
     parser.add_argument("--scorer-profile", choices=SCORER_PROFILES, default=DEFAULT_SCORER_PROFILE, help="Candidate scoring weights to use.")
     parser.add_argument("--beam-width", type=int, default=256, help="Beam width for hybrid strategy exploration.")
@@ -46,13 +50,21 @@ def list_strategies() -> list[dict[str, str]]:
     return STRATEGY_SPECS
 
 
-def build_runtime_config(args: argparse.Namespace) -> StrategyRuntimeConfig:
+def build_runtime_config(args: argparse.Namespace, *, adaptive_guidance: dict[str, object] | None = None) -> StrategyRuntimeConfig:
     return StrategyRuntimeConfig(
         dataset_profile=args.dataset_profile,
         scorer_profile=args.scorer_profile,
         beam_width=max(args.beam_width, 8),
         candidate_limit=max(args.candidate_limit, 1),
+        adaptive_guidance=dict(adaptive_guidance or {}),
     )
+
+
+def load_guidance_ledger(args: argparse.Namespace) -> dict[str, object] | None:
+    ledger_path = args.ledger_input or args.ledger_output
+    if not ledger_path:
+        return None
+    return load_ledger(ledger_path)
 
 
 def run_selection(selection: str, config: StrategyRuntimeConfig):
@@ -81,17 +93,36 @@ def main() -> None:
         return
 
     selection = resolve_strategy_selection(args)
-    config = build_runtime_config(args)
+    guidance_ledger = load_guidance_ledger(args)
+    adaptive_guidance = build_adaptive_guidance(guidance_ledger or {}) if guidance_ledger is not None else {}
+    config = build_runtime_config(args, adaptive_guidance=adaptive_guidance)
     results = run_selection(selection, config)
     run_summary = serialize_run_summary(results, selection)
     run_summary["dataset_profile"] = config.dataset_profile
     run_summary["scorer_profile"] = config.scorer_profile
+    if config.adaptive_enabled:
+        run_summary["adaptive_guidance"] = adaptive_guidance
+
+    research_memory = build_ledger_summary(guidance_ledger) if guidance_ledger is not None and guidance_ledger.get("candidate_count") else None
+    if args.ledger_output:
+        ledger = merge_run_into_ledger(load_ledger(args.ledger_output), run_summary)
+        write_ledger(args.ledger_output, ledger)
+        research_memory = build_ledger_summary(ledger)
+    elif args.plan_output and research_memory is None:
+        research_memory = build_ledger_summary(merge_run_into_ledger(guidance_ledger, run_summary))
+
+    experiment_plan = research_memory.get("experiment_plan") if research_memory else None
+    if experiment_plan is not None:
+        run_summary["experiment_plan"] = experiment_plan
 
     if args.output:
         write_json(args.output, run_summary)
 
+    if args.plan_output:
+        write_json(args.plan_output, experiment_plan or build_experiment_plan(guidance_ledger or {}))
+
     if args.dashboard_output:
-        write_json(args.dashboard_output, build_dashboard_payload(run_summary))
+        write_json(args.dashboard_output, build_dashboard_payload(run_summary, research_memory=research_memory))
 
     if args.json:
         print(json.dumps(run_summary, indent=2))

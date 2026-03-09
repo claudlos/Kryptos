@@ -9,8 +9,14 @@ from kryptos.transposition import hillclimb_permutation, identity_permutation, k
 SPEC = get_strategy_spec("12")
 
 
+def resolve_periodic_search_space(config: StrategyRuntimeConfig, ciphertext: str = K4) -> tuple[tuple[int, ...], tuple[str, ...]]:
+    widths = [width for width in range(config.width_min, min(config.width_max, len(ciphertext) - 1) + 1)]
+    return config.ordered_widths(widths), config.ordered_keywords(DEFAULT_KEYWORDS)
+
+
 def search_periodic_candidates(ciphertext: str = K4, config: StrategyRuntimeConfig | None = None) -> tuple[list[dict[str, object]], int]:
     config = config or StrategyRuntimeConfig()
+    widths, keywords = resolve_periodic_search_space(config, ciphertext)
     attempts = 0
     candidates: list[dict[str, object]] = []
 
@@ -23,9 +29,9 @@ def search_periodic_candidates(ciphertext: str = K4, config: StrategyRuntimeConf
         )
         return breakdown["total"], breakdown
 
-    for width in range(config.width_min, min(config.width_max, len(ciphertext) - 1) + 1):
-        seed_permutations = [identity_permutation(width), *[keyword_permutation(keyword, width) for keyword in DEFAULT_KEYWORDS]]
-        for seed_keyword, permutation in zip(["IDENTITY", *DEFAULT_KEYWORDS], seed_permutations):
+    for width in widths:
+        seed_permutations = [identity_permutation(width), *[keyword_permutation(keyword, width) for keyword in keywords]]
+        for seed_keyword, permutation in zip(["IDENTITY", *keywords], seed_permutations):
             for fill_mode, read_mode in (("row", "column"), ("column", "row")):
                 for reverse_rows in (False, True):
                     for reverse_columns in (False, True):
@@ -63,16 +69,20 @@ def search_periodic_candidates(ciphertext: str = K4, config: StrategyRuntimeConf
 
 def run(config: StrategyRuntimeConfig | None = None):
     config = config or StrategyRuntimeConfig()
+    widths, keywords = resolve_periodic_search_space(config)
     candidates, attempts = search_periodic_candidates(config=config)
     retained = candidates[: max(config.candidate_limit, 8)]
+    notes = [
+        f"Searched widths {min(widths)}-{max(widths)} with row/column orientations, reversals, and {len(keywords)} keyword-seeded permutations.",
+        "Used local swap hillclimbs instead of raw Cartesian brute force over every permutation.",
+    ]
+    if config.adaptive_enabled:
+        notes.append(config.adaptive_summary())
     result = build_strategy_result(
         SPEC,
         retained,
         attempts=attempts,
-        notes=[
-            "Searched widths 5-32 with row/column orientations, row reversals, column reversals, and keyword-seeded permutations.",
-            "Used local swap hillclimbs instead of raw Cartesian brute force over every permutation.",
-        ],
+        notes=notes,
     )
     result.artifacts["candidate_count"] = len(candidates)
     return result

@@ -12,7 +12,11 @@ from .models import StrategyResult
 from .paths import ensure_parent
 
 
-def build_dashboard_payload(run_summary: dict[str, Any] | None = None) -> dict[str, Any]:
+def build_dashboard_payload(
+    run_summary: dict[str, Any] | None = None,
+    *,
+    research_memory: dict[str, Any] | None = None,
+) -> dict[str, Any]:
     return {
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "project": PROJECT_METADATA,
@@ -21,6 +25,7 @@ def build_dashboard_payload(run_summary: dict[str, Any] | None = None) -> dict[s
         "clues": clue_catalog(),
         "strategy_catalog": list_strategy_specs(),
         "latest_run": run_summary,
+        "research_memory": research_memory,
     }
 
 

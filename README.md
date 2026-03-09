@@ -72,6 +72,27 @@ python kryptos_toolkit.py --strategy all \
   --dashboard-output docs/data/dashboard.json
 ```
 
+Run a strategy, update the persistent research ledger, and publish consensus memory to the dashboard:
+
+```bash
+python kryptos_toolkit.py --strategy 13 \
+  --candidate-limit 6 \
+  --output runs/latest_run.json \
+  --ledger-output runs/research_ledger.json \
+  --dashboard-output docs/data/dashboard.json
+```
+
+Re-run the toolkit against an existing ledger so the CPU strategies automatically prioritize the strongest learned transform families and emit a ranked next-experiments plan:
+
+```bash
+python kryptos_toolkit.py --strategy all \
+  --ledger-input runs/research_ledger.json \
+  --ledger-output runs/research_ledger.json \
+  --plan-output runs/next_experiments.json \
+  --output runs/latest_run.json \
+  --dashboard-output docs/data/dashboard.json
+```
+
 Generate clue analysis data:
 
 ```bash
@@ -94,6 +115,14 @@ Run the GPU sweep continuously until interrupted:
 
 ```bash
 python gpu_opencl_suite.py --continuous
+```
+
+Run the GPU sweep and merge hydrated candidates into the same research ledger used by the CPU toolkit:
+
+```bash
+python gpu_opencl_suite.py --profile smoke \
+  --ledger-output runs/research_ledger.json \
+  --output runs/gpu_smoke.json
 ```
 
 Installed console script:
@@ -180,6 +209,11 @@ python -m unittest discover -s tests -v
 ## Notes
 
 - The Python toolkit returns structured results for each strategy, including attempts, elapsed time, previews, and clue hits.
+- `--ledger-output` turns retained candidates into a persistent evidence store so repeated runs compound into a consensus frontier instead of staying isolated JSON snapshots.
+- `--ledger-input` lets the CPU toolkit reorder keywords, periods, widths, corpus documents, and hybrid stage families from prior ledger evidence.
+- `--plan-output` writes the ledger's ranked recommended next experiments as a standalone JSON artifact for scripting or review.
+- GPU benchmark candidates can now merge into the same ledger, so OpenCL sweeps and CPU follow-up passes reinforce one shared research memory.
+- The shared ledger now produces an explicit experiment planner that highlights promising but underexplored strategy families and seed hints.
 - The dashboard in `docs/` reads its data from `docs/data/dashboard.json`, which can be regenerated directly from `kryptos_toolkit.py`.
 - The historical speed figures in the site are repository benchmark notes, not guarantees for every machine.
 - `linux_native_suite.mojo` is intentionally labeled as a benchmark scaffold so the docs do not overstate what it does.

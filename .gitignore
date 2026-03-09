@@ -35,3 +35,11 @@ runs/colab_repo_snapshot_posix.zip
 out.txt
 runs/test_tmp/
 runs/colab_repo_snapshot.zip
+runs/smoke*.json
+runs/test*.json
+runs/enrich*.json
+runs/focused*.json
+runs/deeper*.json
+runs/official*.json
+runs/running_key*.json
+runs/strict*.json

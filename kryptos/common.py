@@ -21,6 +21,7 @@ from .models import SearchMetrics, StrategyResult
 
 if TYPE_CHECKING:
     from .corpora import CorpusBundle
+    from .runtime import StrategyRuntimeConfig
 
 FRACTIONATION_TARGETS = [
     *KNOWN_PLAINTEXT_CLUES,
@@ -558,9 +559,14 @@ def analyze_layered_candidate(
     text: str,
     max_key_length: int = 12,
     *,
+    config: StrategyRuntimeConfig | None = None,
     corpus_bundle: CorpusBundle | None = None,
     scorer_profile: str = "anchor-first",
 ) -> dict[str, object]:
+    if config is not None:
+        max_key_length = config.max_post_key_length
+        corpus_bundle = config.corpora
+        scorer_profile = config.scorer_profile
     candidates = [
         {
             "mode": "direct",
@@ -590,7 +596,10 @@ def analyze_layered_candidate(
             "key_length": key_length,
         })
 
-    for primer in DEFAULT_PRIMERS[:8]:
+    primers = DEFAULT_PRIMERS[:8]
+    if config is not None:
+        primers = config.ordered_primers(list(primers))
+    for primer in primers:
         for mode in ("plain", "cipher"):
             candidate_text = decrypt_vigenere_autokey(text, primer, mode=mode)
             ranked = build_ranked_candidate(
@@ -611,8 +620,21 @@ def analyze_layered_candidate(
     from .transposition import hillclimb_permutation, identity_permutation, keyword_permutation
 
     widths = [width for width in (5, 7, 9, 12) if width <= len(text) - 1]
+    if config is not None:
+        preferred_widths = [
+            int(width)
+            for width in config.adaptive_guidance.get("preferred_widths") or []
+            if isinstance(width, int) and width <= len(text) - 1
+        ]
+        width_pool = list(dict.fromkeys([*widths, *preferred_widths]))
+        periodic_width_budget = config.budgeted_limit(4, family="periodic_transposition", max_extra=2, ceiling=len(width_pool))
+        widths = list(config.ordered_widths(width_pool))[:periodic_width_budget]
+        periodic_keyword_budget = config.budgeted_limit(2, family="periodic_transposition", max_extra=2, ceiling=len(DEFAULT_KEYWORDS))
+        keyword_seeds = list(config.ordered_keywords(list(DEFAULT_KEYWORDS)))[:periodic_keyword_budget]
+    else:
+        keyword_seeds = list(DEFAULT_KEYWORDS[:2])
     for width in widths:
-        for seed_keyword in DEFAULT_KEYWORDS[:2]:
+        for seed_keyword in keyword_seeds:
             for permutation in (identity_permutation(width), keyword_permutation(seed_keyword, width)):
                 for fill_mode, read_mode in (("row", "column"), ("column", "row")):
                     def _score(candidate_text: str) -> tuple[int, dict[str, int]]:

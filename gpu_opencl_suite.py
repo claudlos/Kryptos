@@ -17,6 +17,7 @@ from kryptos.benchmarking import build_benchmark_record, finalize_benchmark_reco
 from kryptos.common import analyze_layered_candidate, decrypt_bifid, extract_clue_hits, generate_polybius_square, mutate_polybius_square, preview_text
 from kryptos.constants import DEFAULT_PERIODS, K4
 from kryptos.dashboard import write_json
+from kryptos.ledger import build_adaptive_guidance, load_ledger, merge_benchmark_into_ledger, write_ledger
 from kryptos.paths import DEFAULT_DICTIONARY_PATH, resolve_repo_path
 
 
@@ -614,12 +615,28 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--hydrate-limit", type=int, help="Maximum number of raw GPU candidates to hydrate on the CPU per pass.")
     parser.add_argument("--min-anchor-hits", type=int, help="Minimum anchor-position character matches required before hydration.")
     parser.add_argument("--max-post-key-length", type=int, help="Longest repeating Vigenere layer to infer from the clue anchors.")
+    parser.add_argument("--ledger-input", help="Load adaptive hydration guidance from an existing research ledger JSON file.")
     parser.add_argument("--json", action="store_true", help="Emit the final summary as JSON.")
     parser.add_argument("--output", help="Write the final summary to a JSON file.")
+    parser.add_argument("--ledger-output", help="Merge hydrated GPU candidates into a persistent research ledger JSON file.")
     return parser.parse_args()
 
 
-def resolve_profile_config(args: argparse.Namespace) -> dict[str, int]:
+def _adaptive_budget_bonus(guidance: dict[str, Any], family: str, *, max_extra: int = 4) -> int:
+    preferred = [str(value) for value in guidance.get("preferred_stage_families") or []]
+    if family not in preferred:
+        return 0
+    return max(0, max_extra - preferred.index(family))
+
+
+def load_adaptive_guidance(args: argparse.Namespace) -> dict[str, Any]:
+    ledger_path = args.ledger_input or args.ledger_output
+    if not ledger_path:
+        return {}
+    return build_adaptive_guidance(load_ledger(ledger_path))
+
+
+def resolve_profile_config(args: argparse.Namespace, adaptive_guidance: dict[str, Any] | None = None) -> dict[str, Any]:
     profile = get_benchmark_profile("gpu-opencl", args.profile)
     config = {
         "passes": args.passes if args.passes is not None else profile["passes"],
@@ -632,6 +649,21 @@ def resolve_profile_config(args: argparse.Namespace) -> dict[str, int]:
         "min_anchor_hits": args.min_anchor_hits if args.min_anchor_hits is not None else int(profile.get("min_anchor_hits", 1)),
         "max_post_key_length": args.max_post_key_length if args.max_post_key_length is not None else int(profile.get("max_post_key_length", 12)),
     }
+    adaptive_guidance = adaptive_guidance or {}
+    if adaptive_guidance.get("enabled"):
+        periodic_bonus = _adaptive_budget_bonus(adaptive_guidance, "periodic_transposition", max_extra=3)
+        layer_bonus = _adaptive_budget_bonus(adaptive_guidance, "key-layer", max_extra=3)
+        bifid_bonus = _adaptive_budget_bonus(adaptive_guidance, "bifid", max_extra=3)
+        config["hydrate_limit"] += periodic_bonus + layer_bonus
+        config["top_candidate_limit"] += max(periodic_bonus, layer_bonus)
+        config["score_threshold"] = max(0, config["score_threshold"] - (bifid_bonus * 40))
+        config["adaptive_hydrate_bonus"] = periodic_bonus + layer_bonus
+        config["adaptive_top_candidate_bonus"] = max(periodic_bonus, layer_bonus)
+        config["adaptive_threshold_delta"] = bifid_bonus * 40
+    else:
+        config["adaptive_hydrate_bonus"] = 0
+        config["adaptive_top_candidate_bonus"] = 0
+        config["adaptive_threshold_delta"] = 0
     config["max_post_key_length"] = min(max(config["max_post_key_length"], 1), 12)
     config["top_candidate_limit"] = min(max(config["top_candidate_limit"], 1), config["match_limit"])
     config["hydrate_limit"] = min(max(config["hydrate_limit"], config["top_candidate_limit"]), config["match_limit"])
@@ -845,6 +877,15 @@ def build_candidate_record(
     square = mutate_polybius_square(base_squares[identity["base_square_index"]], identity["mutation_id"])
     direct_plaintext = decrypt_bifid(identity["period"], K4, square)
     layered = analyze_layered_candidate(direct_plaintext, max_key_length=max_post_key_length)
+    transform_chain = [f"bifid:{keyword}:period={identity['period']}", *list(layered["transform_chain"])]
+    key_material = {
+        "stage1": {
+            "keyword": keyword,
+            "period": identity["period"],
+            "mutation_id": identity["mutation_id"],
+        },
+        "stage2": dict(layered["key_material"]),
+    }
     return {
         "raw_gid": int(raw_candidate["raw_gid"]),
         "raw_score": int(raw_candidate["raw_score"]),
@@ -866,12 +907,16 @@ def build_candidate_record(
         "direct_clue_hits": extract_clue_hits(direct_plaintext),
         "best_mode": layered["mode"],
         "best_score": layered["score"],
+        "total_score": layered["score"],
         "derived_key": layered["derived_key"],
         "key_length": layered["key_length"],
         "matched_clues": layered["matched_clues"],
+        "plaintext": layered["plaintext"],
         "best_preview": layered["preview"],
-        "transform_chain": layered["transform_chain"],
-        "key_material": layered["key_material"],
+        "preview": layered["preview"],
+        "breakdown": layered["breakdown"],
+        "transform_chain": transform_chain,
+        "key_material": key_material,
     }
 
 
@@ -895,7 +940,8 @@ def sort_candidate_records(records: list[dict[str, object]]) -> list[dict[str, o
 
 def run_benchmark(args: argparse.Namespace | None = None) -> dict[str, object]:
     args = args or parse_args()
-    config = resolve_profile_config(args)
+    adaptive_guidance = load_adaptive_guidance(args)
+    config = resolve_profile_config(args, adaptive_guidance=adaptive_guidance)
     started = time.time()
     device = select_device()
     ctx = cl.Context([device])
@@ -964,6 +1010,7 @@ def run_benchmark(args: argparse.Namespace | None = None) -> dict[str, object]:
             "dictionary": str(resolve_repo_path(args.dictionary)),
             "periods": list(DEFAULT_PERIODS),
             "continuous": args.continuous,
+            "adaptive_guidance_enabled": bool(adaptive_guidance.get("enabled")),
         },
         command=sys.argv,
     )
@@ -1165,6 +1212,9 @@ def main() -> None:
 
     if args.output:
         write_json(args.output, summary)
+    if args.ledger_output:
+        ledger = merge_benchmark_into_ledger(load_ledger(args.ledger_output), summary)
+        write_ledger(args.ledger_output, ledger)
     print(json.dumps(summary, indent=2))
 
 

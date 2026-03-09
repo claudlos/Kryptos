@@ -11,12 +11,14 @@ from strategy12_periodic_transposition_hillclimb import search_periodic_candidat
 SPEC = get_strategy_spec("13")
 
 
+def resolve_stage_family_order(config: StrategyRuntimeConfig) -> tuple[str, ...]:
+    return config.ordered_stage_families(["bifid", "periodic_transposition", "running_key", "key-layer"])
+
+
 def generate_direct_key_layer_candidates(ciphertext: str, config: StrategyRuntimeConfig) -> list[dict[str, object]]:
     layered = analyze_layered_candidate(
         ciphertext,
-        max_key_length=config.max_post_key_length,
-        corpus_bundle=config.corpora,
-        scorer_profile=config.scorer_profile,
+        config=config,
     )
     if layered["mode"] == "direct":
         return []
@@ -36,24 +38,48 @@ def run(config: StrategyRuntimeConfig | None = None):
     config = config or StrategyRuntimeConfig()
     stage_beam = max(8, min(config.beam_width, 4096))
     candidates: list[dict[str, object]] = []
+    stage_family_order = resolve_stage_family_order(config)
 
     fractionation_stage, fractionation_attempts = generate_fractionation_candidates(config=config)
     periodic_stage, periodic_attempts = search_periodic_candidates(config=config)
     running_stage, running_attempts = generate_running_key_candidates(config=config)
 
-    stage_one = (
-        fractionation_stage[: min(stage_beam, 8)]
-        + periodic_stage[: min(stage_beam, 8)]
-        + running_stage[: min(stage_beam, 8)]
-    )
-    stage_one.extend(generate_direct_key_layer_candidates(K4, config))
-    stage_one = sort_ranked_candidates(stage_one)[: min(stage_beam, 10)]
+    stage_outputs = {
+        "bifid": fractionation_stage,
+        "periodic_transposition": periodic_stage,
+        "running_key": running_stage,
+        "key-layer": generate_direct_key_layer_candidates(K4, config),
+    }
+    stage_one: list[dict[str, object]] = []
+    for index, family in enumerate(stage_family_order):
+        family_candidates = stage_outputs.get(family, [])
+        family_limit = min(stage_beam, 8)
+        if index == 0:
+            family_limit = min(stage_beam, 10)
+        elif index == 1:
+            family_limit = min(stage_beam, 9)
+        family_limit = config.budgeted_limit(
+            family_limit,
+            family=family,
+            max_extra=3,
+            ceiling=len(family_candidates),
+            use_stage_budget=True,
+        )
+        stage_one.extend(family_candidates[:family_limit])
+    final_stage_cap = min(stage_beam, 10 + config.stage_budget_bonus(stage_family_order[0], max_extra=3))
+    stage_one = sort_ranked_candidates(stage_one)[:final_stage_cap]
 
     for candidate in stage_one:
         plaintext = str(candidate["plaintext"])
         if candidate["transform_chain"][0].startswith("bifid"):
             periodic_followups, _ = search_periodic_candidates(plaintext, config)
-            for followup in periodic_followups[:1]:
+            periodic_followup_limit = config.budgeted_limit(
+                1,
+                family="periodic_transposition",
+                max_extra=2,
+                ceiling=len(periodic_followups),
+            )
+            for followup in periodic_followups[:periodic_followup_limit]:
                 candidates.append(
                     build_ranked_candidate(
                         str(followup["plaintext"]),
@@ -67,9 +93,7 @@ def run(config: StrategyRuntimeConfig | None = None):
                 )
         layered = analyze_layered_candidate(
             plaintext,
-            max_key_length=config.max_post_key_length,
-            corpus_bundle=config.corpora,
-            scorer_profile=config.scorer_profile,
+            config=config,
         )
         if layered["mode"] != "direct":
             candidates.append(
@@ -85,14 +109,18 @@ def run(config: StrategyRuntimeConfig | None = None):
             )
     ranked = sort_ranked_candidates(candidates)
     retained = ranked[: max(config.candidate_limit, 8)]
+    notes = [
+        "Composed exactly two stages from fractionation, running-key, key-layer, and periodic-transposition families.",
+        f"Beam width capped at {stage_beam} candidate states for this execution.",
+    ]
+    if config.adaptive_enabled:
+        notes.append(f"Adaptive stage order: {', '.join(stage_family_order)}.")
+        notes.append(config.adaptive_summary())
     result = build_strategy_result(
         SPEC,
         retained,
         attempts=fractionation_attempts + periodic_attempts + running_attempts,
-        notes=[
-            "Composed exactly two stages from fractionation, running-key, key-layer, and periodic-transposition families.",
-            f"Beam width capped at {stage_beam} candidate states for this execution.",
-        ],
+        notes=notes,
     )
     result.artifacts["candidate_count"] = len(ranked)
     return result

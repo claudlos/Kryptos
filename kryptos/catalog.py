@@ -16,7 +16,7 @@ from .constants import (
 PROJECT_METADATA = {
     "title": "Kryptos K4 Research Dashboard",
     "tagline": "A grounded view of the repository's hypotheses, benchmarks, and latest structured runs.",
-    "repo_url": "https://github.com/Carlos/Kryptos",
+    "repo_url": "https://github.com/claudlos/Kryptos",
     "website_url": "https://claudlos.github.io/Kryptos/",
 }
 
