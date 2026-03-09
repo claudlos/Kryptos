@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-03-06T04:41:23.072200+00:00",
+  "generated_at": "2026-03-09T00:02:53.926639+00:00",
   "project": {
     "title": "Kryptos K4 Research Dashboard",
     "tagline": "A grounded view of the repository's hypotheses, benchmarks, and latest structured runs.",
-    "repo_url": "https://github.com/Carlos/Kryptos",
+    "repo_url": "https://github.com/claudlos/Kryptos",
     "website_url": "https://claudlos.github.io/Kryptos/"
   },
   "benchmarks": [
@@ -15,11 +15,11 @@
       "notes": "Repository baseline for the pre-compiled Python heuristics."
     },
     {
-      "label": "Mojo benchmark scaffold",
-      "speed_per_second": 1500000,
-      "display_speed": "~1,500,000/sec",
+      "label": "CPU strategy runner",
+      "speed_per_second": 9620,
+      "display_speed": "9,620/sec",
       "kind": "historical",
-      "notes": "Compiled benchmark path; not presented as a full native K4 decryptor."
+      "notes": "Comparable fixture-first runner for the new corpus-backed K4 methods."
     },
     {
       "label": "OpenCL GPU sweep",
@@ -31,18 +31,225 @@
   ],
   "anchors": [
     {
+      "plaintext": "EAST",
+      "kind": "anchor",
+      "start_index": 22,
+      "end_index": 25,
+      "ciphertext": "FLRV",
+      "source": "2010 clue",
+      "weight": 1.0,
+      "shift_letters": "BLZC"
+    },
+    {
+      "plaintext": "NORTHEAST",
+      "kind": "anchor",
+      "start_index": 26,
+      "end_index": 34,
+      "ciphertext": "QQPRNGKSS",
+      "source": "2010 clue",
+      "weight": 1.0,
+      "shift_letters": "DCYYGCKAZ"
+    },
+    {
+      "plaintext": "BERLIN",
+      "kind": "anchor",
+      "start_index": 64,
+      "end_index": 69,
+      "ciphertext": "NYPVTT",
+      "source": "2014 clue",
+      "weight": 1.0,
+      "shift_letters": "MUYKLG"
+    },
+    {
+      "plaintext": "CLOCK",
+      "kind": "anchor",
+      "start_index": 70,
+      "end_index": 74,
+      "ciphertext": "MZFPK",
+      "source": "2020 clue",
+      "weight": 1.0,
+      "shift_letters": "KORNA"
+    },
+    {
       "plaintext": "EASTNORTHEAST",
+      "kind": "anchor",
       "start_index": 22,
       "end_index": 34,
       "ciphertext": "FLRVQQPRNGKSS",
+      "source": "2010 clue",
+      "weight": 1.25,
       "shift_letters": "BLZCDCYYGCKAZ"
     },
     {
       "plaintext": "BERLINCLOCK",
+      "kind": "anchor",
       "start_index": 64,
       "end_index": 74,
       "ciphertext": "NYPVTTMZFPK",
+      "source": "2014/2020 clues",
+      "weight": 1.25,
       "shift_letters": "MUYKLGKORNA"
+    }
+  ],
+  "clues": [
+    {
+      "plaintext": "EAST",
+      "kind": "anchor",
+      "start_index": 22,
+      "end_index": 25,
+      "ciphertext": "FLRV",
+      "source": "2010 clue",
+      "weight": 1.0,
+      "shift_letters": "BLZC"
+    },
+    {
+      "plaintext": "NORTHEAST",
+      "kind": "anchor",
+      "start_index": 26,
+      "end_index": 34,
+      "ciphertext": "QQPRNGKSS",
+      "source": "2010 clue",
+      "weight": 1.0,
+      "shift_letters": "DCYYGCKAZ"
+    },
+    {
+      "plaintext": "BERLIN",
+      "kind": "anchor",
+      "start_index": 64,
+      "end_index": 69,
+      "ciphertext": "NYPVTT",
+      "source": "2014 clue",
+      "weight": 1.0,
+      "shift_letters": "MUYKLG"
+    },
+    {
+      "plaintext": "CLOCK",
+      "kind": "anchor",
+      "start_index": 70,
+      "end_index": 74,
+      "ciphertext": "MZFPK",
+      "source": "2020 clue",
+      "weight": 1.0,
+      "shift_letters": "KORNA"
+    },
+    {
+      "plaintext": "EASTNORTHEAST",
+      "kind": "anchor",
+      "start_index": 22,
+      "end_index": 34,
+      "ciphertext": "FLRVQQPRNGKSS",
+      "source": "2010 clue",
+      "weight": 1.25,
+      "shift_letters": "BLZCDCYYGCKAZ"
+    },
+    {
+      "plaintext": "BERLINCLOCK",
+      "kind": "anchor",
+      "start_index": 64,
+      "end_index": 74,
+      "ciphertext": "NYPVTTMZFPK",
+      "source": "2014/2020 clues",
+      "weight": 1.25,
+      "shift_letters": "MUYKLGKORNA"
+    },
+    {
+      "id": "egypt-1986",
+      "kind": "context",
+      "label": "Egypt 1986",
+      "keywords": [
+        "EGYPT",
+        "NILE",
+        "GIZA",
+        "LUXOR",
+        "VALLEY",
+        "TOMB"
+      ],
+      "date": "2025-11-12",
+      "source": "Jim Sanborn open letter",
+      "weight": 0.8
+    },
+    {
+      "id": "berlin-wall",
+      "kind": "context",
+      "label": "Fall of the Berlin Wall",
+      "keywords": [
+        "BERLIN",
+        "WALL",
+        "ALEXANDERPLATZ",
+        "REUNIFICATION",
+        "CROWD"
+      ],
+      "date": "2025-11-12",
+      "source": "Jim Sanborn open letter",
+      "weight": 0.9
+    },
+    {
+      "id": "world-clock",
+      "kind": "context",
+      "label": "World Clock",
+      "keywords": [
+        "WORLD",
+        "CLOCK",
+        "ZEITUHR",
+        "ALEXANDERPLATZ"
+      ],
+      "date": "2025-11-12",
+      "source": "Jim Sanborn open letter",
+      "weight": 0.9
+    },
+    {
+      "id": "message-delivery",
+      "kind": "context",
+      "label": "Delivering a message",
+      "keywords": [
+        "MESSAGE",
+        "DELIVER",
+        "CARRY",
+        "SEND",
+        "POSITION"
+      ],
+      "date": "2025-11-12",
+      "source": "Jim Sanborn open letter",
+      "weight": 0.85
+    },
+    {
+      "id": "k5-follow-on",
+      "kind": "meta",
+      "label": "K5 follows K4",
+      "keywords": [
+        "FOLLOWS",
+        "K5",
+        "MESSAGE"
+      ],
+      "date": "2025-11-12",
+      "source": "Jim Sanborn open letter",
+      "weight": 0.5
+    },
+    {
+      "id": "k5-similar-system",
+      "kind": "meta",
+      "label": "K5 uses a similar coding system",
+      "keywords": [
+        "SIMILAR",
+        "SYSTEM",
+        "CODE"
+      ],
+      "date": "2025-11-12",
+      "source": "Jim Sanborn open letter",
+      "weight": 0.45
+    },
+    {
+      "id": "k5-same-berlinclock",
+      "kind": "meta",
+      "label": "K5 repeats BERLINCLOCK in the same position",
+      "keywords": [
+        "BERLINCLOCK",
+        "BERLIN",
+        "CLOCK"
+      ],
+      "date": "2025-11-12",
+      "source": "Jim Sanborn open letter",
+      "weight": 0.55
     }
   ],
   "strategy_catalog": [
@@ -130,266 +337,1472 @@
     {
       "id": "10",
       "module": "strategy10_fractionation",
-      "slug": "bifid-fractionation",
-      "name": "Bifid Fractionation",
-      "objective": "Test Polybius/Bifid-style fractionation across theme-derived keywords and multiple periods.",
-      "hypothesis": "K4 may flatten its statistics through coordinate fractionation before substitution.",
+      "slug": "fractionation-pipeline",
+      "name": "Fractionation Pipeline",
+      "objective": "Expand Bifid-style candidates through repeating-key, autokey, and periodic-transposition post layers.",
+      "hypothesis": "K4 may require fractionation plus at least one additional keyed layer before the anchor clues emerge.",
       "category": "fractionation"
+    },
+    {
+      "id": "11",
+      "module": "strategy11_corpus_running_key",
+      "slug": "corpus-running-key",
+      "name": "Corpus Running Key",
+      "objective": "Slide public corpus windows across K4 and rerank the strongest clue-aligned running-key decryptions.",
+      "hypothesis": "Public Howard Carter and official clue corpora contain usable key-stream fragments for a method-reconstruction track.",
+      "category": "historical"
+    },
+    {
+      "id": "12",
+      "module": "strategy12_periodic_transposition_hillclimb",
+      "slug": "periodic-transposition-hillclimb",
+      "name": "Periodic Transposition Hillclimb",
+      "objective": "Search ragged periodic transposition families with keyword seeds and local permutation hillclimbs.",
+      "hypothesis": "K4 may be hiding its anchors inside a periodic transposition that needs stronger ranking than raw brute force.",
+      "category": "transposition"
+    },
+    {
+      "id": "13",
+      "module": "strategy13_hybrid_pipeline_search",
+      "slug": "hybrid-pipeline-search",
+      "name": "Hybrid Pipeline Search",
+      "objective": "Compose exactly two stages from fractionation, running-key, key-layer, and periodic-transposition families.",
+      "hypothesis": "Sanborn's nested hints point to a short pipeline of interacting transforms rather than a single classical cipher.",
+      "category": "hybrid"
     }
   ],
   "latest_run": {
-    "strategy_selection": "all",
-    "result_count": 10,
+    "strategy_selection": "13-official-offset10-local-seedfanout",
+    "result_count": 1,
     "totals": {
-      "attempts": 154441,
-      "unique_attempts": 154441,
-      "elapsed_seconds": 23.056557
+      "attempts": 688,
+      "unique_attempts": 688,
+      "elapsed_seconds": 79.238449
     },
     "results": [
       {
-        "strategy_id": "1",
-        "name": "Quagmire III Running Keys",
-        "objective": "Test whether the solved K1-K3 plaintexts can act as direct running keys for K4.",
-        "hypothesis": "K4 reuses the Kryptos mixed alphabet and one of the earlier panel plaintexts as its key material.",
-        "status": "no_match",
-        "summary": "No prior Kryptos plaintext produced the known K4 anchors as a direct running key.",
-        "best_preview": "ZLUTTPHQAEHJRYHICUPESDGGENCEQTQQRQYWLXGNODUXDENUCKKOABKMAVVTCBQBEXZNPIME...",
+        "strategy_id": "13",
+        "name": "Hybrid Pipeline Search",
+        "objective": "Compose exactly two stages from fractionation, running-key, key-layer, and periodic-transposition families.",
+        "hypothesis": "Sanborn's nested hints point to a short pipeline of interacting transforms rather than a single classical cipher.",
+        "status": "candidate",
+        "summary": "Top candidate scored 420/1000 via running_key:official:offset=10 -> periodic_transposition:w17:row->column.",
+        "best_preview": "YLIZDJAHAHRUKDTXVTCQUEASTXBRGHEAPVELVMYYYOJAVYMORPMJKDGEPGOMWOGFNOBIRCGW...",
         "matched_clues": [],
         "metrics": {
-          "attempts": 3,
-          "unique_attempts": 3,
+          "attempts": 688,
+          "unique_attempts": 688,
           "repeated_attempts": null,
-          "elapsed_seconds": 0.000202
+          "elapsed_seconds": 79.238449
         },
         "notes": [
-          "Checked K1, K2, and K3 plaintexts as direct repeating running keys."
+          "Local seed fan-out around running_key:official:offset=10 only.",
+          "Restricted periodic follow-through to widths 17, 19, and 28.",
+          "Seed set included identity, reversed identity, all default keyword permutations, reversed keyword permutations, and recycled recent local permutations.",
+          "Hillclimb rounds increased from 2 to 4 for this local search."
         ],
         "artifacts": {
-          "samples": {
-            "K1 Plaintext": "WWVTDQOZMSLKWKLDOWIUJNAWBCGUUBQLURNGBLSYZOUKAFHSYKEAIFCUUJYCTAIELZZNNZNL...",
-            "K2 Plaintext": "JTPQIRNRSWTINGCYCWKLFXFTJJSVWJBQKLWGFKSUHZKURVEHFKPFFEPPYHFETPVTLFFSKTHW...",
-            "K3 Plaintext": "ZLUTTPHQAEHJRYHICUPESDGGENCEQTQQRQYWLXGNODUXDENUCKKOABKMAVVTCBQBEXZNPIME..."
+          "top_candidates": [
+            {
+              "rank": 1,
+              "total_score": 420,
+              "breakdown": {
+                "anchor": 642,
+                "language": 287,
+                "domain": 151,
+                "entity": 0,
+                "structure": 385,
+                "penalty": 0,
+                "total": 420
+              },
+              "transform_chain": [
+                "running_key:official:offset=10",
+                "periodic_transposition:w17:row->column"
+              ],
+              "key_material": {
+                "stage1": {
+                  "offset": 10,
+                  "document_id": "official",
+                  "window_length": 97
+                },
+                "stage2": {
+                  "keyword_seed": "KRYPTOS",
+                  "width": 17,
+                  "permutation": [
+                    9,
+                    7,
+                    11,
+                    8,
+                    13,
+                    3,
+                    5,
+                    14,
+                    0,
+                    15,
+                    16,
+                    12,
+                    1,
+                    10,
+                    6,
+                    2,
+                    4
+                  ],
+                  "fill_mode": "row",
+                  "read_mode": "column",
+                  "reverse_rows": false,
+                  "reverse_columns": true
+                }
+              },
+              "corpus_id": "official",
+              "preview": "YLIZDJAHAHRUKDTXVTCQUEASTXBRGHEAPVELVMYYYOJAVYMORPMJKDGEPGOMWOGFNOBIRCGW...",
+              "matched_clues": [],
+              "plaintext": "YLIZDJAHAHRUKDTXVTCQUEASTXBRGHEAPVELVMYYYOJAVYMORPMJKDGEPGOMWOGFNOBIRCGWEKGOZOIHJKKZPOTLLCAJTNVVK"
+            },
+            {
+              "rank": 2,
+              "total_score": 420,
+              "breakdown": {
+                "anchor": 642,
+                "language": 287,
+                "domain": 151,
+                "entity": 0,
+                "structure": 385,
+                "penalty": 0,
+                "total": 420
+              },
+              "transform_chain": [
+                "running_key:official:offset=10",
+                "periodic_transposition:w17:row->column"
+              ],
+              "key_material": {
+                "stage1": {
+                  "offset": 10,
+                  "document_id": "official",
+                  "window_length": 97
+                },
+                "stage2": {
+                  "keyword_seed": "RECENT_1",
+                  "width": 17,
+                  "permutation": [
+                    9,
+                    7,
+                    11,
+                    8,
+                    13,
+                    3,
+                    5,
+                    14,
+                    0,
+                    15,
+                    16,
+                    12,
+                    1,
+                    10,
+                    6,
+                    2,
+                    4
+                  ],
+                  "fill_mode": "row",
+                  "read_mode": "column",
+                  "reverse_rows": false,
+                  "reverse_columns": true
+                }
+              },
+              "corpus_id": "official",
+              "preview": "YLIZDJAHAHRUKDTXVTCQUEASTXBRGHEAPVELVMYYYOJAVYMORPMJKDGEPGOMWOGFNOBIRCGW...",
+              "matched_clues": [],
+              "plaintext": "YLIZDJAHAHRUKDTXVTCQUEASTXBRGHEAPVELVMYYYOJAVYMORPMJKDGEPGOMWOGFNOBIRCGWEKGOZOIHJKKZPOTLLCAJTNVVK"
+            },
+            {
+              "rank": 3,
+              "total_score": 419,
+              "breakdown": {
+                "anchor": 642,
+                "language": 291,
+                "domain": 151,
+                "entity": 0,
+                "structure": 350,
+                "penalty": 0,
+                "total": 419
+              },
+              "transform_chain": [
+                "running_key:official:offset=10",
+                "periodic_transposition:w17:row->column"
+              ],
+              "key_material": {
+                "stage1": {
+                  "offset": 10,
+                  "document_id": "official",
+                  "window_length": 97
+                },
+                "stage2": {
+                  "keyword_seed": "RECENT_1_ROTM1",
+                  "width": 17,
+                  "permutation": [
+                    9,
+                    7,
+                    11,
+                    2,
+                    13,
+                    3,
+                    5,
+                    14,
+                    15,
+                    0,
+                    16,
+                    12,
+                    1,
+                    10,
+                    6,
+                    8,
+                    4
+                  ],
+                  "fill_mode": "row",
+                  "read_mode": "column",
+                  "reverse_rows": false,
+                  "reverse_columns": true
+                }
+              },
+              "corpus_id": "official",
+              "preview": "XLAZDJAHIHRUKDTTVPCXUEASTQBRGHEAEVPLJMYYYOVAVYMORJMBKMGEPGODWOGFNORIZCZW...",
+              "matched_clues": [],
+              "plaintext": "XLAZDJAHIHRUKDTTVPCXUEASTQBRGHEAEVPLJMYYYOVAVYMORJMBKMGEPGODWOGFNORIZCZWEKGOGOIHJKKOPYTNLCAJTLVVK"
+            },
+            {
+              "rank": 4,
+              "total_score": 405,
+              "breakdown": {
+                "anchor": 616,
+                "language": 292,
+                "domain": 151,
+                "entity": 0,
+                "structure": 315,
+                "penalty": 0,
+                "total": 405
+              },
+              "transform_chain": [
+                "running_key:official:offset=10",
+                "periodic_transposition:w17:row->column"
+              ],
+              "key_material": {
+                "stage1": {
+                  "offset": 10,
+                  "document_id": "official",
+                  "window_length": 97
+                },
+                "stage2": {
+                  "keyword_seed": "RECENT_1_REVERSED",
+                  "width": 17,
+                  "permutation": [
+                    9,
+                    7,
+                    11,
+                    1,
+                    13,
+                    3,
+                    5,
+                    14,
+                    15,
+                    0,
+                    16,
+                    12,
+                    8,
+                    10,
+                    6,
+                    2,
+                    4
+                  ],
+                  "fill_mode": "row",
+                  "read_mode": "column",
+                  "reverse_rows": false,
+                  "reverse_columns": true
+                }
+              },
+              "corpus_id": "official",
+              "preview": "XAIZDJAHLHRUKDTTVPXQUEASTCBRGHEAEVPJVMYYYOLAVYMORJMBMDGEPGOKWOGFNORIZZGW...",
+              "matched_clues": [],
+              "plaintext": "XAIZDJAHLHRUKDTTVPXQUEASTCBRGHEAEVPJVMYYYOLAVYMORJMBMDGEPGOKWOGFNORIZZGWEKGOCOIHJKKOPYNLLCAJTTVVK"
+            },
+            {
+              "rank": 5,
+              "total_score": 344,
+              "breakdown": {
+                "anchor": 403,
+                "language": 452,
+                "domain": 232,
+                "entity": 0,
+                "structure": 350,
+                "penalty": 0,
+                "total": 344
+              },
+              "transform_chain": [
+                "running_key:official:offset=10",
+                "periodic_transposition:w28:row->column"
+              ],
+              "key_material": {
+                "stage1": {
+                  "offset": 10,
+                  "document_id": "official",
+                  "window_length": 97
+                },
+                "stage2": {
+                  "keyword_seed": "BERLIN_REVERSED",
+                  "width": 28,
+                  "permutation": [
+                    6,
+                    26,
+                    7,
+                    24,
+                    22,
+                    21,
+                    9,
+                    10,
+                    4,
+                    19,
+                    17,
+                    13,
+                    15,
+                    14,
+                    3,
+                    5,
+                    18,
+                    16,
+                    2,
+                    12,
+                    20,
+                    11,
+                    1,
+                    8,
+                    23,
+                    0,
+                    25,
+                    27
+                  ],
+                  "fill_mode": "row",
+                  "read_mode": "column",
+                  "reverse_rows": true,
+                  "reverse_columns": true
+                }
+              },
+              "corpus_id": "official",
+              "preview": "DTEHGGZCZPPVROJCOEASTAPGTMJIEHEKLYNLUXKMOTATIOXYOWBWEFRQYBCHAGUKMPAIKAYK...",
+              "matched_clues": [],
+              "plaintext": "DTEHGGZCZPPVROJCOEASTAPGTMJIEHEKLYNLUXKMOTATIOXYOWBWEFRQYBCHAGUKMPAIKAYKVNJGOOZLJJRVHLKMGOVYDRVVD"
+            },
+            {
+              "rank": 6,
+              "total_score": 322,
+              "breakdown": {
+                "anchor": 403,
+                "language": 390,
+                "domain": 152,
+                "entity": 0,
+                "structure": 385,
+                "penalty": 0,
+                "total": 322
+              },
+              "transform_chain": [
+                "running_key:official:offset=10",
+                "periodic_transposition:w28:row->column"
+              ],
+              "key_material": {
+                "stage1": {
+                  "offset": 10,
+                  "document_id": "official",
+                  "window_length": 97
+                },
+                "stage2": {
+                  "keyword_seed": "RECENT_2",
+                  "width": 28,
+                  "permutation": [
+                    27,
+                    9,
+                    26,
+                    11,
+                    13,
+                    1,
+                    12,
+                    6,
+                    2,
+                    3,
+                    18,
+                    15,
+                    4,
+                    16,
+                    17,
+                    14,
+                    0,
+                    19,
+                    5,
+                    21,
+                    7,
+                    20,
+                    22,
+                    23,
+                    10,
+                    24,
+                    25,
+                    8
+                  ],
+                  "fill_mode": "row",
+                  "read_mode": "column",
+                  "reverse_rows": false,
+                  "reverse_columns": false
+                }
+              },
+              "corpus_id": "official",
+              "preview": "XULURFNLEASTJGBJRTPVITRGDIOVPNWZAMOCYBAHXYPKJYYVOCRGVCOOIZGATHELEHLKAGPO...",
+              "matched_clues": [],
+              "plaintext": "XULURFNLEASTJGBJRTPVITRGDIOVPNWZAMOCYBAHXYPKJYYVOCRGVCOOIZGATHELEHLKAGPOEZAJVKJYQEOWMMMKOKDVDTGHK"
+            },
+            {
+              "rank": 7,
+              "total_score": 307,
+              "breakdown": {
+                "anchor": 403,
+                "language": 310,
+                "domain": 149,
+                "entity": 0,
+                "structure": 420,
+                "penalty": 0,
+                "total": 307
+              },
+              "transform_chain": [
+                "running_key:official:offset=10",
+                "periodic_transposition:w17:row->column"
+              ],
+              "key_material": {
+                "stage1": {
+                  "offset": 10,
+                  "document_id": "official",
+                  "window_length": 97
+                },
+                "stage2": {
+                  "keyword_seed": "RECENT_1_ROT1",
+                  "width": 17,
+                  "permutation": [
+                    9,
+                    7,
+                    3,
+                    11,
+                    1,
+                    14,
+                    5,
+                    12,
+                    10,
+                    0,
+                    13,
+                    15,
+                    2,
+                    16,
+                    6,
+                    8,
+                    4
+                  ],
+                  "fill_mode": "row",
+                  "read_mode": "column",
+                  "reverse_rows": false,
+                  "reverse_columns": false
+                }
+              },
+              "corpus_id": "official",
+              "preview": "ZKCKCAJTLVONKIWFIBNKHEKGOGORZOMGMOPOLGEPGODWJMRVMHVPECYYYYOVAEJAVUKRXDLG...",
+              "matched_clues": [],
+              "plaintext": "ZKCKCAJTLVONKIWFIBNKHEKGOGORZOMGMOPOLGEPGODWJMRVMHVPECYYYYOVAEJAVUKRXDLGEASTQBTXTJZTRPLVUDJAHIHYA"
+            },
+            {
+              "rank": 8,
+              "total_score": 306,
+              "breakdown": {
+                "anchor": 403,
+                "language": 309,
+                "domain": 142,
+                "entity": 0,
+                "structure": 420,
+                "penalty": 0,
+                "total": 306
+              },
+              "transform_chain": [
+                "running_key:official:offset=10",
+                "periodic_transposition:w17:row->column"
+              ],
+              "key_material": {
+                "stage1": {
+                  "offset": 10,
+                  "document_id": "official",
+                  "window_length": 97
+                },
+                "stage2": {
+                  "keyword_seed": "RECENT_1",
+                  "width": 17,
+                  "permutation": [
+                    9,
+                    7,
+                    8,
+                    10,
+                    13,
+                    3,
+                    5,
+                    15,
+                    0,
+                    14,
+                    16,
+                    12,
+                    1,
+                    11,
+                    6,
+                    2,
+                    4
+                  ],
+                  "fill_mode": "row",
+                  "read_mode": "column",
+                  "reverse_rows": false,
+                  "reverse_columns": false
+                }
+              },
+              "corpus_id": "official",
+              "preview": "OTLLCAJTKVNVJKZKPRCGWEKGOHOZIFNBOIJKDGEPGOGWMOMOPRMELVMYYYOYAJVHEPAVTCQU...",
+              "matched_clues": [],
+              "plaintext": "OTLLCAJTKVNVJKZKPRCGWEKGOHOZIFNBOIJKDGEPGOGWMOMOPRMELVMYYYOYAJVHEPAVTCQUEASTGBXRKDXTVYLIZDJAHUHAR"
+            },
+            {
+              "rank": 9,
+              "total_score": 296,
+              "breakdown": {
+                "anchor": 352,
+                "language": 394,
+                "domain": 155,
+                "entity": 0,
+                "structure": 350,
+                "penalty": 0,
+                "total": 296
+              },
+              "transform_chain": [
+                "running_key:official:offset=10",
+                "periodic_transposition:w17:row->column"
+              ],
+              "key_material": {
+                "stage1": {
+                  "offset": 10,
+                  "document_id": "official",
+                  "window_length": 97
+                },
+                "stage2": {
+                  "keyword_seed": "KRYPTOS",
+                  "width": 17,
+                  "permutation": [
+                    9,
+                    7,
+                    1,
+                    8,
+                    11,
+                    12,
+                    5,
+                    15,
+                    14,
+                    0,
+                    16,
+                    13,
+                    3,
+                    10,
+                    6,
+                    2,
+                    4
+                  ],
+                  "fill_mode": "row",
+                  "read_mode": "column",
+                  "reverse_rows": false,
+                  "reverse_columns": false
+                }
+              },
+              "corpus_id": "official",
+              "preview": "YKLTCAJTNVVKWJOKPZHGCEKGOZOINGFROIBGDKEPGOMWOOMMJRMPYVLYYYOJAVEUHEAVPGQC...",
+              "matched_clues": [],
+              "plaintext": "YKLTCAJTNVVKWJOKPZHGCEKGOZOINGFROIBGDKEPGOMWOOMMJRMPYVLYYYOJAVEUHEAVPGQCEASTXBRDZKTTVXUILDJAHAHRL"
+            },
+            {
+              "rank": 10,
+              "total_score": 291,
+              "breakdown": {
+                "anchor": 326,
+                "language": 408,
+                "domain": 181,
+                "entity": 0,
+                "structure": 385,
+                "penalty": 0,
+                "total": 291
+              },
+              "transform_chain": [
+                "running_key:official:offset=10",
+                "periodic_transposition:w17:row->column"
+              ],
+              "key_material": {
+                "stage1": {
+                  "offset": 10,
+                  "document_id": "official",
+                  "window_length": 97
+                },
+                "stage2": {
+                  "keyword_seed": "RECENT_3_ROT1",
+                  "width": 17,
+                  "permutation": [
+                    7,
+                    8,
+                    16,
+                    0,
+                    11,
+                    5,
+                    14,
+                    10,
+                    4,
+                    12,
+                    1,
+                    13,
+                    15,
+                    3,
+                    9,
+                    6,
+                    2
+                  ],
+                  "fill_mode": "row",
+                  "read_mode": "column",
+                  "reverse_rows": true,
+                  "reverse_columns": false
+                }
+              },
+              "corpus_id": "official",
+              "preview": "KCAFZAJJTVLLOVCPUHKKMBKKGOOGWRIEINGLPHPNOGOWDGJOEMZYCYKPORYOAVMEVYVMGLAT...",
+              "matched_clues": [],
+              "plaintext": "KCAFZAJJTVLLOVCPUHKKMBKKGOOGWRIEINGLPHPNOGOWDGJOEMZYCYKPORYOAVMEVYVMGLATXEASTBQUTREVJDTAHHIZYRDJX"
+            },
+            {
+              "rank": 11,
+              "total_score": 281,
+              "breakdown": {
+                "anchor": 352,
+                "language": 315,
+                "domain": 154,
+                "entity": 0,
+                "structure": 385,
+                "penalty": 0,
+                "total": 281
+              },
+              "transform_chain": [
+                "running_key:official:offset=10",
+                "periodic_transposition:w28:row->column"
+              ],
+              "key_material": {
+                "stage1": {
+                  "offset": 10,
+                  "document_id": "official",
+                  "window_length": 97
+                },
+                "stage2": {
+                  "keyword_seed": "RECENT_3_REVERSED",
+                  "width": 28,
+                  "permutation": [
+                    27,
+                    7,
+                    25,
+                    0,
+                    19,
+                    24,
+                    21,
+                    22,
+                    20,
+                    13,
+                    17,
+                    2,
+                    15,
+                    16,
+                    5,
+                    3,
+                    4,
+                    14,
+                    18,
+                    11,
+                    10,
+                    12,
+                    8,
+                    9,
+                    1,
+                    23,
+                    26,
+                    6
+                  ],
+                  "fill_mode": "row",
+                  "read_mode": "column",
+                  "reverse_rows": true,
+                  "reverse_columns": false
+                }
+              },
+              "corpus_id": "official",
+              "preview": "VIOUDAMOGVMOAPLCFTJOAETBEASTOCONVKJEYVURJIWLMCGVBYOPTKAHWEOZQNXDGJZAKMGV...",
+              "matched_clues": [],
+              "plaintext": "VIOUDAMOGVMOAPLCFTJOAETBEASTOCONVKJEYVURJIWLMCGVBYOPTKAHWEOZQNXDGJZAKMGVHKGRHERPYPLKIKLYRTDJXZYGH"
+            },
+            {
+              "rank": 12,
+              "total_score": 281,
+              "breakdown": {
+                "anchor": 340,
+                "language": 342,
+                "domain": 71,
+                "entity": 90,
+                "structure": 455,
+                "penalty": 0,
+                "total": 281
+              },
+              "transform_chain": [
+                "running_key:official:offset=10",
+                "periodic_transposition:w19:row->column"
+              ],
+              "key_material": {
+                "stage1": {
+                  "offset": 10,
+                  "document_id": "official",
+                  "window_length": 97
+                },
+                "stage2": {
+                  "keyword_seed": "RECENT_2_ROTM1",
+                  "width": 19,
+                  "permutation": [
+                    4,
+                    9,
+                    8,
+                    5,
+                    6,
+                    11,
+                    16,
+                    17,
+                    14,
+                    15,
+                    12,
+                    13,
+                    18,
+                    3,
+                    0,
+                    10,
+                    1,
+                    2,
+                    7
+                  ],
+                  "fill_mode": "row",
+                  "read_mode": "column",
+                  "reverse_rows": true,
+                  "reverse_columns": false
+                }
+              },
+              "corpus_id": "official",
+              "preview": "VAWTJPTNVHTEMYVHDGLVKGOKXYORTHEJGOKVYCJPMROPZEROKYXUWTQSLFYUJRIBDJOHEANA...",
+              "matched_clues": [],
+              "plaintext": "VAWTJPTNVHTEMYVHDGLVKGOKXYORTHEJGOKVYCJPMROPZEROKYXUWTQSLFYUJRIBDJOHEANACIAVMAZEAMPLGOGDKZBKCLIGO"
+            }
+          ],
+          "best_text": "YLIZDJAHAHRUKDTXVTCQUEASTXBRGHEAPVELVMYYYOJAVYMORPMJKDGEPGOMWOGFNOBIRCGWEKGOZOIHJKKZPOTLLCAJTNVVK"
+        }
+      }
+    ],
+    "dataset_profile": "public",
+    "scorer_profile": "anchor-first",
+    "adaptive_guidance": {
+      "enabled": true,
+      "source_candidate_count": 10,
+      "preferred_stage_families": [
+        "periodic_transposition",
+        "bifid",
+        "running_key"
+      ],
+      "stage_family_scores": {
+        "periodic_transposition": 3642,
+        "bifid": 3110,
+        "running_key": 495
+      },
+      "preferred_transform_families": [
+        "periodic_transposition",
+        "bifid",
+        "direct",
+        "post_periodic_transposition",
+        "running_key"
+      ],
+      "transform_family_scores": {
+        "periodic_transposition": 3642,
+        "bifid": 3110,
+        "direct": 3110,
+        "post_periodic_transposition": 3110,
+        "running_key": 495
+      },
+      "preferred_keywords": [
+        "KRYPTOS",
+        "BERLIN",
+        "ABSCISSA",
+        "PALIMPSEST"
+      ],
+      "preferred_periods": [
+        14,
+        6,
+        5,
+        7
+      ],
+      "preferred_widths": [
+        17,
+        28,
+        19,
+        27,
+        23,
+        21,
+        31
+      ],
+      "preferred_primers": [],
+      "preferred_documents": [
+        "hybrid",
+        "official"
+      ]
+    }
+  },
+  "research_memory": {
+    "schema_version": "1.1",
+    "updated_at": "2026-03-08T23:54:30.118737+00:00",
+    "runs_merged": 16,
+    "observation_count": 136,
+    "candidate_count": 107,
+    "strategy_count": 7,
+    "strategies_seen": [
+      "3",
+      "9",
+      "10",
+      "11",
+      "12",
+      "13",
+      "gpu-opencl"
+    ],
+    "dataset_profiles": [
+      "public"
+    ],
+    "scorer_profiles": [
+      "anchor-first"
+    ],
+    "adaptive_guidance": {
+      "enabled": true,
+      "source_candidate_count": 10,
+      "preferred_stage_families": [
+        "periodic_transposition",
+        "bifid",
+        "running_key"
+      ],
+      "stage_family_scores": {
+        "periodic_transposition": 4199,
+        "bifid": 2270,
+        "running_key": 1472
+      },
+      "preferred_transform_families": [
+        "periodic_transposition",
+        "bifid",
+        "direct",
+        "post_periodic_transposition",
+        "running_key"
+      ],
+      "transform_family_scores": {
+        "periodic_transposition": 4199,
+        "bifid": 2270,
+        "direct": 2270,
+        "post_periodic_transposition": 2270,
+        "running_key": 1472
+      },
+      "preferred_keywords": [
+        "KRYPTOS",
+        "BERLIN",
+        "ABSCISSA",
+        "RECENT_1_ROTM1",
+        "RECENT_1_REVERSED"
+      ],
+      "preferred_periods": [
+        14,
+        6,
+        5
+      ],
+      "preferred_widths": [
+        17,
+        28,
+        27,
+        19,
+        23
+      ],
+      "preferred_primers": [],
+      "preferred_documents": [
+        "official",
+        "hybrid"
+      ]
+    },
+    "experiment_plan": {
+      "enabled": true,
+      "generated_at": "2026-03-08T23:54:30.118737+00:00",
+      "source_candidate_count": 10,
+      "recommended_experiments": [
+        {
+          "rank": 1,
+          "stage_family": "periodic_transposition",
+          "title": "Cross-validate periodic transposition leads",
+          "thesis": "Periodic structure keeps surfacing in strong candidates, but it still needs wider confirmation across standalone and hybrid searches.",
+          "priority_score": 4319,
+          "evidence_score": 4199,
+          "underexplored_score": 120,
+          "target_strategies": [
+            {
+              "id": "3",
+              "name": "Hybrid Transposition Search",
+              "slug": "hybrid-transposition-search",
+              "category": "transposition"
+            }
+          ],
+          "coverage": {
+            "candidate_count": 10,
+            "observed_strategy_ids": [
+              "10",
+              "12",
+              "13"
+            ],
+            "missing_strategy_ids": [
+              "3"
+            ],
+            "supporting_clues": []
           },
-          "best_candidate": "K3 Plaintext"
-        }
-      },
-      {
-        "strategy_id": "2",
-        "name": "Spatial Matrix Reassembly",
-        "objective": "Read padded 7x14 and 14x7 layouts in alternate orders to search for clue-bearing ciphertext runs.",
-        "hypothesis": "K4 may hide anchor substrings through simple geometric rearrangement before substitution.",
-        "status": "no_match",
-        "summary": "No simple 7x14 or 14x7 read order reconstructed the clue ciphertext as a contiguous run.",
-        "best_preview": "OBOKLRRINSUFGSIOBKEAZXBSKWFIOWSZIPGGFOZNKKHLTWFWUURWABGHLVTTNDUBQQJYKASQ...",
-        "matched_clues": [],
-        "metrics": {
-          "attempts": 6,
-          "unique_attempts": 6,
-          "repeated_attempts": null,
-          "elapsed_seconds": 0.000188
-        },
-        "notes": [
-          "Tested padded 7x14 and 14x7 matrices with column and diagonal reads."
-        ],
-        "artifacts": {
-          "best_method": "7x14 diagonals"
-        }
-      },
-      {
-        "strategy_id": "3",
-        "name": "Hybrid Transposition Search",
-        "objective": "Use hill climbing with clue overlap and local IoC heuristics to rank candidate column orders.",
-        "hypothesis": "A clue-bearing transposition may surface when column order improves both anchor overlap and local English-like structure.",
-        "status": "no_match",
-        "summary": "No known anchors surfaced; the best candidate came from width 7 with local IoC 0.1582.",
-        "best_preview": "XSWPOQWDBMDDAXOOOFRTSAINZKIUULBQSSZLNTWJHABGLLNWSTAYFZGEOBBQSJZUFTGCURRU...",
-        "matched_clues": [],
-        "metrics": {
-          "attempts": 150036,
-          "unique_attempts": 150036,
-          "repeated_attempts": null,
-          "elapsed_seconds": 22.739981
-        },
-        "notes": [
-          "Original ciphertext IoC: 0.0361.",
-          "Fitness combines clue overlap with chunked IoC so the objective matches the documented heuristic."
-        ],
-        "artifacts": {
-          "best_width": 7,
-          "best_order": [
-            6,
-            0,
-            4,
-            1,
-            5,
-            3,
-            2
+          "parameter_hints": {
+            "widths": [
+              17,
+              28,
+              27
+            ],
+            "keywords": [
+              "KRYPTOS",
+              "BERLIN",
+              "ABSCISSA"
+            ],
+            "periods": [
+              14,
+              6,
+              5
+            ]
+          },
+          "suggested_runs": [
+            {
+              "strategy_id": "3",
+              "strategy_name": "Hybrid Transposition Search",
+              "command": "python kryptos_toolkit.py --strategy 3 --ledger-input <ledger.json> --ledger-output <ledger.json> --output runs/strategy3_next.json"
+            }
           ],
-          "best_score": 15830,
-          "best_local_ioc": 0.158249
-        }
-      },
-      {
-        "strategy_id": "4",
-        "name": "Quagmire III Autokey",
-        "objective": "Test theme-relevant primers under plain-autokey and cipher-autokey Quagmire variants.",
-        "hypothesis": "K4 may bootstrap its own key stream from a short thematic primer.",
-        "status": "no_match",
-        "summary": "No plain-autokey or cipher-autokey primer produced the known K4 anchors.",
-        "best_preview": "XKQMSZMXBSUJGRAFYXGLISFDABFUTAVZDFERVEASDHRYHVONAGXDILVEMKNZNUGCGVZIESLN...",
-        "matched_clues": [],
-        "metrics": {
-          "attempts": 28,
-          "unique_attempts": 28,
-          "repeated_attempts": null,
-          "elapsed_seconds": 0.002085
+          "notes": [
+            "Periodic structure keeps surfacing in strong candidates, but it still needs wider confirmation across standalone and hybrid searches.",
+            "1 mapped strategies have not yet reinforced this family: 3."
+          ]
         },
-        "notes": [
-          "Evaluated 14 primers in both plain and cipher autokey modes."
-        ],
-        "artifacts": {
-          "best_candidate": "ABSCISSA (cipher)"
-        }
-      },
-      {
-        "strategy_id": "5",
-        "name": "Geometric Grilles",
-        "objective": "Apply logical masks across a padded 7x14 grid to test simple grille-style extractions.",
-        "hypothesis": "A repeated mask pattern might expose the clue ciphertext as a contiguous extraction.",
-        "status": "no_match",
-        "summary": "No tested grille mask extracted the clue ciphertext as a continuous sequence.",
-        "best_preview": "ROOHLSFBFRQPKSTTSQKZAJLDIFNPTMKGKXJDUUUKA",
-        "matched_clues": [],
-        "metrics": {
-          "attempts": 10,
-          "unique_attempts": 10,
-          "repeated_attempts": null,
-          "elapsed_seconds": 0.000351
-        },
-        "notes": [
-          "Used simple modulus masks plus alternating-column masks over a padded 7x14 grid."
-        ],
-        "artifacts": {
-          "best_mask": "Every 2nd column starting at 3"
-        }
-      },
-      {
-        "strategy_id": "6",
-        "name": "Chained Autokey",
-        "objective": "Test double-layer Quagmire autokey combinations across theme-relevant primer pairs.",
-        "hypothesis": "K4 could be a nested autokey construction requiring two sequential decryptions.",
-        "status": "no_match",
-        "summary": "No chained autokey primer pair surfaced the known K4 anchors.",
-        "best_preview": "XZMIYQFKCHSHNIAPHMZXKZCVICHUOXKDRXJVXEWOFXOTPZKACBQAJLIYDSFCYSEZADJGOUMF...",
-        "matched_clues": [],
-        "metrics": {
-          "attempts": 196,
-          "unique_attempts": 196,
-          "repeated_attempts": null,
-          "elapsed_seconds": 0.024196
-        },
-        "notes": [
-          "Evaluated 49 primer pairs across four mode combinations each."
-        ],
-        "artifacts": {
-          "best_candidate": "L1=KRYPTOS (plain), L2=ABSCISSA (cipher)"
-        }
-      },
-      {
-        "strategy_id": "7",
-        "name": "Segmented Resets",
-        "objective": "Split K4 on 'W' and retry running-key and autokey decryption with per-segment resets.",
-        "hypothesis": "The repeated 'W' characters may mark segment boundaries or key resets.",
-        "status": "no_match",
-        "summary": "Resetting the cipher at 'W' boundaries did not recover the known anchors.",
-        "best_preview": "QRQWRTTBFDLCVVHBNJQKWRDUMNDBCKPMWSYFWNGKFRNSZZSNWVWDVUXKNFWTFSTIJWMIHUAW...",
-        "matched_clues": [],
-        "metrics": {
-          "attempts": 12,
-          "unique_attempts": 12,
-          "repeated_attempts": null,
-          "elapsed_seconds": 0.000566
-        },
-        "notes": [
-          "Split K4 into 6 segments on 'W'."
-        ],
-        "artifacts": {
-          "segment_lengths": [
-            20,
-            15,
-            11,
-            9,
-            15,
-            22
+        {
+          "rank": 2,
+          "stage_family": "bifid",
+          "title": "Expand Bifid-led pipelines",
+          "thesis": "Consensus candidates keep returning to Bifid-style seeds, so the next high-value work is deeper keyword and period validation plus downstream layering.",
+          "priority_score": 2270,
+          "evidence_score": 2270,
+          "underexplored_score": 0,
+          "target_strategies": [
+            {
+              "id": "10",
+              "name": "Fractionation Pipeline",
+              "slug": "fractionation-pipeline",
+              "category": "fractionation"
+            },
+            {
+              "id": "13",
+              "name": "Hybrid Pipeline Search",
+              "slug": "hybrid-pipeline-search",
+              "category": "hybrid"
+            }
           ],
-          "best_candidate": "EAST segmented autokey"
+          "coverage": {
+            "candidate_count": 5,
+            "observed_strategy_ids": [
+              "10",
+              "13"
+            ],
+            "missing_strategy_ids": [],
+            "supporting_clues": []
+          },
+          "parameter_hints": {
+            "keywords": [
+              "KRYPTOS",
+              "BERLIN",
+              "ABSCISSA"
+            ],
+            "periods": [
+              14,
+              6,
+              5
+            ]
+          },
+          "suggested_runs": [
+            {
+              "strategy_id": "10",
+              "strategy_name": "Fractionation Pipeline",
+              "command": "python kryptos_toolkit.py --strategy 10 --ledger-input <ledger.json> --ledger-output <ledger.json> --output runs/strategy10_next.json"
+            },
+            {
+              "strategy_id": "13",
+              "strategy_name": "Hybrid Pipeline Search",
+              "command": "python kryptos_toolkit.py --strategy 13 --ledger-input <ledger.json> --ledger-output <ledger.json> --output runs/strategy13_next.json"
+            }
+          ],
+          "notes": [
+            "Consensus candidates keep returning to Bifid-style seeds, so the next high-value work is deeper keyword and period validation plus downstream layering."
+          ]
+        },
+        {
+          "rank": 3,
+          "stage_family": "running_key",
+          "title": "Cross-check running-key leads against new corpora",
+          "thesis": "The ledger has enough running-key signal to justify explicit cross-document confirmation instead of treating it as a side branch.",
+          "priority_score": 1912,
+          "evidence_score": 1472,
+          "underexplored_score": 440,
+          "target_strategies": [
+            {
+              "id": "11",
+              "name": "Corpus Running Key",
+              "slug": "corpus-running-key",
+              "category": "historical"
+            },
+            {
+              "id": "9",
+              "name": "External Text Running Key",
+              "slug": "external-running-key",
+              "category": "historical"
+            },
+            {
+              "id": "8",
+              "name": "Shifted Running Keys",
+              "slug": "shifted-running-keys",
+              "category": "classical"
+            }
+          ],
+          "coverage": {
+            "candidate_count": 3,
+            "observed_strategy_ids": [
+              "13"
+            ],
+            "missing_strategy_ids": [
+              "11",
+              "9",
+              "8"
+            ],
+            "supporting_clues": []
+          },
+          "parameter_hints": {
+            "documents": [
+              "official",
+              "hybrid"
+            ],
+            "keywords": [
+              "KRYPTOS",
+              "BERLIN",
+              "ABSCISSA"
+            ]
+          },
+          "suggested_runs": [
+            {
+              "strategy_id": "11",
+              "strategy_name": "Corpus Running Key",
+              "command": "python kryptos_toolkit.py --strategy 11 --ledger-input <ledger.json> --ledger-output <ledger.json> --output runs/strategy11_next.json"
+            },
+            {
+              "strategy_id": "9",
+              "strategy_name": "External Text Running Key",
+              "command": "python kryptos_toolkit.py --strategy 9 --ledger-input <ledger.json> --ledger-output <ledger.json> --output runs/strategy9_next.json"
+            }
+          ],
+          "notes": [
+            "The ledger has enough running-key signal to justify explicit cross-document confirmation instead of treating it as a side branch.",
+            "3 mapped strategies have not yet reinforced this family: 11, 9, 8."
+          ]
+        }
+      ]
+    },
+    "top_candidates": [
+      {
+        "fingerprint": "29ee7b3d7863dd88fc065fd8208f165aba7a9d97f1609bdd2ec82ac5a28d29f2",
+        "preview": "YLIZDJAHAHRUKDTXVTCQUEASTXBRGHEAPVELVMYYYOJAVYMORPMJKDGEPGOMWOGFNOBIRCGW...",
+        "length": 97,
+        "best_score": 420,
+        "average_score": 419.5,
+        "consensus_score": 512,
+        "observation_count": 4,
+        "run_count": 3,
+        "strategy_count": 1,
+        "strategy_ids": [
+          "13"
+        ],
+        "matched_clues": [],
+        "corpus_ids": [
+          "official"
+        ],
+        "transform_families": [
+          "periodic_transposition",
+          "running_key"
+        ],
+        "best_strategy_id": "13",
+        "best_strategy_name": "Hybrid Pipeline Search",
+        "best_transform_chain": [
+          "running_key:official:offset=10",
+          "periodic_transposition:w17:row->column"
+        ],
+        "best_breakdown": {
+          "anchor": 642,
+          "language": 287,
+          "domain": 151,
+          "entity": 0,
+          "structure": 385,
+          "penalty": 0,
+          "total": 420
         }
       },
       {
-        "strategy_id": "8",
-        "name": "Shifted Running Keys",
-        "objective": "Exhaustively test all offsets of K1-K3 plaintexts and the KRYPTOS primer as running key material.",
-        "hypothesis": "The right offset into prior Kryptos text may align K4 with a standard running-key construction.",
-        "status": "no_match",
-        "summary": "No running-key offset over K1-K3 or KRYPTOS produced the known K4 anchors.",
-        "best_preview": "AJAAWZEAOXDNMZATYODMDRTHESBWDVWTUDVFEJZUUXEAUTBKDMBZTNFKUIMRPQIZGFEVETLN...",
-        "matched_clues": [],
-        "metrics": {
-          "attempts": 1556,
-          "unique_attempts": 1556,
-          "repeated_attempts": null,
-          "elapsed_seconds": 0.108401
-        },
-        "notes": [
-          "Evaluated every cyclic offset for the K1-K3 plaintexts and the KRYPTOS primer under Quagmire and Vigenere rules."
+        "fingerprint": "85d1197b76dbb777a74f6f56a9624e8f1f48b148b3fa3173862d5be5f29b1fec",
+        "preview": "XLAZDJAHIHRUKDTTVPCXUEASTQBRGHEAEVPLJMYYYOVAVYMORJMBKMGEPGODWOGFNORIZCZW...",
+        "length": 97,
+        "best_score": 419,
+        "average_score": 419.0,
+        "consensus_score": 487,
+        "observation_count": 1,
+        "run_count": 1,
+        "strategy_count": 1,
+        "strategy_ids": [
+          "13"
         ],
-        "artifacts": {
-          "best_candidate": "KRYPTOS Primer offset 5 (Vigenere)"
+        "matched_clues": [],
+        "corpus_ids": [
+          "official"
+        ],
+        "transform_families": [
+          "periodic_transposition",
+          "running_key"
+        ],
+        "best_strategy_id": "13",
+        "best_strategy_name": "Hybrid Pipeline Search",
+        "best_transform_chain": [
+          "running_key:official:offset=10",
+          "periodic_transposition:w17:row->column"
+        ],
+        "best_breakdown": {
+          "anchor": 642,
+          "language": 291,
+          "domain": 151,
+          "entity": 0,
+          "structure": 350,
+          "penalty": 0,
+          "total": 419
         }
       },
       {
-        "strategy_id": "9",
-        "name": "External Text Running Key",
-        "objective": "Slide a historical text window across Howard Carter diary excerpts as candidate running keys.",
-        "hypothesis": "An external text tied to the K3 clue may supply the real running key stream for K4.",
-        "status": "no_match",
-        "summary": "Sliding a Howard Carter diary window across K4 did not recover the known anchors.",
-        "best_preview": "TTSRBUGLGJHXGOCKEOIUWMLQHWXPFFDCAQAYSCMPIMFOERSZLOFRRSNZDSFQUYHUYWCTRCVC...",
-        "matched_clues": [],
-        "metrics": {
-          "attempts": 2522,
-          "unique_attempts": 2522,
-          "repeated_attempts": null,
-          "elapsed_seconds": 0.173552
-        },
-        "notes": [
-          "Tested 1261 diary offsets under Quagmire and Vigenere rules."
+        "fingerprint": "4d75a2ec3b87aa03260c208bdd105201053a6f65e528d35908df9869efa10b2d",
+        "preview": "KOTIKWQIKKKTVWIISHRHFARSENTBUXLDKTWEJGVRBDDBGAUZWPQUBOORZOGPWASTNPLBUCLO...",
+        "length": 97,
+        "best_score": 417,
+        "average_score": 417.0,
+        "consensus_score": 483,
+        "observation_count": 2,
+        "run_count": 2,
+        "strategy_count": 1,
+        "strategy_ids": [
+          "12"
         ],
-        "artifacts": {
-          "best_candidate": "Diary offset 181 (Vigenere)",
-          "clean_text_length": 1357
+        "matched_clues": [],
+        "corpus_ids": [],
+        "transform_families": [
+          "periodic_transposition"
+        ],
+        "best_strategy_id": "12",
+        "best_strategy_name": "Periodic Transposition Hillclimb",
+        "best_transform_chain": [
+          "periodic_transposition:w27:row->column"
+        ],
+        "best_breakdown": {
+          "anchor": 590,
+          "language": 364,
+          "domain": 187,
+          "entity": 90,
+          "structure": 250,
+          "penalty": 0,
+          "total": 417
         }
       },
       {
-        "strategy_id": "10",
-        "name": "Bifid Fractionation",
-        "objective": "Test Polybius/Bifid-style fractionation across theme-derived keywords and multiple periods.",
-        "hypothesis": "K4 may flatten its statistics through coordinate fractionation before substitution.",
-        "status": "no_match",
-        "summary": "No tested Bifid keyword/period pair produced the full known K4 anchors.",
-        "best_preview": "KZIRKORGSWPYBUEIPGGVYADWLPBKWBMLOHTMTHMXRXUFUOUHEAQTBZHHIQPZDBFVLLDLXTXV...",
-        "matched_clues": [],
-        "metrics": {
-          "attempts": 72,
-          "unique_attempts": 72,
-          "repeated_attempts": null,
-          "elapsed_seconds": 0.007035
-        },
-        "notes": [
-          "Evaluated 6 keywords across 12 periods."
+        "fingerprint": "c29ff86bb69d4037cfebbf0c4162db174b281d05178b2eb6a8756862b13fd0b3",
+        "preview": "BXOBKKTTIOAUUWEFPNQLFTXEYQCNVKYXKCCQDODYRWAKYCALYVHOOORKZODUDUVBXNGVPCLO...",
+        "length": 97,
+        "best_score": 383,
+        "average_score": 383.0,
+        "consensus_score": 479,
+        "observation_count": 2,
+        "run_count": 1,
+        "strategy_count": 1,
+        "strategy_ids": [
+          "13"
         ],
-        "artifacts": {
-          "best_candidate": "BERLIN / period 10"
+        "matched_clues": [],
+        "corpus_ids": [
+          "hybrid"
+        ],
+        "transform_families": [
+          "bifid",
+          "direct",
+          "periodic_transposition",
+          "post_periodic_transposition"
+        ],
+        "best_strategy_id": "13",
+        "best_strategy_name": "Hybrid Pipeline Search",
+        "best_transform_chain": [
+          "bifid:KRYPTOS:period=6",
+          "direct",
+          "post_periodic_transposition:w28:row->column",
+          "direct",
+          "post_periodic_transposition:w17:row->column"
+        ],
+        "best_breakdown": {
+          "anchor": 506,
+          "language": 380,
+          "domain": 207,
+          "entity": 90,
+          "structure": 275,
+          "penalty": 0,
+          "total": 383
+        }
+      },
+      {
+        "fingerprint": "942a1603f251c44e22af11a053d2005685ea9be2c0aa97fc2dbd62ad3a49169a",
+        "preview": "XAIZDJAHLHRUKDTTVPXQUEASTCBRGHEAEVPJVMYYYOLAVYMORJMBMDGEPGOKWOGFNORIZZGW...",
+        "length": 97,
+        "best_score": 405,
+        "average_score": 405.0,
+        "consensus_score": 473,
+        "observation_count": 1,
+        "run_count": 1,
+        "strategy_count": 1,
+        "strategy_ids": [
+          "13"
+        ],
+        "matched_clues": [],
+        "corpus_ids": [
+          "official"
+        ],
+        "transform_families": [
+          "periodic_transposition",
+          "running_key"
+        ],
+        "best_strategy_id": "13",
+        "best_strategy_name": "Hybrid Pipeline Search",
+        "best_transform_chain": [
+          "running_key:official:offset=10",
+          "periodic_transposition:w17:row->column"
+        ],
+        "best_breakdown": {
+          "anchor": 616,
+          "language": 292,
+          "domain": 151,
+          "entity": 0,
+          "structure": 315,
+          "penalty": 0,
+          "total": 405
+        }
+      },
+      {
+        "fingerprint": "e788c55caa86a8c7e547e6b54add62e131178704d563a1ff9829f872c17c81cb",
+        "preview": "DWSQYMIYDWFCWULYRVKPOEASTDNTWGWAHLHNHGNCOHSXBOMYZVHTMNDKSNIDVVCXXENANXPO...",
+        "length": 97,
+        "best_score": 367,
+        "average_score": 367.0,
+        "consensus_score": 471,
+        "observation_count": 3,
+        "run_count": 3,
+        "strategy_count": 1,
+        "strategy_ids": [
+          "13"
+        ],
+        "matched_clues": [],
+        "corpus_ids": [
+          "hybrid"
+        ],
+        "transform_families": [
+          "bifid",
+          "direct",
+          "periodic_transposition",
+          "post_periodic_transposition"
+        ],
+        "best_strategy_id": "13",
+        "best_strategy_name": "Hybrid Pipeline Search",
+        "best_transform_chain": [
+          "bifid:ABSCISSA:period=14",
+          "direct",
+          "post_periodic_transposition:w19:row->column",
+          "periodic_transposition:w28:row->column"
+        ],
+        "best_breakdown": {
+          "anchor": 564,
+          "language": 236,
+          "domain": 150,
+          "entity": 0,
+          "structure": 310,
+          "penalty": 0,
+          "total": 367
+        }
+      },
+      {
+        "fingerprint": "eb77306d4dde3993c77e750c85e3e5644eb044f0e169d0d655745e45a5187179",
+        "preview": "BCYYVPSEMVSEOKPMBFOHXVLSDNIRCGEASTCYMACGIXCOAWUNHKWAGWVNDGZLNMHKEHQTHVXC...",
+        "length": 97,
+        "best_score": 347,
+        "average_score": 347.0,
+        "consensus_score": 451,
+        "observation_count": 3,
+        "run_count": 3,
+        "strategy_count": 1,
+        "strategy_ids": [
+          "13"
+        ],
+        "matched_clues": [],
+        "corpus_ids": [
+          "hybrid"
+        ],
+        "transform_families": [
+          "bifid",
+          "direct",
+          "periodic_transposition",
+          "post_periodic_transposition"
+        ],
+        "best_strategy_id": "13",
+        "best_strategy_name": "Hybrid Pipeline Search",
+        "best_transform_chain": [
+          "bifid:ABSCISSA:period=14",
+          "direct",
+          "post_periodic_transposition:w19:row->column",
+          "periodic_transposition:w27:row->column"
+        ],
+        "best_breakdown": {
+          "anchor": 507,
+          "language": 250,
+          "domain": 161,
+          "entity": 0,
+          "structure": 380,
+          "penalty": 0,
+          "total": 347
+        }
+      },
+      {
+        "fingerprint": "1186838895bd0b1c6e86471a1a3d1de0cf93b996dc4c39f0d2c79a27bfa47c7c",
+        "preview": "TMOYXBDYNHTOLPDLMWPKDLYUXRLTTREASTIOSQTXRMGNWXLLTOTPNQHKUHCVUVZWRIMUONKT...",
+        "length": 97,
+        "best_score": 369,
+        "average_score": 369.0,
+        "consensus_score": 447,
+        "observation_count": 1,
+        "run_count": 1,
+        "strategy_count": 1,
+        "strategy_ids": [
+          "10"
+        ],
+        "matched_clues": [],
+        "corpus_ids": [],
+        "transform_families": [
+          "bifid",
+          "direct",
+          "post_periodic_transposition"
+        ],
+        "best_strategy_id": "10",
+        "best_strategy_name": "Fractionation Pipeline",
+        "best_transform_chain": [
+          "bifid:KRYPTOS:period=5",
+          "direct",
+          "post_periodic_transposition:w17:row->column"
+        ],
+        "best_breakdown": {
+          "anchor": 429,
+          "language": 570,
+          "domain": 183,
+          "entity": 0,
+          "structure": 265,
+          "penalty": 0,
+          "total": 369
+        }
+      },
+      {
+        "fingerprint": "1d628bbdd1660e9d9357fb37efddd3b227eeef90a05b45ae80d660d1657730e1",
+        "preview": "IZXAOKORPHNQBUCBCBWFLPABKNNECLOCKNONKVWKFDKDRUNQEYULDMHXTCUTYYDOUVTIECXX...",
+        "length": 97,
+        "best_score": 334,
+        "average_score": 334.0,
+        "consensus_score": 422,
+        "observation_count": 1,
+        "run_count": 1,
+        "strategy_count": 1,
+        "strategy_ids": [
+          "13"
+        ],
+        "matched_clues": [],
+        "corpus_ids": [
+          "hybrid"
+        ],
+        "transform_families": [
+          "bifid",
+          "direct",
+          "periodic_transposition",
+          "post_periodic_transposition"
+        ],
+        "best_strategy_id": "13",
+        "best_strategy_name": "Hybrid Pipeline Search",
+        "best_transform_chain": [
+          "bifid:KRYPTOS:period=6",
+          "direct",
+          "post_periodic_transposition:w28:row->column",
+          "periodic_transposition:w23:row->column"
+        ],
+        "best_breakdown": {
+          "anchor": 421,
+          "language": 326,
+          "domain": 180,
+          "entity": 90,
+          "structure": 450,
+          "penalty": 0,
+          "total": 334
+        }
+      },
+      {
+        "fingerprint": "9df2da5a38466c97a3f4975833e1fb82ff154ca7932e63ba5dbecdc5c05cd127",
+        "preview": "TRGNUIBXOXKTBJBQZWVKGEASTBOWTBKNSZTQUKKWOJKGGMWLYSWQQHSCILCRHDZFUPEASPUS...",
+        "length": 97,
+        "best_score": 355,
+        "average_score": 355.0,
+        "consensus_score": 421,
+        "observation_count": 2,
+        "run_count": 2,
+        "strategy_count": 1,
+        "strategy_ids": [
+          "12"
+        ],
+        "matched_clues": [],
+        "corpus_ids": [],
+        "transform_families": [
+          "periodic_transposition"
+        ],
+        "best_strategy_id": "12",
+        "best_strategy_name": "Periodic Transposition Hillclimb",
+        "best_transform_chain": [
+          "periodic_transposition:w17:row->column"
+        ],
+        "best_breakdown": {
+          "anchor": 538,
+          "language": 245,
+          "domain": 149,
+          "entity": 0,
+          "structure": 285,
+          "penalty": 0,
+          "total": 355
         }
       }
     ]
