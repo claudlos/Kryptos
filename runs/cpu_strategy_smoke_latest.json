@@ -1,0 +1,2653 @@
+{
+  "schema_version": "1.1",
+  "generated_at": "2026-03-12T23:16:42.069393+00:00",
+  "runner": "cpu-strategy",
+  "profile": {
+    "name": "smoke",
+    "description": "Quick fixture-first pass across the new CPU strategy families.",
+    "config": {
+      "strategy_ids": [
+        "10",
+        "11",
+        "12",
+        "13",
+        "14"
+      ],
+      "dataset_profile": "public",
+      "scorer_profile": "anchor-first",
+      "beam_width": 64,
+      "candidate_limit": 4,
+      "max_post_key_length": 8,
+      "width_max": 12,
+      "displacement_window": 12,
+      "route_followup_limit": 2
+    }
+  },
+  "host": {
+    "hostname": "DESKTOP-3SHE0AI",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "system": "Windows",
+    "release": "11",
+    "machine": "AMD64",
+    "python_version": "3.13.9",
+    "python_executable": "C:\\Users\\Carlos\\Documents\\Kryptos\\.venv\\Scripts\\python.exe"
+  },
+  "command": [
+    "C:\\Users\\Carlos\\Documents\\Kryptos\\.venv\\Scripts\\python.exe",
+    "-m",
+    "kryptos.benchmark_cli",
+    "--runner",
+    "cpu-strategy",
+    "--profile",
+    "smoke",
+    "--json",
+    "--dataset-profile",
+    "public",
+    "--scorer-profile",
+    "anchor-first",
+    "--beam-width",
+    "64",
+    "--candidate-limit",
+    "4",
+    "--max-post-key-length",
+    "8",
+    "--width-max",
+    "12",
+    "--displacement-window",
+    "12",
+    "--route-followup-limit",
+    "2",
+    "--strategy-ids",
+    "10",
+    "11",
+    "12",
+    "13",
+    "14"
+  ],
+  "notes": [],
+  "execution": {
+    "attempts": 2884,
+    "unique_attempts": 2884,
+    "repeated_attempts": 0,
+    "elapsed_seconds": 132.720663,
+    "attempts_per_second": 21.729849,
+    "match_count": null,
+    "pass_summaries": [
+      {
+        "strategy_id": "10",
+        "attempts": 72,
+        "unique_attempts": 72,
+        "elapsed_seconds": 15.252957,
+        "top_candidate": {
+          "rank": 1,
+          "total_score": 304,
+          "breakdown": {
+            "anchor": 397,
+            "language": 268,
+            "domain": 188,
+            "entity": 90,
+            "structure": 300,
+            "penalty": 0,
+            "total": 304
+          },
+          "transform_chain": [
+            "bifid:CLOCK:period=11",
+            "direct",
+            "post_periodic_transposition:w9:row->column"
+          ],
+          "key_material": {
+            "keyword": "KRYPTOS",
+            "period": 11,
+            "width": 9,
+            "permutation": [
+              1,
+              2,
+              6,
+              8,
+              5,
+              7,
+              3,
+              0,
+              4
+            ],
+            "fill_mode": "row",
+            "read_mode": "column"
+          },
+          "corpus_id": null,
+          "preview": "WOLEFSAAQDPDPAGFFNCEFYMNRDORCLOCKENMWOQUTSYDRXRIQVWLCTWUCTCVUXVIEPUVYCYF...",
+          "matched_clues": [],
+          "plaintext": "WOLEFSAAQDPDPAGFFNCEFYMNRDORCLOCKENMWOQUTSYDRXRIQVWLCTWUCTCVUXVIEPUVYCYFUQLIUVTGSQYDIYWKNTNANZDFM"
+        }
+      },
+      {
+        "strategy_id": "11",
+        "attempts": 2076,
+        "unique_attempts": 2076,
+        "elapsed_seconds": 0.309721,
+        "top_candidate": {
+          "rank": 1,
+          "total_score": 155,
+          "breakdown": {
+            "anchor": 158,
+            "language": 271,
+            "domain": 38,
+            "entity": 0,
+            "structure": 325,
+            "penalty": 0,
+            "total": 155
+          },
+          "transform_chain": [
+            "running_key:carter:offset=788"
+          ],
+          "key_material": {
+            "offset": 788,
+            "window_length": 97
+          },
+          "corpus_id": "carter",
+          "preview": "KKPRBGJBTTBHJKCLCBJSILUEVFYMJNPCOAWTDZZPJSFEJGNYSJOVQUPVRIDQUBMVKKCFHLUR...",
+          "matched_clues": [],
+          "plaintext": "KKPRBGJBTTBHJKCLCBJSILUEVFYMJNPCOAWTDZZPJSFEJGNYSJOVQUPVRIDQUBMVKKCFHLURVXTBVTHEASCBEOWPONWQRRLAE"
+        }
+      },
+      {
+        "strategy_id": "12",
+        "attempts": 448,
+        "unique_attempts": 448,
+        "elapsed_seconds": 13.250843,
+        "top_candidate": {
+          "rank": 1,
+          "total_score": 184,
+          "breakdown": {
+            "anchor": 251,
+            "language": 182,
+            "domain": 85,
+            "entity": 0,
+            "structure": 180,
+            "penalty": 0,
+            "total": 184
+          },
+          "transform_chain": [
+            "periodic_transposition:w8:row->column"
+          ],
+          "key_material": {
+            "keyword_seed": "SANBORN",
+            "width": 8,
+            "permutation": [
+              1,
+              6,
+              7,
+              3,
+              2,
+              4,
+              5,
+              0
+            ],
+            "fill_mode": "row",
+            "read_mode": "column",
+            "reverse_rows": false,
+            "reverse_columns": true
+          },
+          "corpus_id": null,
+          "preview": "RLIZFDRTAUWZZCLOCHAKMJFSKGIETTWSEODSTXBKUXUSVZBGAOLQPKFNUUKJYDIRHRJSNGLP...",
+          "matched_clues": [],
+          "plaintext": "RLIZFDRTAUWZZCLOCHAKMJFSKGIETTWSEODSTXBKUXUSVZBGAOLQPKFNUUKJYDIRHRJSNGLPUKTQBWOQKBATFKSQGOWWNPBVI"
+        }
+      },
+      {
+        "strategy_id": "13",
+        "attempts": 0,
+        "unique_attempts": 0,
+        "elapsed_seconds": 103.6612,
+        "top_candidate": {
+          "rank": 1,
+          "total_score": 294,
+          "breakdown": {
+            "anchor": 429,
+            "language": 251,
+            "domain": 91,
+            "entity": 0,
+            "structure": 310,
+            "penalty": 0,
+            "total": 294
+          },
+          "transform_chain": [
+            "bifid:KRYPTOS:period=5",
+            "direct",
+            "post_periodic_transposition:w5:row->column",
+            "periodic_transposition:w11:row->column"
+          ],
+          "key_material": {
+            "stage1": {
+              "keyword": "KRYPTOS",
+              "period": 5,
+              "width": 5,
+              "permutation": [
+                1,
+                0,
+                3,
+                4,
+                2
+              ],
+              "fill_mode": "row",
+              "read_mode": "column"
+            },
+            "stage2": {
+              "keyword_seed": "BERLIN",
+              "width": 11,
+              "permutation": [
+                6,
+                0,
+                5,
+                1,
+                9,
+                10,
+                4,
+                8,
+                7,
+                3,
+                2
+              ],
+              "fill_mode": "row",
+              "read_mode": "column",
+              "reverse_rows": true,
+              "reverse_columns": false
+            }
+          },
+          "corpus_id": "hybrid",
+          "preview": "ZXLOVWTYMPNPDSOOGKXQTECWLUTLYSEASTIUKLKLHRUTWXRHOIRTEYLBMSTDSUDPONEMDMKD...",
+          "matched_clues": [],
+          "plaintext": "ZXLOVWTYMPNPDSOOGKXQTECWLUTLYSEASTIUKLKLHRUTWXRHOIRTEYLBMSTDSUDPONEMDMKDXZHTHXVTRPNXNRTQDFROROGLW"
+        }
+      },
+      {
+        "strategy_id": "14",
+        "attempts": 288,
+        "unique_attempts": 288,
+        "elapsed_seconds": 0.080993,
+        "top_candidate": {
+          "rank": 1,
+          "total_score": 280,
+          "breakdown": {
+            "anchor": 346,
+            "language": 263,
+            "domain": 188,
+            "entity": 90,
+            "structure": 348,
+            "penalty": 0,
+            "total": 280
+          },
+          "anchor_first_total": 280,
+          "geo_route_total": 251,
+          "secondary_scores": {
+            "anchor-first": {
+              "anchor": 346,
+              "language": 263,
+              "domain": 188,
+              "entity": 90,
+              "structure": 348,
+              "penalty": 0,
+              "total": 280
+            },
+            "geo-route": {
+              "anchor": 346,
+              "language": 263,
+              "domain": 188,
+              "entity": 90,
+              "structure": 348,
+              "penalty": 0,
+              "total": 251
+            }
+          },
+          "transform_chain": [
+            "bifid:CLOCK:period=11",
+            "direct",
+            "post_periodic_transposition:w9:row->column",
+            "displacement:delta=-2"
+          ],
+          "key_material": {
+            "source_family": [
+              "bifid",
+              "direct",
+              "post_periodic_transposition"
+            ],
+            "source_key_material": {
+              "keyword": "KRYPTOS",
+              "period": 11,
+              "width": 9,
+              "permutation": [
+                1,
+                2,
+                6,
+                8,
+                5,
+                7,
+                3,
+                0,
+                4
+              ],
+              "fill_mode": "row",
+              "read_mode": "column"
+            },
+            "displacement_delta": -2,
+            "alignment_score": 97,
+            "alignment_matches": 2,
+            "alignment_exact_components": 0
+          },
+          "corpus_id": null,
+          "preview": "FMWOLEFSAAQDPDPAGFFNCEFYMNRDORCLOCKENMWOQUTSYDRXRIQVWLCTWUCTCVUXVIEPUVYC...",
+          "matched_clues": [],
+          "plaintext": "FMWOLEFSAAQDPDPAGFFNCEFYMNRDORCLOCKENMWOQUTSYDRXRIQVWLCTWUCTCVUXVIEPUVYCYFUQLIUVTGSQYDIYWKNTNANZD"
+        }
+      }
+    ]
+  },
+  "hardware": {},
+  "artifacts": {
+    "strategy_results": {
+      "strategy_selection": "10,11,12,13,14",
+      "result_count": 5,
+      "totals": {
+        "attempts": 2884,
+        "unique_attempts": 2884,
+        "elapsed_seconds": 132.555714
+      },
+      "results": [
+        {
+          "strategy_id": "10",
+          "name": "Fractionation Pipeline",
+          "objective": "Expand Bifid-style candidates through repeating-key, autokey, and periodic-transposition post layers.",
+          "hypothesis": "K4 may require fractionation plus at least one additional keyed layer before the anchor clues emerge.",
+          "status": "candidate",
+          "summary": "Top candidate scored 304/1000 via bifid:CLOCK:period=11 -> direct -> post_periodic_transposition:w9:row->column.",
+          "best_preview": "WOLEFSAAQDPDPAGFFNCEFYMNRDORCLOCKENMWOQUTSYDRXRIQVWLCTWUCTCVUXVIEPUVYCYF...",
+          "matched_clues": [],
+          "metrics": {
+            "attempts": 72,
+            "unique_attempts": 72,
+            "repeated_attempts": null,
+            "elapsed_seconds": 15.252957
+          },
+          "notes": [
+            "Evaluated 6 keywords across 12 periods.",
+            "Expanded only the best direct Bifid candidates through repeating-key, autokey, and periodic-transposition post layers."
+          ],
+          "artifacts": {
+            "top_candidates": [
+              {
+                "rank": 1,
+                "total_score": 304,
+                "breakdown": {
+                  "anchor": 397,
+                  "language": 268,
+                  "domain": 188,
+                  "entity": 90,
+                  "structure": 300,
+                  "penalty": 0,
+                  "total": 304
+                },
+                "transform_chain": [
+                  "bifid:CLOCK:period=11",
+                  "direct",
+                  "post_periodic_transposition:w9:row->column"
+                ],
+                "key_material": {
+                  "keyword": "KRYPTOS",
+                  "period": 11,
+                  "width": 9,
+                  "permutation": [
+                    1,
+                    2,
+                    6,
+                    8,
+                    5,
+                    7,
+                    3,
+                    0,
+                    4
+                  ],
+                  "fill_mode": "row",
+                  "read_mode": "column"
+                },
+                "corpus_id": null,
+                "preview": "WOLEFSAAQDPDPAGFFNCEFYMNRDORCLOCKENMWOQUTSYDRXRIQVWLCTWUCTCVUXVIEPUVYCYF...",
+                "matched_clues": [],
+                "plaintext": "WOLEFSAAQDPDPAGFFNCEFYMNRDORCLOCKENMWOQUTSYDRXRIQVWLCTWUCTCVUXVIEPUVYCYFUQLIUVTGSQYDIYWKNTNANZDFM"
+              },
+              {
+                "rank": 2,
+                "total_score": 198,
+                "breakdown": {
+                  "anchor": 132,
+                  "language": 484,
+                  "domain": 168,
+                  "entity": 0,
+                  "structure": 195,
+                  "penalty": 0,
+                  "total": 198
+                },
+                "transform_chain": [
+                  "bifid:BERLIN:period=5",
+                  "direct",
+                  "post_periodic_transposition:w9:row->column"
+                ],
+                "key_material": {
+                  "keyword": "KRYPTOS",
+                  "period": 5,
+                  "width": 9,
+                  "permutation": [
+                    1,
+                    0,
+                    2,
+                    4,
+                    3,
+                    5,
+                    8,
+                    6,
+                    7
+                  ],
+                  "fill_mode": "row",
+                  "read_mode": "column"
+                },
+                "corpus_id": null,
+                "preview": "YKCQKAIHLRVZOUUFMYSRBOTEUURILPWTVKATIONWWFSCVPOSWDNQSXBXASSELWCVVPPRNVRZ...",
+                "matched_clues": [],
+                "plaintext": "YKCQKAIHLRVZOUUFMYSRBOTEUURILPWTVKATIONWWFSCVPOSWDNQSXBXASSELWCVVPPRNVRZNKKLYZFNQYHLYSLOCKNPKONTR"
+              },
+              {
+                "rank": 3,
+                "total_score": 191,
+                "breakdown": {
+                  "anchor": 226,
+                  "language": 295,
+                  "domain": 41,
+                  "entity": 0,
+                  "structure": 265,
+                  "penalty": 0,
+                  "total": 191
+                },
+                "transform_chain": [
+                  "bifid:PALIMPSEST:period=5",
+                  "direct",
+                  "post_periodic_transposition:w12:row->column"
+                ],
+                "key_material": {
+                  "keyword": "KRYPTOS",
+                  "period": 5,
+                  "width": 12,
+                  "permutation": [
+                    11,
+                    2,
+                    0,
+                    3,
+                    4,
+                    5,
+                    7,
+                    6,
+                    8,
+                    10,
+                    1,
+                    9
+                  ],
+                  "fill_mode": "row",
+                  "read_mode": "column"
+                },
+                "corpus_id": null,
+                "preview": "FGGNYOAWLUCUIPRHENNCAAABONRRTFIDXTKBHBWHHERLPUKRXKPPXKIRCWKKBGHDEZDKVCMO...",
+                "matched_clues": [],
+                "plaintext": "FGGNYOAWLUCUIPRHENNCAAABONRRTFIDXTKBHBWHHERLPUKRXKPPXKIRCWKKBGHDEZDKVCMOHHEFSWCFXIGTCYADPVBMKBCXP"
+              },
+              {
+                "rank": 4,
+                "total_score": 187,
+                "breakdown": {
+                  "anchor": 221,
+                  "language": 281,
+                  "domain": 50,
+                  "entity": 0,
+                  "structure": 265,
+                  "penalty": 0,
+                  "total": 187
+                },
+                "transform_chain": [
+                  "bifid:KRYPTOS:period=5",
+                  "direct",
+                  "post_periodic_transposition:w5:row->column"
+                ],
+                "key_material": {
+                  "keyword": "KRYPTOS",
+                  "period": 5,
+                  "width": 5,
+                  "permutation": [
+                    1,
+                    0,
+                    3,
+                    4,
+                    2
+                  ],
+                  "fill_mode": "row",
+                  "read_mode": "column"
+                },
+                "corpus_id": null,
+                "preview": "VOTLODKPRNESTLNHQWWGLKISDNOPTAUYOTTLXDWIXMMVZPCTWBEXTKYLRUXXRLSLURSDTDOO...",
+                "matched_clues": [],
+                "plaintext": "VOTLODKPRNESTLNHQWWGLKISDNOPTAUYOTTLXDWIXMMVZPCTWBEXTKYLRUXXRLSLURSDTDOOUKHTMRFYXSHTDZNOMQEREPHRG"
+              },
+              {
+                "rank": 5,
+                "total_score": 177,
+                "breakdown": {
+                  "anchor": 243,
+                  "language": 188,
+                  "domain": 44,
+                  "entity": 0,
+                  "structure": 230,
+                  "penalty": 0,
+                  "total": 177
+                },
+                "transform_chain": [
+                  "bifid:PALIMPSEST:period=10",
+                  "direct",
+                  "post_periodic_transposition:w12:row->column"
+                ],
+                "key_material": {
+                  "keyword": "KRYPTOS",
+                  "period": 10,
+                  "width": 12,
+                  "permutation": [
+                    11,
+                    1,
+                    2,
+                    3,
+                    6,
+                    5,
+                    4,
+                    7,
+                    9,
+                    8,
+                    10,
+                    0
+                  ],
+                  "fill_mode": "row",
+                  "read_mode": "column"
+                },
+                "corpus_id": null,
+                "preview": "IQEPSLKMGETRUYIDEUWFSQGEMNORTUENLOLCEXBRDKLYMLUQUPYYPCBNKVBHVHTPRMLPZUZW...",
+                "matched_clues": [],
+                "plaintext": "IQEPSLKMGETRUYIDEUWFSQGEMNORTUENLOLCEXBRDKLYMLUQUPYYPCBNKVBHVHTPRMLPZUZWETHFDCOKZXGQBOTGWASSTXIQH"
+              },
+              {
+                "rank": 6,
+                "total_score": 175,
+                "breakdown": {
+                  "anchor": 147,
+                  "language": 407,
+                  "domain": 43,
+                  "entity": 0,
+                  "structure": 265,
+                  "penalty": 0,
+                  "total": 175
+                },
+                "transform_chain": [
+                  "bifid:KRYPTOS:period=6",
+                  "direct",
+                  "post_periodic_transposition:w9:row->column"
+                ],
+                "key_material": {
+                  "keyword": "KRYPTOS",
+                  "period": 6,
+                  "width": 9,
+                  "permutation": [
+                    8,
+                    6,
+                    2,
+                    4,
+                    5,
+                    1,
+                    3,
+                    7,
+                    0
+                  ],
+                  "fill_mode": "row",
+                  "read_mode": "column"
+                },
+                "corpus_id": null,
+                "preview": "FVLNROGUOQYUXKCLDRTHEAOCBXCKYUTCHLUIONBZVCBVRDKIYEXOQKVNVWPDAYWTNNYUOYUQ...",
+                "matched_clues": [],
+                "plaintext": "FVLNROGUOQYUXKCLDRTHEAOCBXCKYUTCHLUIONBZVCBVRDKIYEXOQKVNVWPDAYWTNNYUOYUQEDXNNDAQCAFEYZPMKKROLKOVB"
+              },
+              {
+                "rank": 7,
+                "total_score": 168,
+                "breakdown": {
+                  "anchor": 158,
+                  "language": 344,
+                  "domain": 48,
+                  "entity": 0,
+                  "structure": 265,
+                  "penalty": 0,
+                  "total": 168
+                },
+                "transform_chain": [
+                  "bifid:PALIMPSEST:period=21",
+                  "direct",
+                  "post_periodic_transposition:w12:row->column"
+                ],
+                "key_material": {
+                  "keyword": "KRYPTOS",
+                  "period": 21,
+                  "width": 12,
+                  "permutation": [
+                    7,
+                    8,
+                    9,
+                    1,
+                    3,
+                    5,
+                    0,
+                    11,
+                    10,
+                    6,
+                    4,
+                    2
+                  ],
+                  "fill_mode": "row",
+                  "read_mode": "column"
+                },
+                "corpus_id": null,
+                "preview": "DFXFMHCUOHWBVNULLGKSVFQSYRWIDCLTQHLGVWKQAPWOSULAWANORTXHYOVOZQONKIVWGKLH...",
+                "matched_clues": [],
+                "plaintext": "DFXFMHCUOHWBVNULLGKSVFQSYRWIDCLTQHLGVWKQAPWOSULAWANORTXHYOVOZQONKIVWGKLHWKYPFCHNOECUSOIHFTEREPKMI"
+              },
+              {
+                "rank": 8,
+                "total_score": 165,
+                "breakdown": {
+                  "anchor": 164,
+                  "language": 342,
+                  "domain": 35,
+                  "entity": 0,
+                  "structure": 195,
+                  "penalty": 0,
+                  "total": 165
+                },
+                "transform_chain": [
+                  "bifid:SANBORN:period=6",
+                  "direct",
+                  "post_periodic_transposition:w9:row->column"
+                ],
+                "key_material": {
+                  "keyword": "KRYPTOS",
+                  "period": 6,
+                  "width": 9,
+                  "permutation": [
+                    2,
+                    4,
+                    6,
+                    1,
+                    3,
+                    5,
+                    0,
+                    7,
+                    8
+                  ],
+                  "fill_mode": "row",
+                  "read_mode": "column"
+                },
+                "corpus_id": null,
+                "preview": "YUAOOWWEASBVONFRXKUBBFUHYXUUVUUNIAWNPRGXNIPHEUQUDASGPPQQXNZIMQWRTHEAFIKR...",
+                "matched_clues": [],
+                "plaintext": "YUAOOWWEASBVONFRXKUBBFUHYXUUVUUNIAWNPRGXNIPHEUQUDASGPPQQXNZIMQWRTHEAFIKRHIBQUYGLPQNZUNBSIRXBIMUPG"
+              }
+            ],
+            "best_text": "WOLEFSAAQDPDPAGFFNCEFYMNRDORCLOCKENMWOQUTSYDRXRIQVWLCTWUCTCVUXVIEPUVYCYFUQLIUVTGSQYDIYWKNTNANZDFM",
+            "candidate_count": 32
+          }
+        },
+        {
+          "strategy_id": "11",
+          "name": "Corpus Running Key",
+          "objective": "Slide public corpus windows across K4 and rerank the strongest clue-aligned running-key decryptions.",
+          "hypothesis": "Public Howard Carter and official clue corpora contain usable key-stream fragments for a method-reconstruction track.",
+          "status": "no_match",
+          "summary": "Top candidate scored 155/1000 via running_key:carter:offset=788.",
+          "best_preview": "KKPRBGJBTTBHJKCLCBJSILUEVFYMJNPCOAWTDZZPJSFEJGNYSJOVQUPVRIDQUBMVKKCFHLUR...",
+          "matched_clues": [],
+          "metrics": {
+            "attempts": 2076,
+            "unique_attempts": 2076,
+            "repeated_attempts": null,
+            "elapsed_seconds": 0.309721
+          },
+          "notes": [
+            "Scanned public corpus windows from: official, carter.",
+            "Used anchor alignment as a fast prefilter before full corpus-aware scoring."
+          ],
+          "artifacts": {
+            "top_candidates": [
+              {
+                "rank": 1,
+                "total_score": 155,
+                "breakdown": {
+                  "anchor": 158,
+                  "language": 271,
+                  "domain": 38,
+                  "entity": 0,
+                  "structure": 325,
+                  "penalty": 0,
+                  "total": 155
+                },
+                "transform_chain": [
+                  "running_key:carter:offset=788"
+                ],
+                "key_material": {
+                  "offset": 788,
+                  "window_length": 97
+                },
+                "corpus_id": "carter",
+                "preview": "KKPRBGJBTTBHJKCLCBJSILUEVFYMJNPCOAWTDZZPJSFEJGNYSJOVQUPVRIDQUBMVKKCFHLUR...",
+                "matched_clues": [],
+                "plaintext": "KKPRBGJBTTBHJKCLCBJSILUEVFYMJNPCOAWTDZZPJSFEJGNYSJOVQUPVRIDQUBMVKKCFHLURVXTBVTHEASCBEOWPONWQRRLAE"
+              },
+              {
+                "rank": 2,
+                "total_score": 149,
+                "breakdown": {
+                  "anchor": 168,
+                  "language": 236,
+                  "domain": 41,
+                  "entity": 0,
+                  "structure": 290,
+                  "penalty": 7,
+                  "total": 149
+                },
+                "transform_chain": [
+                  "running_key:official:offset=20"
+                ],
+                "key_material": {
+                  "offset": 20,
+                  "window_length": 97
+                },
+                "corpus_id": "official",
+                "preview": "MZZXQWEGUDJDOOMDIDNHFMNRENFPEHVGUQAEHPZAHZOORSXFLLAPTHQQGJYTUBYBUXDTNILO...",
+                "matched_clues": [],
+                "plaintext": "MZZXQWEGUDJDOOMDIDNHFMNRENFPEHVGUQAEHPZAHZOORSXFLLAPTHQQGJYTUBYBUXDTNILOHEOTDZSTTGMJIPRQQCNQIDYAO"
+              },
+              {
+                "rank": 3,
+                "total_score": 140,
+                "breakdown": {
+                  "anchor": 88,
+                  "language": 359,
+                  "domain": 66,
+                  "entity": 0,
+                  "structure": 290,
+                  "penalty": 0,
+                  "total": 140
+                },
+                "transform_chain": [
+                  "running_key:official:offset=276"
+                ],
+                "key_material": {
+                  "offset": 276,
+                  "window_length": 97
+                },
+                "corpus_id": "official",
+                "preview": "QMRDCMJCUNHDIUEEINONDEHNINMNAPRROPWRFTERYMPDTKRMDWWQOLCYUGJFMLIURLJPAFLC...",
+                "matched_clues": [],
+                "plaintext": "QMRDCMJCUNHDIUEEINONDEHNINMNAPRROPWRFTERYMPDTKRMDWWQOLCYUGJFMLIURLJPAFLCBFTCBTBIABOQUPAQJDWIECPIZ"
+              },
+              {
+                "rank": 4,
+                "total_score": 135,
+                "breakdown": {
+                  "anchor": 123,
+                  "language": 245,
+                  "domain": 44,
+                  "entity": 0,
+                  "structure": 360,
+                  "penalty": 0,
+                  "total": 135
+                },
+                "transform_chain": [
+                  "running_key:official:offset=901"
+                ],
+                "key_material": {
+                  "offset": 901,
+                  "window_length": 97
+                },
+                "corpus_id": "official",
+                "preview": "VOWABHTOOOTHKHGYGUNZMEHAKIDNGZEAOSWAJFZZCMSALYVHEANFHHJVNWFKYRJFFHHGRMIO...",
+                "matched_clues": [],
+                "plaintext": "VOWABHTOOOTHKHGYGUNZMEHAKIDNGZEAOSWAJFZZCMSALYVHEANFHHJVNWFKYRJFFHHGRMIORRFGQSNPARUXVGZZDDSPGHYYA"
+              },
+              {
+                "rank": 5,
+                "total_score": 128,
+                "breakdown": {
+                  "anchor": 92,
+                  "language": 302,
+                  "domain": 58,
+                  "entity": 0,
+                  "structure": 255,
+                  "penalty": 0,
+                  "total": 128
+                },
+                "transform_chain": [
+                  "running_key:carter:offset=210"
+                ],
+                "key_material": {
+                  "offset": 210,
+                  "window_length": 97
+                },
+                "corpus_id": "carter",
+                "preview": "RNXMMXFVTTZHPRKUEIZBBFSJHDYONHGXFOOCDMMZVEREZTZNEWBRCOSSEAFAAZBAWHRGAQLO...",
+                "matched_clues": [],
+                "plaintext": "RNXMMXFVTTZHPRKUEIZBBFSJHDYONHGXFOOCDMMZVEREZTZNEWBRCOSSEAFAAZBAWHRGAQLOFYSTLDFEBHCMPCTAUSMZATYXY"
+              },
+              {
+                "rank": 6,
+                "total_score": 125,
+                "breakdown": {
+                  "anchor": 108,
+                  "language": 267,
+                  "domain": 46,
+                  "entity": 0,
+                  "structure": 220,
+                  "penalty": 0,
+                  "total": 125
+                },
+                "transform_chain": [
+                  "running_key:carter:offset=1052"
+                ],
+                "key_material": {
+                  "offset": 1052,
+                  "window_length": 97
+                },
+                "corpus_id": "carter",
+                "preview": "NDTDTNTXOQQXKPKUECAXRRUNEMOEDVMTOMAITBXSQWOACKMWLWAFSSCOIIEIHBYJXYNBQYLO...",
+                "matched_clues": [],
+                "plaintext": "NDTDTNTXOQQXKPKUECAXRRUNEMOEDVMTOMAITBXSQWOACKMWLWAFSSCOIIEIHBYJXYNBQYLOTKYMOVVGIFXKBGXRFGJHATZAA"
+              },
+              {
+                "rank": 7,
+                "total_score": 122,
+                "breakdown": {
+                  "anchor": 134,
+                  "language": 208,
+                  "domain": 47,
+                  "entity": 0,
+                  "structure": 255,
+                  "penalty": 19,
+                  "total": 122
+                },
+                "transform_chain": [
+                  "running_key:carter:offset=739"
+                ],
+                "key_material": {
+                  "offset": 739,
+                  "window_length": 97
+                },
+                "corpus_id": "carter",
+                "preview": "XITNUWDXITTCXQVJIOYJKFWZGFQCZVWGZQHPEQZSNIFMMILMEWCOKSMPVNIPJNTBYJRBKYFO...",
+                "matched_clues": [],
+                "plaintext": "XITNUWDXITTCXQVJIOYJKFWZGFQCZVWGZQHPEQZSNIFMMILMEWCOKSMPVNIPJNTBYJRBKYFOCKLOACZGLFKLINQDEUCHQPYOQ"
+              },
+              {
+                "rank": 8,
+                "total_score": 122,
+                "breakdown": {
+                  "anchor": 102,
+                  "language": 240,
+                  "domain": 58,
+                  "entity": 0,
+                  "structure": 290,
+                  "penalty": 0,
+                  "total": 122
+                },
+                "transform_chain": [
+                  "running_key:official:offset=201"
+                ],
+                "key_material": {
+                  "offset": 201,
+                  "window_length": 97
+                },
+                "corpus_id": "official",
+                "preview": "KYFDAXEHODSSTEBHXLJTBBYDAMEONWNOOHJAPAUOWXUZIGMGYVLOGXFZVPSPUBKEQDDTGLLO...",
+                "matched_clues": [],
+                "plaintext": "KYFDAXEHODSSTEBHXLJTBBYDAMEONWNOOHJAPAUOWXUZIGMGYVLOGXFZVPSPUBKEQDDTGLLOCAFIORLFRVQROTCBJKTUMXOHQ"
+              }
+            ],
+            "best_text": "KKPRBGJBTTBHJKCLCBJSILUEVFYMJNPCOAWTDZZPJSFEJGNYSJOVQUPVRIDQUBMVKKCFHLURVXTBVTHEASCBEOWPONWQRRLAE",
+            "candidate_count": 64
+          }
+        },
+        {
+          "strategy_id": "12",
+          "name": "Periodic Transposition Hillclimb",
+          "objective": "Search ragged periodic transposition families with keyword seeds and local permutation hillclimbs.",
+          "hypothesis": "K4 may be hiding its anchors inside a periodic transposition that needs stronger ranking than raw brute force.",
+          "status": "no_match",
+          "summary": "Top candidate scored 184/1000 via periodic_transposition:w8:row->column.",
+          "best_preview": "RLIZFDRTAUWZZCLOCHAKMJFSKGIETTWSEODSTXBKUXUSVZBGAOLQPKFNUUKJYDIRHRJSNGLP...",
+          "matched_clues": [],
+          "metrics": {
+            "attempts": 448,
+            "unique_attempts": 448,
+            "repeated_attempts": null,
+            "elapsed_seconds": 13.250843
+          },
+          "notes": [
+            "Searched widths 5-32 with row/column orientations, row reversals, column reversals, and keyword-seeded permutations.",
+            "Used local swap hillclimbs instead of raw Cartesian brute force over every permutation."
+          ],
+          "artifacts": {
+            "top_candidates": [
+              {
+                "rank": 1,
+                "total_score": 184,
+                "breakdown": {
+                  "anchor": 251,
+                  "language": 182,
+                  "domain": 85,
+                  "entity": 0,
+                  "structure": 180,
+                  "penalty": 0,
+                  "total": 184
+                },
+                "transform_chain": [
+                  "periodic_transposition:w8:row->column"
+                ],
+                "key_material": {
+                  "keyword_seed": "SANBORN",
+                  "width": 8,
+                  "permutation": [
+                    1,
+                    6,
+                    7,
+                    3,
+                    2,
+                    4,
+                    5,
+                    0
+                  ],
+                  "fill_mode": "row",
+                  "read_mode": "column",
+                  "reverse_rows": false,
+                  "reverse_columns": true
+                },
+                "corpus_id": null,
+                "preview": "RLIZFDRTAUWZZCLOCHAKMJFSKGIETTWSEODSTXBKUXUSVZBGAOLQPKFNUUKJYDIRHRJSNGLP...",
+                "matched_clues": [],
+                "plaintext": "RLIZFDRTAUWZZCLOCHAKMJFSKGIETTWSEODSTXBKUXUSVZBGAOLQPKFNUUKJYDIRHRJSNGLPUKTQBWOQKBATFKSQGOWWNPBVI"
+              },
+              {
+                "rank": 2,
+                "total_score": 176,
+                "breakdown": {
+                  "anchor": 222,
+                  "language": 179,
+                  "domain": 114,
+                  "entity": 0,
+                  "structure": 250,
+                  "penalty": 0,
+                  "total": 176
+                },
+                "transform_chain": [
+                  "periodic_transposition:w12:row->column"
+                ],
+                "key_material": {
+                  "keyword_seed": "PALIMPSEST",
+                  "width": 12,
+                  "permutation": [
+                    7,
+                    9,
+                    0,
+                    10,
+                    2,
+                    11,
+                    3,
+                    4,
+                    6,
+                    5,
+                    8,
+                    1
+                  ],
+                  "fill_mode": "row",
+                  "read_mode": "column",
+                  "reverse_rows": true,
+                  "reverse_columns": false
+                },
+                "corpus_id": null,
+                "preview": "QQGJOPKAASUISQHCBVWWTOAFSPUDKTGIJTUBERLIRTDNKWEBKNBGUMKFLTKWZGSKOZZBUQCF...",
+                "matched_clues": [],
+                "plaintext": "QQGJOPKAASUISQHCBVWWTOAFSPUDKTGIJTUBERLIRTDNKWEBKNBGUMKFLTKWZGSKOZZBUQCFZKOUXFXNDSALWSLHOPTYIJRRV"
+              },
+              {
+                "rank": 3,
+                "total_score": 169,
+                "breakdown": {
+                  "anchor": 150,
+                  "language": 374,
+                  "domain": 45,
+                  "entity": 0,
+                  "structure": 250,
+                  "penalty": 0,
+                  "total": 169
+                },
+                "transform_chain": [
+                  "periodic_transposition:w9:row->column"
+                ],
+                "key_material": {
+                  "keyword_seed": "SANBORN",
+                  "width": 9,
+                  "permutation": [
+                    1,
+                    0,
+                    7,
+                    8,
+                    6,
+                    4,
+                    2,
+                    3,
+                    5
+                  ],
+                  "fill_mode": "row",
+                  "read_mode": "column",
+                  "reverse_rows": false,
+                  "reverse_columns": true
+                },
+                "corpus_id": null,
+                "preview": "FUWGNRKKQWHKIBAJGJBGPDFCTNSBOFCNKARQFXZJIEWPTIOMTWUZQWLUTXAAZQTORTZIUKVO...",
+                "matched_clues": [],
+                "plaintext": "FUWGNRKKQWHKIBAJGJBGPDFCTNSBOFCNKARQFXZJIEWPTIOMTWUZQWLUTXAAZQTORTZIUKVOSKVKDHERSBBPDUUSLSLOYGLKS"
+              },
+              {
+                "rank": 4,
+                "total_score": 161,
+                "breakdown": {
+                  "anchor": 165,
+                  "language": 264,
+                  "domain": 101,
+                  "entity": 0,
+                  "structure": 215,
+                  "penalty": 0,
+                  "total": 161
+                },
+                "transform_chain": [
+                  "periodic_transposition:w12:row->column"
+                ],
+                "key_material": {
+                  "keyword_seed": "SANBORN",
+                  "width": 12,
+                  "permutation": [
+                    0,
+                    4,
+                    5,
+                    2,
+                    11,
+                    9,
+                    10,
+                    8,
+                    7,
+                    1,
+                    6,
+                    3
+                  ],
+                  "fill_mode": "row",
+                  "read_mode": "column",
+                  "reverse_rows": true,
+                  "reverse_columns": false
+                },
+                "corpus_id": null,
+                "preview": "SAQAPJFHUQKOOTSWVCBUAQWBTJSITDBLUPGKWKENTIWBERDRTLKFMGFSKNKUQUZBZKLOCGZO...",
+                "matched_clues": [],
+                "plaintext": "SAQAPJFHUQKOOTSWVCBUAQWBTJSITDBLUPGKWKENTIWBERDRTLKFMGFSKNKUQUZBZKLOCGZOSDZNFURLAKXXJIWYPHVIRSTOG"
+              },
+              {
+                "rank": 5,
+                "total_score": 160,
+                "breakdown": {
+                  "anchor": 117,
+                  "language": 370,
+                  "domain": 97,
+                  "entity": 0,
+                  "structure": 250,
+                  "penalty": 0,
+                  "total": 160
+                },
+                "transform_chain": [
+                  "periodic_transposition:w9:row->column"
+                ],
+                "key_material": {
+                  "keyword_seed": "ABSCISSA",
+                  "width": 9,
+                  "permutation": [
+                    2,
+                    3,
+                    6,
+                    1,
+                    5,
+                    8,
+                    7,
+                    4,
+                    0
+                  ],
+                  "fill_mode": "row",
+                  "read_mode": "column",
+                  "reverse_rows": true,
+                  "reverse_columns": false
+                },
+                "corpus_id": null,
+                "preview": "DPLEGLOSKIVRKDBBOUATVZKSKTHWTQZZORWUIMQWXLUTANZPATIOQUFFRTJFXSEBPNJCBOJK...",
+                "matched_clues": [],
+                "plaintext": "DPLEGLOSKIVRKDBBOUATVZKSKTHWTQZZORWUIMQWXLUTANZPATIOQUFFRTJFXSEBPNJCBOJKNKGKDBGQCYWKLIWHSASUGFUSR"
+              },
+              {
+                "rank": 6,
+                "total_score": 156,
+                "breakdown": {
+                  "anchor": 161,
+                  "language": 282,
+                  "domain": 53,
+                  "entity": 0,
+                  "structure": 215,
+                  "penalty": 0,
+                  "total": 156
+                },
+                "transform_chain": [
+                  "periodic_transposition:w7:row->column"
+                ],
+                "key_material": {
+                  "keyword_seed": "KRYPTOS",
+                  "width": 7,
+                  "permutation": [
+                    5,
+                    0,
+                    1,
+                    6,
+                    2,
+                    3,
+                    4
+                  ],
+                  "fill_mode": "row",
+                  "read_mode": "column",
+                  "reverse_rows": true,
+                  "reverse_columns": true
+                },
+                "corpus_id": null,
+                "preview": "USRCTQPLBAJTJQKLCTVSQJUKXPQVTHEZYTRAGUKNWLWOADBTFZXUGFOWZOHWNSBKUUKISBER...",
+                "matched_clues": [],
+                "plaintext": "USRCTQPLBAJTJQKLCTVSQJUKXPQVTHEZYTRAGUKNWLWOADBTFZXUGFOWZOHWNSBKUUKISBERKPWKFSKGFAGISBIZINLODMDRO"
+              },
+              {
+                "rank": 7,
+                "total_score": 156,
+                "breakdown": {
+                  "anchor": 161,
+                  "language": 274,
+                  "domain": 57,
+                  "entity": 0,
+                  "structure": 250,
+                  "penalty": 0,
+                  "total": 156
+                },
+                "transform_chain": [
+                  "periodic_transposition:w9:row->column"
+                ],
+                "key_material": {
+                  "keyword_seed": "SANBORN",
+                  "width": 9,
+                  "permutation": [
+                    0,
+                    3,
+                    4,
+                    2,
+                    6,
+                    8,
+                    7,
+                    1,
+                    5
+                  ],
+                  "fill_mode": "row",
+                  "read_mode": "column",
+                  "reverse_rows": true,
+                  "reverse_columns": false
+                },
+                "corpus_id": null,
+                "preview": "DPEKLLSGOIVKURBODBATZHVSTKKWTZUQOWZRIMWAQLTXUNZAUPIQTOFFTERFSJXBPJKNBJCO...",
+                "matched_clues": [],
+                "plaintext": "DPEKLLSGOIVKURBODBATZHVSTKKWTZUQOWZRIMWAQLTXUNZAUPIQTOFFTERFSJXBPJKNBJCONKKCGBQDGYWLAKWSIHURSFSGU"
+              },
+              {
+                "rank": 8,
+                "total_score": 154,
+                "breakdown": {
+                  "anchor": 170,
+                  "language": 260,
+                  "domain": 28,
+                  "entity": 0,
+                  "structure": 250,
+                  "penalty": 0,
+                  "total": 154
+                },
+                "transform_chain": [
+                  "periodic_transposition:w7:row->column"
+                ],
+                "key_material": {
+                  "keyword_seed": "SANBORN",
+                  "width": 7,
+                  "permutation": [
+                    1,
+                    3,
+                    2,
+                    6,
+                    4,
+                    5,
+                    0
+                  ],
+                  "fill_mode": "row",
+                  "read_mode": "column",
+                  "reverse_rows": true,
+                  "reverse_columns": true
+                },
+                "corpus_id": null,
+                "preview": "UCTPQSRLJTQJBAKTVQSLCJXPVQUKTZYRTHEAKNLWGUWDBFTOAZGFWOXUZWNBSOHKKIBSUUEP...",
+                "matched_clues": [],
+                "plaintext": "UCTPQSRLJTQJBAKTVQSLCJXPVQUKTZYRTHEAKNLWGUWDBFTOAZGFWOXUZWNBSOHKKIBSUUEPWFKRKSFAIGKGSZILNBIMDOROD"
+              }
+            ],
+            "best_text": "RLIZFDRTAUWZZCLOCHAKMJFSKGIETTWSEODSTXBKUXUSVZBGAOLQPKFNUUKJYDIRHRJSNGLPUKTQBWOQKBATFKSQGOWWNPBVI",
+            "candidate_count": 244
+          }
+        },
+        {
+          "strategy_id": "13",
+          "name": "Hybrid Pipeline Search",
+          "objective": "Compose exactly two stages from fractionation, running-key, key-layer, and periodic-transposition families.",
+          "hypothesis": "Sanborn's nested hints point to a short pipeline of interacting transforms rather than a single classical cipher.",
+          "status": "no_match",
+          "summary": "Top candidate scored 294/1000 via bifid:KRYPTOS:period=5 -> direct -> post_periodic_transposition:w5:row->column -> periodic_transposition:w11:row->column.",
+          "best_preview": "ZXLOVWTYMPNPDSOOGKXQTECWLUTLYSEASTIUKLKLHRUTWXRHOIRTEYLBMSTDSUDPONEMDMKD...",
+          "matched_clues": [],
+          "metrics": {
+            "attempts": 0,
+            "unique_attempts": 0,
+            "repeated_attempts": null,
+            "elapsed_seconds": 103.6612
+          },
+          "notes": [
+            "Composed exactly two stages from fractionation, running-key, key-layer, and periodic-transposition families.",
+            "Beam width capped at 64 candidate states for this execution."
+          ],
+          "artifacts": {
+            "top_candidates": [
+              {
+                "rank": 1,
+                "total_score": 294,
+                "breakdown": {
+                  "anchor": 429,
+                  "language": 251,
+                  "domain": 91,
+                  "entity": 0,
+                  "structure": 310,
+                  "penalty": 0,
+                  "total": 294
+                },
+                "transform_chain": [
+                  "bifid:KRYPTOS:period=5",
+                  "direct",
+                  "post_periodic_transposition:w5:row->column",
+                  "periodic_transposition:w11:row->column"
+                ],
+                "key_material": {
+                  "stage1": {
+                    "keyword": "KRYPTOS",
+                    "period": 5,
+                    "width": 5,
+                    "permutation": [
+                      1,
+                      0,
+                      3,
+                      4,
+                      2
+                    ],
+                    "fill_mode": "row",
+                    "read_mode": "column"
+                  },
+                  "stage2": {
+                    "keyword_seed": "BERLIN",
+                    "width": 11,
+                    "permutation": [
+                      6,
+                      0,
+                      5,
+                      1,
+                      9,
+                      10,
+                      4,
+                      8,
+                      7,
+                      3,
+                      2
+                    ],
+                    "fill_mode": "row",
+                    "read_mode": "column",
+                    "reverse_rows": true,
+                    "reverse_columns": false
+                  }
+                },
+                "corpus_id": "hybrid",
+                "preview": "ZXLOVWTYMPNPDSOOGKXQTECWLUTLYSEASTIUKLKLHRUTWXRHOIRTEYLBMSTDSUDPONEMDMKD...",
+                "matched_clues": [],
+                "plaintext": "ZXLOVWTYMPNPDSOOGKXQTECWLUTLYSEASTIUKLKLHRUTWXRHOIRTEYLBMSTDSUDPONEMDMKDXZHTHXVTRPNXNRTQDFROROGLW"
+              },
+              {
+                "rank": 2,
+                "total_score": 258,
+                "breakdown": {
+                  "anchor": 378,
+                  "language": 200,
+                  "domain": 76,
+                  "entity": 0,
+                  "structure": 345,
+                  "penalty": 0,
+                  "total": 258
+                },
+                "transform_chain": [
+                  "bifid:PALIMPSEST:period=5",
+                  "direct",
+                  "post_periodic_transposition:w12:row->column",
+                  "periodic_transposition:w11:row->column"
+                ],
+                "key_material": {
+                  "stage1": {
+                    "keyword": "KRYPTOS",
+                    "period": 5,
+                    "width": 12,
+                    "permutation": [
+                      11,
+                      2,
+                      0,
+                      3,
+                      4,
+                      5,
+                      7,
+                      6,
+                      8,
+                      10,
+                      1,
+                      9
+                    ],
+                    "fill_mode": "row",
+                    "read_mode": "column"
+                  },
+                  "stage2": {
+                    "keyword_seed": "SANBORN",
+                    "width": 11,
+                    "permutation": [
+                      0,
+                      6,
+                      5,
+                      2,
+                      10,
+                      8,
+                      9,
+                      7,
+                      1,
+                      4,
+                      3
+                    ],
+                    "fill_mode": "row",
+                    "read_mode": "column",
+                    "reverse_rows": false,
+                    "reverse_columns": false
+                  }
+                },
+                "corpus_id": "hybrid",
+                "preview": "FMRPFNUGPKHGOTVXCCHUIBGHFBIAUDKRWNHIMGAIERCHYEDKTAPZXWHOFXBCBRDKKEASTCYO...",
+                "matched_clues": [],
+                "plaintext": "FMRPFNUGPKHGOTVXCCHUIBGHFBIAUDKRWNHIMGAIERCHYEDKTAPZXWHOFXBCBRDKKEASTCYOHKPKRWWKXANEVPBLLCBPDRNCX"
+              },
+              {
+                "rank": 3,
+                "total_score": 234,
+                "breakdown": {
+                  "anchor": 291,
+                  "language": 282,
+                  "domain": 87,
+                  "entity": 0,
+                  "structure": 380,
+                  "penalty": 0,
+                  "total": 234
+                },
+                "transform_chain": [
+                  "bifid:PALIMPSEST:period=10",
+                  "direct",
+                  "post_periodic_transposition:w12:row->column",
+                  "periodic_transposition:w11:row->column"
+                ],
+                "key_material": {
+                  "stage1": {
+                    "keyword": "KRYPTOS",
+                    "period": 10,
+                    "width": 12,
+                    "permutation": [
+                      11,
+                      1,
+                      2,
+                      3,
+                      6,
+                      5,
+                      4,
+                      7,
+                      9,
+                      8,
+                      10,
+                      0
+                    ],
+                    "fill_mode": "row",
+                    "read_mode": "column"
+                  },
+                  "stage2": {
+                    "keyword_seed": "ABSCISSA",
+                    "width": 11,
+                    "permutation": [
+                      3,
+                      2,
+                      0,
+                      5,
+                      6,
+                      9,
+                      7,
+                      8,
+                      4,
+                      1,
+                      10
+                    ],
+                    "fill_mode": "row",
+                    "read_mode": "column",
+                    "reverse_rows": true,
+                    "reverse_columns": false
+                  }
+                },
+                "corpus_id": "hybrid",
+                "preview": "ALTCERWIEZWSUPBXTEQTXFSQRNBUTERGSTUMKREHPUQQXPLVDNFSYBGIYPBKLDLIOEQYZHLO...",
+                "matched_clues": [],
+                "plaintext": "ALTCERWIEZWSUPBXTEQTXFSQRNBUTERGSTUMKREHPUQQXPLVDNFSYBGIYPBKLDLIOEQYZHLOCKDTMHPUVYLOMEGNZHMCKGUWO"
+              },
+              {
+                "rank": 4,
+                "total_score": 225,
+                "breakdown": {
+                  "anchor": 259,
+                  "language": 318,
+                  "domain": 95,
+                  "entity": 0,
+                  "structure": 345,
+                  "penalty": 0,
+                  "total": 225
+                },
+                "transform_chain": [
+                  "bifid:BERLIN:period=5",
+                  "direct",
+                  "post_periodic_transposition:w9:row->column",
+                  "periodic_transposition:w12:row->column"
+                ],
+                "key_material": {
+                  "stage1": {
+                    "keyword": "KRYPTOS",
+                    "period": 5,
+                    "width": 9,
+                    "permutation": [
+                      1,
+                      0,
+                      2,
+                      4,
+                      3,
+                      5,
+                      8,
+                      6,
+                      7
+                    ],
+                    "fill_mode": "row",
+                    "read_mode": "column"
+                  },
+                  "stage2": {
+                    "keyword_seed": "BERLIN",
+                    "width": 12,
+                    "permutation": [
+                      0,
+                      3,
+                      5,
+                      7,
+                      1,
+                      9,
+                      10,
+                      4,
+                      8,
+                      6,
+                      11,
+                      2
+                    ],
+                    "fill_mode": "row",
+                    "read_mode": "column",
+                    "reverse_rows": false,
+                    "reverse_columns": true
+                  }
+                },
+                "corpus_id": "hybrid",
+                "preview": "LWRMVUQVNWACHWTFVENTZSXOINNUCTFWROBLAOOUWOZPVPXSKIKOLBYLNVSYQTPZERLIRCQL...",
+                "matched_clues": [],
+                "plaintext": "LWRMVUQVNWACHWTFVENTZSXOINNUCTFWROBLAOOUWOZPVPXSKIKOLBYLNVSYQTPZERLIRCQLCANVSSKRPSNHKKKRSYKUPFDYY"
+              },
+              {
+                "rank": 5,
+                "total_score": 216,
+                "breakdown": {
+                  "anchor": 243,
+                  "language": 341,
+                  "domain": 83,
+                  "entity": 0,
+                  "structure": 275,
+                  "penalty": 0,
+                  "total": 216
+                },
+                "transform_chain": [
+                  "bifid:CLOCK:period=11",
+                  "direct",
+                  "post_periodic_transposition:w9:row->column",
+                  "periodic_transposition:w11:row->column"
+                ],
+                "key_material": {
+                  "stage1": {
+                    "keyword": "KRYPTOS",
+                    "period": 11,
+                    "width": 9,
+                    "permutation": [
+                      1,
+                      2,
+                      6,
+                      8,
+                      5,
+                      7,
+                      3,
+                      0,
+                      4
+                    ],
+                    "fill_mode": "row",
+                    "read_mode": "column"
+                  },
+                  "stage2": {
+                    "keyword_seed": "BERLIN",
+                    "width": 11,
+                    "permutation": [
+                      0,
+                      7,
+                      6,
+                      8,
+                      9,
+                      10,
+                      4,
+                      1,
+                      5,
+                      3,
+                      2
+                    ],
+                    "fill_mode": "row",
+                    "read_mode": "column",
+                    "reverse_rows": false,
+                    "reverse_columns": true
+                  }
+                },
+                "corpus_id": "hybrid",
+                "preview": "QCMKUTONMDLAYFWVVDFNYWAVDYCURFESVSUZITINGKTQFPNDCLMACUIEEAYUQYPOQRLINQWU...",
+                "matched_clues": [],
+                "plaintext": "QCMKUTONMDLAYFWVVDFNYWAVDYCURFESVSUZITINGKTQFPNDCLMACUIEEAYUQYPOQRLINQWUFDLOXOVTSTFEPCWRWXNGCYCDR"
+              },
+              {
+                "rank": 6,
+                "total_score": 205,
+                "breakdown": {
+                  "anchor": 284,
+                  "language": 209,
+                  "domain": 49,
+                  "entity": 0,
+                  "structure": 275,
+                  "penalty": 0,
+                  "total": 205
+                },
+                "transform_chain": [
+                  "bifid:KRYPTOS:period=6",
+                  "direct",
+                  "post_periodic_transposition:w9:row->column",
+                  "periodic_transposition:w11:row->column"
+                ],
+                "key_material": {
+                  "stage1": {
+                    "keyword": "KRYPTOS",
+                    "period": 6,
+                    "width": 9,
+                    "permutation": [
+                      8,
+                      6,
+                      2,
+                      4,
+                      5,
+                      1,
+                      3,
+                      7,
+                      0
+                    ],
+                    "fill_mode": "row",
+                    "read_mode": "column"
+                  },
+                  "stage2": {
+                    "keyword_seed": "BERLIN",
+                    "width": 11,
+                    "permutation": [
+                      0,
+                      6,
+                      8,
+                      10,
+                      7,
+                      1,
+                      9,
+                      4,
+                      2,
+                      3,
+                      5
+                    ],
+                    "fill_mode": "row",
+                    "read_mode": "column",
+                    "reverse_rows": true,
+                    "reverse_columns": false
+                  }
+                },
+                "corpus_id": "hybrid",
+                "preview": "KKTIQKYQURFYVHOYKWCQDVUNENURTAEKLTVABXONFDINCWOZKLNEXYRHPCVCKYYNEOLDBCLO...",
+                "matched_clues": [],
+                "plaintext": "KKTIQKYQURFYVHOYKWCQDVUNENURTAEKLTVABXONFDINCWOZKLNEXYRHPCVCKYYNEOLDBCLOUZNXGUAXBDVOPDOUCVRBYMAQO"
+              },
+              {
+                "rank": 7,
+                "total_score": 200,
+                "breakdown": {
+                  "anchor": 224,
+                  "language": 280,
+                  "domain": 96,
+                  "entity": 0,
+                  "structure": 345,
+                  "penalty": 0,
+                  "total": 200
+                },
+                "transform_chain": [
+                  "bifid:KRYPTOS:period=6",
+                  "direct",
+                  "post_periodic_transposition:w9:row->column",
+                  "direct",
+                  "post_periodic_transposition:w5:row->column"
+                ],
+                "key_material": {
+                  "stage1": {
+                    "keyword": "KRYPTOS",
+                    "period": 6,
+                    "width": 9,
+                    "permutation": [
+                      8,
+                      6,
+                      2,
+                      4,
+                      5,
+                      1,
+                      3,
+                      7,
+                      0
+                    ],
+                    "fill_mode": "row",
+                    "read_mode": "column"
+                  },
+                  "stage2": {
+                    "keyword": "KRYPTOS",
+                    "width": 5,
+                    "permutation": [
+                      1,
+                      4,
+                      2,
+                      3,
+                      0
+                    ],
+                    "fill_mode": "row",
+                    "read_mode": "column"
+                  }
+                },
+                "corpus_id": "hybrid",
+                "preview": "DFZPEAVVDAQLCAOCNBYCARVWBFORTXEGDNCYUKNKZOIYYPQYUUMYEOTKUXYCKXOUHRKQQLOC...",
+                "matched_clues": [],
+                "plaintext": "DFZPEAVVDAQLCAOCNBYCARVWBFORTXEGDNCYUKNKZOIYYPQYUUMYEOTKUXYCKXOUHRKQQLOCKEULLVDIKDNXOORVNNVTWNBBH"
+              },
+              {
+                "rank": 8,
+                "total_score": 189,
+                "breakdown": {
+                  "anchor": 215,
+                  "language": 300,
+                  "domain": 40,
+                  "entity": 0,
+                  "structure": 310,
+                  "penalty": 0,
+                  "total": 189
+                },
+                "transform_chain": [
+                  "bifid:KRYPTOS:period=5",
+                  "direct",
+                  "post_periodic_transposition:w5:row->column",
+                  "direct",
+                  "post_periodic_transposition:w12:row->column"
+                ],
+                "key_material": {
+                  "stage1": {
+                    "keyword": "KRYPTOS",
+                    "period": 5,
+                    "width": 5,
+                    "permutation": [
+                      1,
+                      0,
+                      3,
+                      4,
+                      2
+                    ],
+                    "fill_mode": "row",
+                    "read_mode": "column"
+                  },
+                  "stage2": {
+                    "keyword": "KRYPTOS",
+                    "width": 12,
+                    "permutation": [
+                      8,
+                      6,
+                      7,
+                      10,
+                      3,
+                      0,
+                      5,
+                      1,
+                      11,
+                      9,
+                      4,
+                      2
+                    ],
+                    "fill_mode": "row",
+                    "read_mode": "column"
+                  }
+                },
+                "corpus_id": "hybrid",
+                "preview": "XUQOSBRQVKDRMXETHENWOHNSMXRTTXEWTTODVRELDTSGLMPTZLPXZKTLORTDPSHDNYLKDFAO...",
+                "matched_clues": [],
+                "plaintext": "XUQOSBRQVKDRMXETHENWOHNSMXRTTXEWTTODVRELDTSGLMPTZLPXZKTLORTDPSHDNYLKDFAOCLRWOLNIKYUOTUGIMRHSPXYUW"
+              }
+            ],
+            "best_text": "ZXLOVWTYMPNPDSOOGKXQTECWLUTLYSEASTIUKLKLHRUTWXRHOIRTEYLBMSTDSUDPONEMDMKDXZHTHXVTRPNXNRTQDFROROGLW",
+            "candidate_count": 9
+          }
+        },
+        {
+          "strategy_id": "14",
+          "name": "Displacement Route Search",
+          "objective": "Realign top fractionation and transposition candidates with bounded clue-position displacements, then rerank them with route-aware scoring.",
+          "hypothesis": "Promising K4 plaintext fragments may already exist in the current search families but be shifted away from the official clue coordinates.",
+          "status": "no_match",
+          "summary": "Top candidate scored 280/1000 via bifid:CLOCK:period=11 -> direct -> post_periodic_transposition:w9:row->column -> displacement:delta=-2.",
+          "best_preview": "FMWOLEFSAAQDPDPAGFFNCEFYMNRDORCLOCKENMWOQUTSYDRXRIQVWLCTWUCTCVUXVIEPUVYC...",
+          "matched_clues": [],
+          "metrics": {
+            "attempts": 288,
+            "unique_attempts": 288,
+            "repeated_attempts": null,
+            "elapsed_seconds": 0.080993
+          },
+          "notes": [
+            "Started from the strongest fractionation and periodic-transposition candidates, then realigned clue-bearing segments with bounded displacement offsets.",
+            "Each follow-up candidate is reranked with both anchor-first and geo-route scoring to reward stronger Berlin/world-clock route structure."
+          ],
+          "artifacts": {
+            "top_candidates": [
+              {
+                "rank": 1,
+                "total_score": 280,
+                "breakdown": {
+                  "anchor": 346,
+                  "language": 263,
+                  "domain": 188,
+                  "entity": 90,
+                  "structure": 348,
+                  "penalty": 0,
+                  "total": 280
+                },
+                "anchor_first_total": 280,
+                "geo_route_total": 251,
+                "secondary_scores": {
+                  "anchor-first": {
+                    "anchor": 346,
+                    "language": 263,
+                    "domain": 188,
+                    "entity": 90,
+                    "structure": 348,
+                    "penalty": 0,
+                    "total": 280
+                  },
+                  "geo-route": {
+                    "anchor": 346,
+                    "language": 263,
+                    "domain": 188,
+                    "entity": 90,
+                    "structure": 348,
+                    "penalty": 0,
+                    "total": 251
+                  }
+                },
+                "transform_chain": [
+                  "bifid:CLOCK:period=11",
+                  "direct",
+                  "post_periodic_transposition:w9:row->column",
+                  "displacement:delta=-2"
+                ],
+                "key_material": {
+                  "source_family": [
+                    "bifid",
+                    "direct",
+                    "post_periodic_transposition"
+                  ],
+                  "source_key_material": {
+                    "keyword": "KRYPTOS",
+                    "period": 11,
+                    "width": 9,
+                    "permutation": [
+                      1,
+                      2,
+                      6,
+                      8,
+                      5,
+                      7,
+                      3,
+                      0,
+                      4
+                    ],
+                    "fill_mode": "row",
+                    "read_mode": "column"
+                  },
+                  "displacement_delta": -2,
+                  "alignment_score": 97,
+                  "alignment_matches": 2,
+                  "alignment_exact_components": 0
+                },
+                "corpus_id": null,
+                "preview": "FMWOLEFSAAQDPDPAGFFNCEFYMNRDORCLOCKENMWOQUTSYDRXRIQVWLCTWUCTCVUXVIEPUVYC...",
+                "matched_clues": [],
+                "plaintext": "FMWOLEFSAAQDPDPAGFFNCEFYMNRDORCLOCKENMWOQUTSYDRXRIQVWLCTWUCTCVUXVIEPUVYCYFUQLIUVTGSQYDIYWKNTNANZD"
+              },
+              {
+                "rank": 2,
+                "total_score": 276,
+                "breakdown": {
+                  "anchor": 346,
+                  "language": 251,
+                  "domain": 188,
+                  "entity": 90,
+                  "structure": 313,
+                  "penalty": 0,
+                  "total": 276
+                },
+                "anchor_first_total": 276,
+                "geo_route_total": 246,
+                "secondary_scores": {
+                  "anchor-first": {
+                    "anchor": 346,
+                    "language": 251,
+                    "domain": 188,
+                    "entity": 90,
+                    "structure": 313,
+                    "penalty": 0,
+                    "total": 276
+                  },
+                  "geo-route": {
+                    "anchor": 346,
+                    "language": 251,
+                    "domain": 188,
+                    "entity": 90,
+                    "structure": 313,
+                    "penalty": 0,
+                    "total": 246
+                  }
+                },
+                "transform_chain": [
+                  "bifid:CLOCK:period=11",
+                  "direct",
+                  "post_periodic_transposition:w9:row->column",
+                  "displacement:delta=-3"
+                ],
+                "key_material": {
+                  "source_family": [
+                    "bifid",
+                    "direct",
+                    "post_periodic_transposition"
+                  ],
+                  "source_key_material": {
+                    "keyword": "KRYPTOS",
+                    "period": 11,
+                    "width": 9,
+                    "permutation": [
+                      1,
+                      2,
+                      6,
+                      8,
+                      5,
+                      7,
+                      3,
+                      0,
+                      4
+                    ],
+                    "fill_mode": "row",
+                    "read_mode": "column"
+                  },
+                  "displacement_delta": -3,
+                  "alignment_score": 97,
+                  "alignment_matches": 2,
+                  "alignment_exact_components": 0
+                },
+                "corpus_id": null,
+                "preview": "DFMWOLEFSAAQDPDPAGFFNCEFYMNRDORCLOCKENMWOQUTSYDRXRIQVWLCTWUCTCVUXVIEPUVY...",
+                "matched_clues": [],
+                "plaintext": "DFMWOLEFSAAQDPDPAGFFNCEFYMNRDORCLOCKENMWOQUTSYDRXRIQVWLCTWUCTCVUXVIEPUVYCYFUQLIUVTGSQYDIYWKNTNANZ"
+              },
+              {
+                "rank": 3,
+                "total_score": 238,
+                "breakdown": {
+                  "anchor": 276,
+                  "language": 390,
+                  "domain": 43,
+                  "entity": 0,
+                  "structure": 307,
+                  "penalty": 0,
+                  "total": 238
+                },
+                "anchor_first_total": 238,
+                "geo_route_total": 194,
+                "secondary_scores": {
+                  "anchor-first": {
+                    "anchor": 276,
+                    "language": 390,
+                    "domain": 43,
+                    "entity": 0,
+                    "structure": 307,
+                    "penalty": 0,
+                    "total": 238
+                  },
+                  "geo-route": {
+                    "anchor": 276,
+                    "language": 390,
+                    "domain": 43,
+                    "entity": 0,
+                    "structure": 307,
+                    "penalty": 0,
+                    "total": 194
+                  }
+                },
+                "transform_chain": [
+                  "bifid:KRYPTOS:period=6",
+                  "direct",
+                  "post_periodic_transposition:w9:row->column",
+                  "displacement:delta=-10"
+                ],
+                "key_material": {
+                  "source_family": [
+                    "bifid",
+                    "direct",
+                    "post_periodic_transposition"
+                  ],
+                  "source_key_material": {
+                    "keyword": "KRYPTOS",
+                    "period": 6,
+                    "width": 9,
+                    "permutation": [
+                      8,
+                      6,
+                      2,
+                      4,
+                      5,
+                      1,
+                      3,
+                      7,
+                      0
+                    ],
+                    "fill_mode": "row",
+                    "read_mode": "column"
+                  },
+                  "displacement_delta": -10,
+                  "alignment_score": 155,
+                  "alignment_matches": 5,
+                  "alignment_exact_components": 0
+                },
+                "corpus_id": null,
+                "preview": "MKKROLKOVBFVLNROGUOQYUXKCLDRTHEAOCBXCKYUTCHLUIONBZVCBVRDKIYEXOQKVNVWPDAY...",
+                "matched_clues": [],
+                "plaintext": "MKKROLKOVBFVLNROGUOQYUXKCLDRTHEAOCBXCKYUTCHLUIONBZVCBVRDKIYEXOQKVNVWPDAYWTNNYUOYUQEDXNNDAQCAFEYZP"
+              },
+              {
+                "rank": 4,
+                "total_score": 216,
+                "breakdown": {
+                  "anchor": 158,
+                  "language": 495,
+                  "domain": 169,
+                  "entity": 0,
+                  "structure": 256,
+                  "penalty": 0,
+                  "total": 216
+                },
+                "anchor_first_total": 216,
+                "geo_route_total": 189,
+                "secondary_scores": {
+                  "anchor-first": {
+                    "anchor": 158,
+                    "language": 495,
+                    "domain": 169,
+                    "entity": 0,
+                    "structure": 256,
+                    "penalty": 0,
+                    "total": 216
+                  },
+                  "geo-route": {
+                    "anchor": 158,
+                    "language": 495,
+                    "domain": 169,
+                    "entity": 0,
+                    "structure": 256,
+                    "penalty": 0,
+                    "total": 189
+                  }
+                },
+                "transform_chain": [
+                  "bifid:BERLIN:period=5",
+                  "direct",
+                  "post_periodic_transposition:w9:row->column",
+                  "displacement:delta=2"
+                ],
+                "key_material": {
+                  "source_family": [
+                    "bifid",
+                    "direct",
+                    "post_periodic_transposition"
+                  ],
+                  "source_key_material": {
+                    "keyword": "KRYPTOS",
+                    "period": 5,
+                    "width": 9,
+                    "permutation": [
+                      1,
+                      0,
+                      2,
+                      4,
+                      3,
+                      5,
+                      8,
+                      6,
+                      7
+                    ],
+                    "fill_mode": "row",
+                    "read_mode": "column"
+                  },
+                  "displacement_delta": 2,
+                  "alignment_score": 123,
+                  "alignment_matches": 3,
+                  "alignment_exact_components": 0
+                },
+                "corpus_id": null,
+                "preview": "CQKAIHLRVZOUUFMYSRBOTEUURILPWTVKATIONWWFSCVPOSWDNQSXBXASSELWCVVPPRNVRZNK...",
+                "matched_clues": [],
+                "plaintext": "CQKAIHLRVZOUUFMYSRBOTEUURILPWTVKATIONWWFSCVPOSWDNQSXBXASSELWCVVPPRNVRZNKKLYZFNQYHLYSLOCKNPKONTRYK"
+              },
+              {
+                "rank": 5,
+                "total_score": 213,
+                "breakdown": {
+                  "anchor": 224,
+                  "language": 390,
+                  "domain": 43,
+                  "entity": 0,
+                  "structure": 326,
+                  "penalty": 0,
+                  "total": 213
+                },
+                "anchor_first_total": 213,
+                "geo_route_total": 178,
+                "secondary_scores": {
+                  "anchor-first": {
+                    "anchor": 224,
+                    "language": 390,
+                    "domain": 43,
+                    "entity": 0,
+                    "structure": 326,
+                    "penalty": 0,
+                    "total": 213
+                  },
+                  "geo-route": {
+                    "anchor": 224,
+                    "language": 390,
+                    "domain": 43,
+                    "entity": 0,
+                    "structure": 326,
+                    "penalty": 0,
+                    "total": 178
+                  }
+                },
+                "transform_chain": [
+                  "bifid:KRYPTOS:period=6",
+                  "direct",
+                  "post_periodic_transposition:w9:row->column",
+                  "displacement:delta=-3"
+                ],
+                "key_material": {
+                  "source_family": [
+                    "bifid",
+                    "direct",
+                    "post_periodic_transposition"
+                  ],
+                  "source_key_material": {
+                    "keyword": "KRYPTOS",
+                    "period": 6,
+                    "width": 9,
+                    "permutation": [
+                      8,
+                      6,
+                      2,
+                      4,
+                      5,
+                      1,
+                      3,
+                      7,
+                      0
+                    ],
+                    "fill_mode": "row",
+                    "read_mode": "column"
+                  },
+                  "displacement_delta": -3,
+                  "alignment_score": 123,
+                  "alignment_matches": 3,
+                  "alignment_exact_components": 0
+                },
+                "corpus_id": null,
+                "preview": "OVBFVLNROGUOQYUXKCLDRTHEAOCBXCKYUTCHLUIONBZVCBVRDKIYEXOQKVNVWPDAYWTNNYUO...",
+                "matched_clues": [],
+                "plaintext": "OVBFVLNROGUOQYUXKCLDRTHEAOCBXCKYUTCHLUIONBZVCBVRDKIYEXOQKVNVWPDAYWTNNYUOYUQEDXNNDAQCAFEYZPMKKROLK"
+              },
+              {
+                "rank": 6,
+                "total_score": 208,
+                "breakdown": {
+                  "anchor": 158,
+                  "language": 456,
+                  "domain": 169,
+                  "entity": 0,
+                  "structure": 256,
+                  "penalty": 0,
+                  "total": 208
+                },
+                "anchor_first_total": 208,
+                "geo_route_total": 183,
+                "secondary_scores": {
+                  "anchor-first": {
+                    "anchor": 158,
+                    "language": 456,
+                    "domain": 169,
+                    "entity": 0,
+                    "structure": 256,
+                    "penalty": 0,
+                    "total": 208
+                  },
+                  "geo-route": {
+                    "anchor": 158,
+                    "language": 456,
+                    "domain": 169,
+                    "entity": 0,
+                    "structure": 256,
+                    "penalty": 0,
+                    "total": 183
+                  }
+                },
+                "transform_chain": [
+                  "bifid:BERLIN:period=5",
+                  "direct",
+                  "post_periodic_transposition:w9:row->column",
+                  "displacement:delta=-5"
+                ],
+                "key_material": {
+                  "source_family": [
+                    "bifid",
+                    "direct",
+                    "post_periodic_transposition"
+                  ],
+                  "source_key_material": {
+                    "keyword": "KRYPTOS",
+                    "period": 5,
+                    "width": 9,
+                    "permutation": [
+                      1,
+                      0,
+                      2,
+                      4,
+                      3,
+                      5,
+                      8,
+                      6,
+                      7
+                    ],
+                    "fill_mode": "row",
+                    "read_mode": "column"
+                  },
+                  "displacement_delta": -5,
+                  "alignment_score": 123,
+                  "alignment_matches": 3,
+                  "alignment_exact_components": 0
+                },
+                "corpus_id": null,
+                "preview": "KONTRYKCQKAIHLRVZOUUFMYSRBOTEUURILPWTVKATIONWWFSCVPOSWDNQSXBXASSELWCVVPP...",
+                "matched_clues": [],
+                "plaintext": "KONTRYKCQKAIHLRVZOUUFMYSRBOTEUURILPWTVKATIONWWFSCVPOSWDNQSXBXASSELWCVVPPRNVRZNKKLYZFNQYHLYSLOCKNP"
+              },
+              {
+                "rank": 7,
+                "total_score": 174,
+                "breakdown": {
+                  "anchor": 222,
+                  "language": 168,
+                  "domain": 114,
+                  "entity": 0,
+                  "structure": 256,
+                  "penalty": 0,
+                  "total": 174
+                },
+                "anchor_first_total": 174,
+                "geo_route_total": 151,
+                "secondary_scores": {
+                  "anchor-first": {
+                    "anchor": 222,
+                    "language": 168,
+                    "domain": 114,
+                    "entity": 0,
+                    "structure": 256,
+                    "penalty": 0,
+                    "total": 174
+                  },
+                  "geo-route": {
+                    "anchor": 222,
+                    "language": 168,
+                    "domain": 114,
+                    "entity": 0,
+                    "structure": 256,
+                    "penalty": 0,
+                    "total": 151
+                  }
+                },
+                "transform_chain": [
+                  "periodic_transposition:w12:row->column",
+                  "displacement:delta=1"
+                ],
+                "key_material": {
+                  "source_family": [
+                    "periodic_transposition"
+                  ],
+                  "source_key_material": {
+                    "keyword_seed": "PALIMPSEST",
+                    "width": 12,
+                    "permutation": [
+                      7,
+                      9,
+                      0,
+                      10,
+                      2,
+                      11,
+                      3,
+                      4,
+                      6,
+                      5,
+                      8,
+                      1
+                    ],
+                    "fill_mode": "row",
+                    "read_mode": "column",
+                    "reverse_rows": true,
+                    "reverse_columns": false
+                  },
+                  "displacement_delta": 1,
+                  "alignment_score": 123,
+                  "alignment_matches": 3,
+                  "alignment_exact_components": 0
+                },
+                "corpus_id": null,
+                "preview": "QGJOPKAASUISQHCBVWWTOAFSPUDKTGIJTUBERLIRTDNKWEBKNBGUMKFLTKWZGSKOZZBUQCFZ...",
+                "matched_clues": [],
+                "plaintext": "QGJOPKAASUISQHCBVWWTOAFSPUDKTGIJTUBERLIRTDNKWEBKNBGUMKFLTKWZGSKOZZBUQCFZKOUXFXNDSALWSLHOPTYIJRRVQ"
+              },
+              {
+                "rank": 8,
+                "total_score": 172,
+                "breakdown": {
+                  "anchor": 196,
+                  "language": 213,
+                  "domain": 114,
+                  "entity": 0,
+                  "structure": 278,
+                  "penalty": 0,
+                  "total": 172
+                },
+                "anchor_first_total": 172,
+                "geo_route_total": 151,
+                "secondary_scores": {
+                  "anchor-first": {
+                    "anchor": 196,
+                    "language": 213,
+                    "domain": 114,
+                    "entity": 0,
+                    "structure": 278,
+                    "penalty": 0,
+                    "total": 172
+                  },
+                  "geo-route": {
+                    "anchor": 196,
+                    "language": 213,
+                    "domain": 114,
+                    "entity": 0,
+                    "structure": 278,
+                    "penalty": 0,
+                    "total": 151
+                  }
+                },
+                "transform_chain": [
+                  "periodic_transposition:w12:row->column",
+                  "displacement:delta=-4"
+                ],
+                "key_material": {
+                  "source_family": [
+                    "periodic_transposition"
+                  ],
+                  "source_key_material": {
+                    "keyword_seed": "PALIMPSEST",
+                    "width": 12,
+                    "permutation": [
+                      7,
+                      9,
+                      0,
+                      10,
+                      2,
+                      11,
+                      3,
+                      4,
+                      6,
+                      5,
+                      8,
+                      1
+                    ],
+                    "fill_mode": "row",
+                    "read_mode": "column",
+                    "reverse_rows": true,
+                    "reverse_columns": false
+                  },
+                  "displacement_delta": -4,
+                  "alignment_score": 97,
+                  "alignment_matches": 2,
+                  "alignment_exact_components": 0
+                },
+                "corpus_id": null,
+                "preview": "JRRVQQGJOPKAASUISQHCBVWWTOAFSPUDKTGIJTUBERLIRTDNKWEBKNBGUMKFLTKWZGSKOZZB...",
+                "matched_clues": [],
+                "plaintext": "JRRVQQGJOPKAASUISQHCBVWWTOAFSPUDKTGIJTUBERLIRTDNKWEBKNBGUMKFLTKWZGSKOZZBUQCFZKOUXFXNDSALWSLHOPTYI"
+              }
+            ],
+            "best_text": "FMWOLEFSAAQDPDPAGFFNCEFYMNRDORCLOCKENMWOQUTSYDRXRIQVWLCTWUCTCVUXVIEPUVYCYFUQLIUVTGSQYDIYWKNTNANZD",
+            "candidate_count": 24,
+            "source_candidate_count": 12
+          }
+        }
+      ]
+    },
+    "top_candidates": [
+      {
+        "rank": 1,
+        "total_score": 304,
+        "breakdown": {
+          "anchor": 397,
+          "language": 268,
+          "domain": 188,
+          "entity": 90,
+          "structure": 300,
+          "penalty": 0,
+          "total": 304
+        },
+        "transform_chain": [
+          "bifid:CLOCK:period=11",
+          "direct",
+          "post_periodic_transposition:w9:row->column"
+        ],
+        "key_material": {
+          "keyword": "KRYPTOS",
+          "period": 11,
+          "width": 9,
+          "permutation": [
+            1,
+            2,
+            6,
+            8,
+            5,
+            7,
+            3,
+            0,
+            4
+          ],
+          "fill_mode": "row",
+          "read_mode": "column"
+        },
+        "corpus_id": null,
+        "preview": "WOLEFSAAQDPDPAGFFNCEFYMNRDORCLOCKENMWOQUTSYDRXRIQVWLCTWUCTCVUXVIEPUVYCYF...",
+        "matched_clues": [],
+        "plaintext": "WOLEFSAAQDPDPAGFFNCEFYMNRDORCLOCKENMWOQUTSYDRXRIQVWLCTWUCTCVUXVIEPUVYCYFUQLIUVTGSQYDIYWKNTNANZDFM"
+      },
+      {
+        "rank": 1,
+        "total_score": 155,
+        "breakdown": {
+          "anchor": 158,
+          "language": 271,
+          "domain": 38,
+          "entity": 0,
+          "structure": 325,
+          "penalty": 0,
+          "total": 155
+        },
+        "transform_chain": [
+          "running_key:carter:offset=788"
+        ],
+        "key_material": {
+          "offset": 788,
+          "window_length": 97
+        },
+        "corpus_id": "carter",
+        "preview": "KKPRBGJBTTBHJKCLCBJSILUEVFYMJNPCOAWTDZZPJSFEJGNYSJOVQUPVRIDQUBMVKKCFHLUR...",
+        "matched_clues": [],
+        "plaintext": "KKPRBGJBTTBHJKCLCBJSILUEVFYMJNPCOAWTDZZPJSFEJGNYSJOVQUPVRIDQUBMVKKCFHLURVXTBVTHEASCBEOWPONWQRRLAE"
+      },
+      {
+        "rank": 1,
+        "total_score": 184,
+        "breakdown": {
+          "anchor": 251,
+          "language": 182,
+          "domain": 85,
+          "entity": 0,
+          "structure": 180,
+          "penalty": 0,
+          "total": 184
+        },
+        "transform_chain": [
+          "periodic_transposition:w8:row->column"
+        ],
+        "key_material": {
+          "keyword_seed": "SANBORN",
+          "width": 8,
+          "permutation": [
+            1,
+            6,
+            7,
+            3,
+            2,
+            4,
+            5,
+            0
+          ],
+          "fill_mode": "row",
+          "read_mode": "column",
+          "reverse_rows": false,
+          "reverse_columns": true
+        },
+        "corpus_id": null,
+        "preview": "RLIZFDRTAUWZZCLOCHAKMJFSKGIETTWSEODSTXBKUXUSVZBGAOLQPKFNUUKJYDIRHRJSNGLP...",
+        "matched_clues": [],
+        "plaintext": "RLIZFDRTAUWZZCLOCHAKMJFSKGIETTWSEODSTXBKUXUSVZBGAOLQPKFNUUKJYDIRHRJSNGLPUKTQBWOQKBATFKSQGOWWNPBVI"
+      },
+      {
+        "rank": 1,
+        "total_score": 294,
+        "breakdown": {
+          "anchor": 429,
+          "language": 251,
+          "domain": 91,
+          "entity": 0,
+          "structure": 310,
+          "penalty": 0,
+          "total": 294
+        },
+        "transform_chain": [
+          "bifid:KRYPTOS:period=5",
+          "direct",
+          "post_periodic_transposition:w5:row->column",
+          "periodic_transposition:w11:row->column"
+        ],
+        "key_material": {
+          "stage1": {
+            "keyword": "KRYPTOS",
+            "period": 5,
+            "width": 5,
+            "permutation": [
+              1,
+              0,
+              3,
+              4,
+              2
+            ],
+            "fill_mode": "row",
+            "read_mode": "column"
+          },
+          "stage2": {
+            "keyword_seed": "BERLIN",
+            "width": 11,
+            "permutation": [
+              6,
+              0,
+              5,
+              1,
+              9,
+              10,
+              4,
+              8,
+              7,
+              3,
+              2
+            ],
+            "fill_mode": "row",
+            "read_mode": "column",
+            "reverse_rows": true,
+            "reverse_columns": false
+          }
+        },
+        "corpus_id": "hybrid",
+        "preview": "ZXLOVWTYMPNPDSOOGKXQTECWLUTLYSEASTIUKLKLHRUTWXRHOIRTEYLBMSTDSUDPONEMDMKD...",
+        "matched_clues": [],
+        "plaintext": "ZXLOVWTYMPNPDSOOGKXQTECWLUTLYSEASTIUKLKLHRUTWXRHOIRTEYLBMSTDSUDPONEMDMKDXZHTHXVTRPNXNRTQDFROROGLW"
+      },
+      {
+        "rank": 1,
+        "total_score": 280,
+        "breakdown": {
+          "anchor": 346,
+          "language": 263,
+          "domain": 188,
+          "entity": 90,
+          "structure": 348,
+          "penalty": 0,
+          "total": 280
+        },
+        "anchor_first_total": 280,
+        "geo_route_total": 251,
+        "secondary_scores": {
+          "anchor-first": {
+            "anchor": 346,
+            "language": 263,
+            "domain": 188,
+            "entity": 90,
+            "structure": 348,
+            "penalty": 0,
+            "total": 280
+          },
+          "geo-route": {
+            "anchor": 346,
+            "language": 263,
+            "domain": 188,
+            "entity": 90,
+            "structure": 348,
+            "penalty": 0,
+            "total": 251
+          }
+        },
+        "transform_chain": [
+          "bifid:CLOCK:period=11",
+          "direct",
+          "post_periodic_transposition:w9:row->column",
+          "displacement:delta=-2"
+        ],
+        "key_material": {
+          "source_family": [
+            "bifid",
+            "direct",
+            "post_periodic_transposition"
+          ],
+          "source_key_material": {
+            "keyword": "KRYPTOS",
+            "period": 11,
+            "width": 9,
+            "permutation": [
+              1,
+              2,
+              6,
+              8,
+              5,
+              7,
+              3,
+              0,
+              4
+            ],
+            "fill_mode": "row",
+            "read_mode": "column"
+          },
+          "displacement_delta": -2,
+          "alignment_score": 97,
+          "alignment_matches": 2,
+          "alignment_exact_components": 0
+        },
+        "corpus_id": null,
+        "preview": "FMWOLEFSAAQDPDPAGFFNCEFYMNRDORCLOCKENMWOQUTSYDRXRIQVWLCTWUCTCVUXVIEPUVYC...",
+        "matched_clues": [],
+        "plaintext": "FMWOLEFSAAQDPDPAGFFNCEFYMNRDORCLOCKENMWOQUTSYDRXRIQVWLCTWUCTCVUXVIEPUVYCYFUQLIUVTGSQYDIYWKNTNANZD"
+      }
+    ]
+  }
+}

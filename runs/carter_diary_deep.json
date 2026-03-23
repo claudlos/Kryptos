@@ -1,0 +1,205 @@
+{
+  "strategy": "38b",
+  "name": "Carter Diary Deep Analysis",
+  "diary_length": 3285,
+  "autokey_candidates": [
+    {
+      "primer_len": 50,
+      "offset": 1097,
+      "type": "plain_autokey",
+      "anchor_hits": 6,
+      "plaintext": "AWRKQMXBDWQANEEHFXOFPXANKNOERKIGSFLRWIFOWNOBICGSDTAJBKKTPLLXQPMBXSDQDJQPAKMUJBYZUPNQSOWYJLPFZLRJI",
+      "primer": "OFTHECANDLELOOKEDINWHILELDCLAD"
+    }
+  ],
+  "period_candidates": [
+    {
+      "period": 2,
+      "perm": [
+        0,
+        1
+      ],
+      "model": "Vig",
+      "offset": 581,
+      "anchor_hits": 8,
+      "plaintext": "HAIXGCRHPXUHUDMIETDRQNHWTNLQQRHWXLFEXQBXWOMSHONDVCDODAEDZRVXPXVBEEBINCLQPSGRJQNWVGZMNBLAPKSKZUVQS",
+      "key": "HATWEHADFOUNDACACHEFEVERISHLYWECLEAREDAW"
+    },
+    {
+      "period": 6,
+      "perm": [
+        0,
+        1,
+        5,
+        3,
+        2,
+        4
+      ],
+      "model": "Beau",
+      "offset": 1683,
+      "anchor_hits": 8,
+      "plaintext": "PGPWVTNNPLBUDNBIPLWWHJASTNOCXHEIPTYCKVZKZIDJOAYWCMKLZDHNIWCZOMYSYBWNYRPPDEBDWXBLFUCBXUGGOVHBOGVEJ",
+      "key": "DLEWELOOKEDINOURSENSATIONSANDASTONISHMEN"
+    },
+    {
+      "period": 6,
+      "perm": [
+        0,
+        3,
+        1,
+        4,
+        2,
+        5
+      ],
+      "model": "Beau",
+      "offset": 806,
+      "anchor_hits": 8,
+      "plaintext": "QZEJSVDIMZAUQZIDPLWHKEHCTLGNPHPDITOHRVONPZUERWGWNYBNUYMPEDXHKZYHSYTIMCLOOQSRKUZIBJRYZPWXRRSIZKGWV",
+      "key": "ERTOSEEWHATWASBEYONDDARKNESSANDTHEIRONTE"
+    },
+    {
+      "period": 6,
+      "perm": [
+        0,
+        3,
+        5,
+        4,
+        2,
+        1
+      ],
+      "model": "Beau",
+      "offset": 1980,
+      "anchor_hits": 8,
+      "plaintext": "XPAVIVSCIHUXQFKZEKXJUECITNOGRHEAFIYPOURNOAMELGSJNKHFACXSWYQMHKUFLQUQIULAWUSHOULMGFNUGSDDQQPYFZWWV",
+      "key": "LYPAINTEDINLAIDANDORNAMENTALCASKETSFLOWE"
+    },
+    {
+      "period": 6,
+      "perm": [
+        1,
+        0,
+        2,
+        5,
+        4,
+        3
+      ],
+      "model": "Vig",
+      "offset": 910,
+      "anchor_hits": 8,
+      "plaintext": "RMSRLSSBMAHCYKGBPQNYPEFTTMGGVNOASKOBETRUSKDCISEIISZIKCPDSYPWETODEICITALRNKGVTRLYIYWIZKZPMFYWIAAYF",
+      "key": "RCASEINACCORDANCETOTHEORDINARYROYALTHEBA"
+    },
+    {
+      "period": 6,
+      "perm": [
+        1,
+        0,
+        5,
+        4,
+        2,
+        3
+      ],
+      "model": "Vig",
+      "offset": 860,
+      "anchor_hits": 8,
+      "plaintext": "PHPQHLBKRGTWXYEKLBMRREVSFNMRTTSAGDQZITNSZFOGCBQQVYTSAYMZJAUQCDDUVQLSPLGADKHCSKWUIODZVVQWMZXSFFXHH",
+      "key": "THATTHEREWASEMPTYSPACEPERHAPSANOTHERDESC"
+    },
+    {
+      "period": 6,
+      "perm": [
+        2,
+        3,
+        1,
+        5,
+        4,
+        0
+      ],
+      "model": "Quag",
+      "offset": 3186,
+      "anchor_hits": 8,
+      "plaintext": "LZXYRCKCDJCWGYZXPLZNQZAPAOOGPHHAYVBKWFTYNQUXYABYTZYDXMKLKFVOCURGIRKINCGKKBTIDSYTNJXVYSZYGVXKLRTXQ",
+      "key": "NABLEUSTOPREPAREANELECTRICALINSTALLATION"
+    },
+    {
+      "period": 6,
+      "perm": [
+        2,
+        4,
+        1,
+        0,
+        5,
+        3
+      ],
+      "model": "Quag",
+      "offset": 2646,
+      "anchor_hits": 8,
+      "plaintext": "LRBJYMKZCUIPAAICDDYTAERCTOOEJHKYUTVOLKTQQPDEXDXGEFURIPDXJBJETRCKDHLZNQSEQKDEQQIMVIICBTNCMNLOPWHUV",
+      "key": "FITALLWASITATOMBORMERELYACACHEASEALEDDOO"
+    },
+    {
+      "period": 6,
+      "perm": [
+        3,
+        0,
+        5,
+        2,
+        4,
+        1
+      ],
+      "model": "Vig",
+      "offset": 2937,
+      "anchor_hits": 8,
+      "plaintext": "VQTKKKOKAYHAKHJMXPPUQEASTSRDJFSAQQHQYRMTMYAUBADFTGNNGEBPWOOFKYBUNWLXNILANXFYPCVYYZSVETFKSRXZJHRDE",
+      "key": "NTHEFIRSTDOORWAYWEMOUNTEDOURDONKEYSANDRE"
+    },
+    {
+      "period": 6,
+      "perm": [
+        3,
+        2,
+        1,
+        5,
+        0,
+        4
+      ],
+      "model": "Vig",
+      "offset": 1179,
+      "anchor_hits": 8,
+      "plaintext": "LKPSJEXETXJSJKAGYFCPNEEHFCLROGIAYKDXGQDGQCDSCGUXNJBOQFRJMFANTHMBGRVKNBARCKYBSVWWASKRMVOKCXFYGJRBP",
+      "key": "NITWASSOMETIMEBEFOREONECOULDSEETHEHOTAIR"
+    },
+    {
+      "period": 6,
+      "perm": [
+        3,
+        4,
+        1,
+        5,
+        0,
+        2
+      ],
+      "model": "Vig",
+      "offset": 1179,
+      "anchor_hits": 8,
+      "plaintext": "LKQSIEXEQXMSJKCGWFCPUEXHFCVREGIADKYXGQMGHCDSSGEXNJAORFRJWFQNTHQBCRVKCBLRCKRBZVWWPSVRMVIKIXFYNJKBP",
+      "key": "NITWASSOMETIMEBEFOREONECOULDSEETHEHOTAIR"
+    },
+    {
+      "period": 6,
+      "perm": [
+        4,
+        0,
+        3,
+        1,
+        2,
+        5
+      ],
+      "model": "Quag",
+      "offset": 2740,
+      "anchor_hits": 8,
+      "plaintext": "WXWNVTXAIBUYPVMTZFNUVQALSWJQKHEKSTQHEGYVFOJEYEBTSAHUZOCMEBVPPJJBJRPIFDBASIUSXOOHOEAFZIXOIAULPTNKV",
+      "key": "NDANDWITHTHENUMEROUSCARTOUCHESBEARINGTHE"
+    }
+  ]
+}

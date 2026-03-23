@@ -1,0 +1,75 @@
+{
+  "sweep_type": "deep_mcmc_19_18",
+  "candidates": [
+    {
+      "label": "best_p19",
+      "period": 19,
+      "key": "MABLZCMUYKLGKORNASC",
+      "text": "CBJGVMLUIXJFREXYINZPWEASTEWRHCAAEBBTERESIFTQSQBPLUJVTYULGOWHCGZBERLINCLOCKEERKYMUHQJKWZOXGJHESAOR",
+      "project_score": 654,
+      "anchor_score": 962,
+      "language_score": 427,
+      "domain_score": 430,
+      "east_match": true,
+      "northeast_hits": 2,
+      "berlin_match": true,
+      "clock_match": true
+    },
+    {
+      "label": "p19_intheeast",
+      "period": 19,
+      "key": "USBLZCMUYKLGKORNASI",
+      "text": "UJJGVMLUIXJFREXYINTHEEASTEWRHCAAEBBTELWAIFTQSQBPLUJVTYULAGEHCGZBERLINCLOCKEYJSYMUHQJKWZOXGJHESUGZ",
+      "project_score": 641,
+      "anchor_score": 962,
+      "language_score": 379,
+      "domain_score": 430,
+      "east_match": true,
+      "northeast_hits": 2,
+      "berlin_match": true,
+      "clock_match": true
+    },
+    {
+      "label": "best_p24",
+      "period": 24,
+      "key": "NACYYGCKAZHPFROMUYKLGKOR",
+      "text": "BBITWIVEGINWWBAZOHRQQVXAIQORTHEASTHERCCGPSIHYALIJARLMFSTIBPTIONBERLINCLOCKUIFEXNTKVODPWINWQJYAOJE",
+      "project_score": 694,
+      "anchor_score": 956,
+      "language_score": 616,
+      "domain_score": 430,
+      "east_match": false,
+      "northeast_hits": 8,
+      "berlin_match": true,
+      "clock_match": true
+    },
+    {
+      "label": "best_p18",
+      "period": 18,
+      "key": "NAMBLZCDCMUYKLGKOR",
+      "text": "BBYQJPVLEVANRHIBUOOBKEASTNODXPWZMIACJTERYRQPCYFBMPNZWUHDWZLJLCZBERLINCLOCKKFSLXURXIFYVEKTDNUSJRBP",
+      "project_score": 632,
+      "anchor_score": 962,
+      "language_score": 324,
+      "domain_score": 430,
+      "east_match": true,
+      "northeast_hits": 2,
+      "berlin_match": true,
+      "clock_match": true
+    },
+    {
+      "label": "best_p23",
+      "period": 23,
+      "key": "KORNAYGCKAZHKOGXVMUYKLG",
+      "text": "ENTEUQRMWHVEREIONTHDMUFHHZDPTHEASTHJINTXXWUITEPLFNTLEJKDJTMUHIGBERLINCLOCKYABAZYMZOXLLYAJKPOUWLNR",
+      "project_score": 662,
+      "anchor_score": 904,
+      "language_score": 610,
+      "domain_score": 430,
+      "east_match": false,
+      "northeast_hits": 6,
+      "berlin_match": true,
+      "clock_match": true
+    }
+  ]
+}

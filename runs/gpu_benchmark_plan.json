@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "generated_at": "2026-03-06T18:39:22.629772+00:00",
+  "runner": "gpu-opencl",
+  "profile": {
+    "name": "smoke",
+    "description": "Quick kernel and device sanity check with minimal work.",
+    "config": {
+      "passes": 1,
+      "sweeps_per_pass": 1,
+      "copies_per_sweep": 1,
+      "match_limit": 50,
+      "score_threshold": 1200,
+      "top_candidate_limit": 8,
+      "max_post_key_length": 8
+    }
+  },
+  "host": {
+    "hostname": "DESKTOP-3SHE0AI",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "system": "Windows",
+    "release": "11",
+    "machine": "AMD64",
+    "python_version": "3.13.9",
+    "python_executable": "\\\\?\\C:\\Users\\Carlos\\Documents\\Kryptos\\.venv\\Scripts\\python.exe"
+  },
+  "command": [
+    "\\\\?\\C:\\Users\\Carlos\\Documents\\Kryptos\\.venv\\Scripts\\python.exe",
+    "-m",
+    "gpu_opencl_suite",
+    "--profile",
+    "smoke",
+    "--json",
+    "--dictionary",
+    "\\\\?\\C:\\Users\\Carlos\\Documents\\Kryptos\\k4_dictionary.txt"
+  ],
+  "notes": [
+    "Plan-only execution; runner not launched."
+  ],
+  "execution": {},
+  "hardware": {},
+  "artifacts": {
+    "planned_dictionary": "\\\\?\\C:\\Users\\Carlos\\Documents\\Kryptos\\k4_dictionary.txt"
+  }
+}

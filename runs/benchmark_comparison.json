@@ -1,0 +1,141 @@
+{
+  "generated_at": "2026-03-13T00:31:22.834743+00:00",
+  "comparisons": [
+    {
+      "label": "cpu-smoke",
+      "baseline_path": "runs\\cpu_strategy_smoke.json",
+      "current_path": "runs\\cpu_strategy_smoke_latest.json",
+      "baseline": {
+        "runner": "cpu-strategy",
+        "profile": "smoke",
+        "attempts_per_second": 26.213354,
+        "candidate_count": 32,
+        "unique_candidate_count": 32,
+        "top_score": 339,
+        "matched_clues": [],
+        "matched_clue_count": 0
+      },
+      "current": {
+        "runner": "cpu-strategy",
+        "profile": "smoke",
+        "attempts_per_second": 21.729849,
+        "candidate_count": 40,
+        "unique_candidate_count": 40,
+        "top_score": 304,
+        "matched_clues": [],
+        "matched_clue_count": 0
+      },
+      "deltas": {
+        "top_score": -35,
+        "matched_clue_count": 0,
+        "unique_candidate_count": 8,
+        "attempts_per_second": -4.483505
+      },
+      "improved": true,
+      "quality_improved": true,
+      "throughput_improved": false
+    },
+    {
+      "label": "cpu-default",
+      "baseline_path": "runs\\cpu_strategy_default.json",
+      "current_path": "runs\\cpu_strategy_default_latest.json",
+      "baseline": {
+        "runner": "cpu-strategy",
+        "profile": "default",
+        "attempts_per_second": 18.333075,
+        "candidate_count": 27,
+        "unique_candidate_count": 27,
+        "top_score": 404,
+        "matched_clues": [],
+        "matched_clue_count": 0
+      },
+      "current": {
+        "runner": "cpu-strategy",
+        "profile": "default",
+        "attempts_per_second": 13.785105,
+        "candidate_count": 35,
+        "unique_candidate_count": 35,
+        "top_score": 404,
+        "matched_clues": [],
+        "matched_clue_count": 0
+      },
+      "deltas": {
+        "top_score": 0,
+        "matched_clue_count": 0,
+        "unique_candidate_count": 8,
+        "attempts_per_second": -4.54797
+      },
+      "improved": true,
+      "quality_improved": true,
+      "throughput_improved": false
+    },
+    {
+      "label": "gpu-smoke",
+      "baseline_path": "runs\\gpu_prepush_smoke.json",
+      "current_path": "runs\\gpu_strategy_smoke_latest.json",
+      "baseline": {
+        "runner": "gpu-opencl",
+        "profile": "smoke",
+        "attempts_per_second": 9685.084939,
+        "candidate_count": 8,
+        "unique_candidate_count": 8,
+        "top_score": 259,
+        "matched_clues": [],
+        "matched_clue_count": 0
+      },
+      "current": {
+        "runner": "gpu-opencl",
+        "profile": "smoke",
+        "attempts_per_second": 3292.108049,
+        "candidate_count": 8,
+        "unique_candidate_count": 8,
+        "top_score": 259,
+        "matched_clues": [],
+        "matched_clue_count": 0
+      },
+      "deltas": {
+        "top_score": 0,
+        "matched_clue_count": 0,
+        "unique_candidate_count": 0,
+        "attempts_per_second": -6392.97689
+      },
+      "improved": false,
+      "quality_improved": false,
+      "throughput_improved": false
+    },
+    {
+      "label": "gpu-default-50",
+      "baseline_path": "runs\\gpu_prepush_default_50sweeps.json",
+      "current_path": "runs\\gpu_default_50sweeps_latest.json",
+      "baseline": {
+        "runner": "gpu-opencl",
+        "profile": "default",
+        "attempts_per_second": 1181404.123304,
+        "candidate_count": 20,
+        "unique_candidate_count": 20,
+        "top_score": 346,
+        "matched_clues": [],
+        "matched_clue_count": 0
+      },
+      "current": {
+        "runner": "gpu-opencl",
+        "profile": "default",
+        "attempts_per_second": 1685875.249213,
+        "candidate_count": 20,
+        "unique_candidate_count": 20,
+        "top_score": 346,
+        "matched_clues": [],
+        "matched_clue_count": 0
+      },
+      "deltas": {
+        "top_score": 0,
+        "matched_clue_count": 0,
+        "unique_candidate_count": 0,
+        "attempts_per_second": 504471.125909
+      },
+      "improved": false,
+      "quality_improved": false,
+      "throughput_improved": true
+    }
+  ]
+}

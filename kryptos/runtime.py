@@ -2,7 +2,8 @@
 
 from __future__ import annotations
 
-from dataclasses import dataclass
+from copy import deepcopy
+from dataclasses import dataclass, field
 import inspect
 from typing import Any
 
@@ -19,13 +20,42 @@ class StrategyRuntimeConfig:
     max_post_key_length: int = 12
     width_min: int = 5
     width_max: int = 32
+    displacement_window: int = 24
+    route_followup_limit: int = 3
     _corpora: CorpusBundle | None = None
+    _stage_cache: dict[tuple[object, ...], object] = field(default_factory=dict)
 
     @property
     def corpora(self) -> CorpusBundle:
         if self._corpora is None:
             self._corpora = load_corpus_profile(self.dataset_profile)
         return self._corpora
+
+    def stage_cache_key(self, stage_name: str, ciphertext: str, *parts: object) -> tuple[object, ...]:
+        return (
+            stage_name,
+            ciphertext,
+            self.dataset_profile,
+            self.scorer_profile,
+            self.candidate_limit,
+            self.max_post_key_length,
+            self.width_min,
+            self.width_max,
+            self.displacement_window,
+            self.route_followup_limit,
+            *parts,
+        )
+
+    def get_stage_cache(self, cache_key: tuple[object, ...]) -> object | None:
+        value = self._stage_cache.get(cache_key)
+        if value is None:
+            return None
+        return deepcopy(value)
+
+    def set_stage_cache(self, cache_key: tuple[object, ...], value: object) -> object:
+        cached_value = deepcopy(value)
+        self._stage_cache[cache_key] = cached_value
+        return deepcopy(cached_value)
 
 
 def call_strategy(module: Any, config: StrategyRuntimeConfig):

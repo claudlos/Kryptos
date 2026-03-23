@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from kryptos.catalog import get_strategy_spec
-from kryptos.common import build_ranked_candidate, build_score_breakdown, build_strategy_result, sort_ranked_candidates
+from kryptos.common import build_ranked_candidate, build_score_breakdown, build_strategy_result, dedupe_ranked_candidates
 from kryptos.constants import DEFAULT_KEYWORDS, K4
 from kryptos.runtime import StrategyRuntimeConfig
 from kryptos.transposition import hillclimb_permutation, identity_permutation, keyword_permutation
@@ -11,6 +11,10 @@ SPEC = get_strategy_spec("12")
 
 def search_periodic_candidates(ciphertext: str = K4, config: StrategyRuntimeConfig | None = None) -> tuple[list[dict[str, object]], int]:
     config = config or StrategyRuntimeConfig()
+    cache_key = config.stage_cache_key("periodic-transposition", ciphertext)
+    cached = config.get_stage_cache(cache_key)
+    if cached is not None:
+        return list(cached), 0
     attempts = 0
     candidates: list[dict[str, object]] = []
 
@@ -58,7 +62,9 @@ def search_periodic_candidates(ciphertext: str = K4, config: StrategyRuntimeConf
                                 structure_hint=180,
                             )
                         )
-    return sort_ranked_candidates(candidates), attempts
+    ranked = dedupe_ranked_candidates(candidates)
+    config.set_stage_cache(cache_key, tuple(ranked))
+    return ranked, attempts
 
 
 def run(config: StrategyRuntimeConfig | None = None):

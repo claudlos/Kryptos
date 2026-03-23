@@ -112,7 +112,7 @@ def normalize_letters(text: str) -> str:
     return "".join(char for char in text.upper() if char.isalpha())
 
 
-TOKEN_RE = re.compile(r"[A-Z][A-Z']+")
+TOKEN_RE = re.compile(r"[A-Z']+")
 
 
 def tokenize_words(text: str) -> tuple[str, ...]:

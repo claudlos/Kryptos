@@ -1,0 +1,952 @@
+{
+  "strategy": "36_anchor_sensitivity",
+  "description": "Anchor Position Sensitivity Analysis",
+  "k4": "OBKRUOXOGHULBSOLIFBBWFLRVQQPRNGKSSOTWTQSJQSSEKZZWATJKLUDIAWINFBNYPVTTMZFPKWGDKZXTJCDIGKUHUAUEKCAR",
+  "original_anchors_0idx": {
+    "EAST": 21,
+    "NORTHEAST": 25,
+    "BERLIN": 63,
+    "CLOCK": 69
+  },
+  "shift_range": [
+    -2,
+    -1,
+    0,
+    1,
+    2
+  ],
+  "transposition_configs": [
+    {
+      "name": "LATITUDE",
+      "width": 6,
+      "perm": [
+        1,
+        5,
+        3,
+        0,
+        2,
+        4
+      ]
+    },
+    {
+      "name": "KRYPTOS_w6",
+      "width": 6,
+      "perm": [
+        0,
+        5,
+        3,
+        1,
+        4,
+        2
+      ]
+    },
+    {
+      "name": "KRYPTOS_w7",
+      "width": 7,
+      "perm": [
+        0,
+        5,
+        3,
+        1,
+        6,
+        4,
+        2
+      ]
+    },
+    {
+      "name": "KRYPTOS_w8",
+      "width": 8,
+      "perm": [
+        7,
+        0,
+        5,
+        3,
+        1,
+        6,
+        4,
+        2
+      ]
+    },
+    {
+      "name": "PALIMPSEST_w6",
+      "width": 6,
+      "perm": [
+        1,
+        3,
+        2,
+        4,
+        0,
+        5
+      ]
+    },
+    {
+      "name": "PALIMPSEST_w7",
+      "width": 7,
+      "perm": [
+        1,
+        6,
+        3,
+        2,
+        4,
+        0,
+        5
+      ]
+    },
+    {
+      "name": "PALIMPSEST_w8",
+      "width": 8,
+      "perm": [
+        1,
+        6,
+        3,
+        2,
+        4,
+        0,
+        5,
+        7
+      ]
+    },
+    {
+      "name": "ABSCISSA_w6",
+      "width": 6,
+      "perm": [
+        0,
+        1,
+        3,
+        5,
+        4,
+        2
+      ]
+    },
+    {
+      "name": "ABSCISSA_w7",
+      "width": 7,
+      "perm": [
+        0,
+        1,
+        3,
+        5,
+        6,
+        4,
+        2
+      ]
+    },
+    {
+      "name": "ABSCISSA_w8",
+      "width": 8,
+      "perm": [
+        0,
+        1,
+        3,
+        5,
+        6,
+        7,
+        4,
+        2
+      ]
+    }
+  ],
+  "period_range": [
+    2,
+    50
+  ],
+  "mcmc_steps": 3000,
+  "timestamp": "2026-03-21T18:12:29",
+  "phase1_consistency": {
+    "LATITUDE": {
+      "original_rank": 325,
+      "original_stats": {
+        "n_consistent": 3,
+        "total_constrained": 72
+      },
+      "top5": [
+        {
+          "shift_label": "E+2NE-2B+2C-2",
+          "n_consistent": 11,
+          "total_constrained": 176
+        },
+        {
+          "shift_label": "E+1NE-2B+2C-2",
+          "n_consistent": 10,
+          "total_constrained": 170
+        },
+        {
+          "shift_label": "E+2NE-2B+1C-2",
+          "n_consistent": 10,
+          "total_constrained": 170
+        },
+        {
+          "shift_label": "E+2NE-2B+2C-1",
+          "n_consistent": 10,
+          "total_constrained": 170
+        },
+        {
+          "shift_label": "E+2NE-1B+2C-2",
+          "n_consistent": 10,
+          "total_constrained": 170
+        }
+      ]
+    },
+    "KRYPTOS_w6": {
+      "original_rank": 319,
+      "original_stats": {
+        "n_consistent": 3,
+        "total_constrained": 72
+      },
+      "top5": [
+        {
+          "shift_label": "E+2NE-2B+2C-2",
+          "n_consistent": 11,
+          "total_constrained": 176
+        },
+        {
+          "shift_label": "E+1NE-2B+2C-2",
+          "n_consistent": 10,
+          "total_constrained": 170
+        },
+        {
+          "shift_label": "E+2NE-2B+1C-2",
+          "n_consistent": 10,
+          "total_constrained": 170
+        },
+        {
+          "shift_label": "E+2NE-2B+2C-1",
+          "n_consistent": 10,
+          "total_constrained": 170
+        },
+        {
+          "shift_label": "E+2NE-1B+2C-2",
+          "n_consistent": 10,
+          "total_constrained": 170
+        }
+      ]
+    },
+    "KRYPTOS_w7": {
+      "original_rank": 327,
+      "original_stats": {
+        "n_consistent": 3,
+        "total_constrained": 72
+      },
+      "top5": [
+        {
+          "shift_label": "E+2NE-2B+2C-2",
+          "n_consistent": 11,
+          "total_constrained": 176
+        },
+        {
+          "shift_label": "E+1NE-2B+2C-2",
+          "n_consistent": 10,
+          "total_constrained": 170
+        },
+        {
+          "shift_label": "E+2NE-2B+1C-2",
+          "n_consistent": 10,
+          "total_constrained": 170
+        },
+        {
+          "shift_label": "E+2NE-2B+2C-1",
+          "n_consistent": 10,
+          "total_constrained": 170
+        },
+        {
+          "shift_label": "E+2NE-1B+2C-2",
+          "n_consistent": 10,
+          "total_constrained": 170
+        }
+      ]
+    },
+    "KRYPTOS_w8": {
+      "original_rank": 324,
+      "original_stats": {
+        "n_consistent": 3,
+        "total_constrained": 72
+      },
+      "top5": [
+        {
+          "shift_label": "E+2NE-2B+2C-2",
+          "n_consistent": 11,
+          "total_constrained": 176
+        },
+        {
+          "shift_label": "E+1NE-2B+2C-2",
+          "n_consistent": 10,
+          "total_constrained": 170
+        },
+        {
+          "shift_label": "E+2NE-2B+1C-2",
+          "n_consistent": 10,
+          "total_constrained": 170
+        },
+        {
+          "shift_label": "E+2NE-2B+2C-1",
+          "n_consistent": 10,
+          "total_constrained": 170
+        },
+        {
+          "shift_label": "E+2NE-1B+2C-2",
+          "n_consistent": 10,
+          "total_constrained": 170
+        }
+      ]
+    },
+    "PALIMPSEST_w6": {
+      "original_rank": 320,
+      "original_stats": {
+        "n_consistent": 3,
+        "total_constrained": 72
+      },
+      "top5": [
+        {
+          "shift_label": "E+2NE-2B+1C-2",
+          "n_consistent": 11,
+          "total_constrained": 186
+        },
+        {
+          "shift_label": "E+2NE-2B+2C-2",
+          "n_consistent": 11,
+          "total_constrained": 176
+        },
+        {
+          "shift_label": "E+1NE-2B+1C-2",
+          "n_consistent": 10,
+          "total_constrained": 179
+        },
+        {
+          "shift_label": "E+2NE-2B+1C-1",
+          "n_consistent": 10,
+          "total_constrained": 179
+        },
+        {
+          "shift_label": "E+1NE-2B+2C-2",
+          "n_consistent": 10,
+          "total_constrained": 170
+        }
+      ]
+    },
+    "PALIMPSEST_w7": {
+      "original_rank": 322,
+      "original_stats": {
+        "n_consistent": 3,
+        "total_constrained": 72
+      },
+      "top5": [
+        {
+          "shift_label": "E+2NE-2B+2C-2",
+          "n_consistent": 11,
+          "total_constrained": 176
+        },
+        {
+          "shift_label": "E+1NE-2B+2C-2",
+          "n_consistent": 10,
+          "total_constrained": 170
+        },
+        {
+          "shift_label": "E+2NE-2B+1C-2",
+          "n_consistent": 10,
+          "total_constrained": 170
+        },
+        {
+          "shift_label": "E+2NE-2B+2C-1",
+          "n_consistent": 10,
+          "total_constrained": 170
+        },
+        {
+          "shift_label": "E+2NE-1B+2C-2",
+          "n_consistent": 10,
+          "total_constrained": 170
+        }
+      ]
+    },
+    "PALIMPSEST_w8": {
+      "original_rank": 318,
+      "original_stats": {
+        "n_consistent": 3,
+        "total_constrained": 72
+      },
+      "top5": [
+        {
+          "shift_label": "E+2NE-1B+2C-2",
+          "n_consistent": 11,
+          "total_constrained": 186
+        },
+        {
+          "shift_label": "E+2NE-2B+2C-2",
+          "n_consistent": 11,
+          "total_constrained": 176
+        },
+        {
+          "shift_label": "E+1NE-1B+2C-2",
+          "n_consistent": 10,
+          "total_constrained": 179
+        },
+        {
+          "shift_label": "E+2NE-1B+2C-1",
+          "n_consistent": 10,
+          "total_constrained": 179
+        },
+        {
+          "shift_label": "E+1NE-2B+2C-2",
+          "n_consistent": 10,
+          "total_constrained": 170
+        }
+      ]
+    },
+    "ABSCISSA_w6": {
+      "original_rank": 319,
+      "original_stats": {
+        "n_consistent": 3,
+        "total_constrained": 72
+      },
+      "top5": [
+        {
+          "shift_label": "E+2NE-2B+2C-2",
+          "n_consistent": 11,
+          "total_constrained": 176
+        },
+        {
+          "shift_label": "E+1NE-2B+2C-2",
+          "n_consistent": 10,
+          "total_constrained": 170
+        },
+        {
+          "shift_label": "E+2NE-2B+1C-2",
+          "n_consistent": 10,
+          "total_constrained": 170
+        },
+        {
+          "shift_label": "E+2NE-2B+2C-1",
+          "n_consistent": 10,
+          "total_constrained": 170
+        },
+        {
+          "shift_label": "E+2NE-1B+2C-2",
+          "n_consistent": 10,
+          "total_constrained": 170
+        }
+      ]
+    },
+    "ABSCISSA_w7": {
+      "original_rank": 232,
+      "original_stats": {
+        "n_consistent": 4,
+        "total_constrained": 95
+      },
+      "top5": [
+        {
+          "shift_label": "E+2NE-2B+2C-2",
+          "n_consistent": 11,
+          "total_constrained": 176
+        },
+        {
+          "shift_label": "E+1NE-2B+2C-2",
+          "n_consistent": 10,
+          "total_constrained": 170
+        },
+        {
+          "shift_label": "E+2NE-2B+1C-2",
+          "n_consistent": 10,
+          "total_constrained": 170
+        },
+        {
+          "shift_label": "E+2NE-2B+2C-1",
+          "n_consistent": 10,
+          "total_constrained": 170
+        },
+        {
+          "shift_label": "E+2NE-1B+2C-2",
+          "n_consistent": 10,
+          "total_constrained": 170
+        }
+      ]
+    },
+    "ABSCISSA_w8": {
+      "original_rank": 318,
+      "original_stats": {
+        "n_consistent": 3,
+        "total_constrained": 72
+      },
+      "top5": [
+        {
+          "shift_label": "E+2NE-2B+1C-2",
+          "n_consistent": 11,
+          "total_constrained": 186
+        },
+        {
+          "shift_label": "E+2NE-2B+2C-2",
+          "n_consistent": 11,
+          "total_constrained": 176
+        },
+        {
+          "shift_label": "E+1NE-2B+1C-2",
+          "n_consistent": 10,
+          "total_constrained": 179
+        },
+        {
+          "shift_label": "E+2NE-2B+1C-1",
+          "n_consistent": 10,
+          "total_constrained": 179
+        },
+        {
+          "shift_label": "E+1NE-2B+2C-2",
+          "n_consistent": 10,
+          "total_constrained": 170
+        }
+      ]
+    }
+  },
+  "phase2_mcmc_top15": [
+    {
+      "rank": 1,
+      "transposition": "LATITUDE",
+      "anchor_config": [
+        23,
+        23,
+        64,
+        68
+      ],
+      "shift_label": "E+2NE-2B+1C-1",
+      "period": 28,
+      "key_str": "CWTVSPTBTMRABHQNDOQNCYYOWDTP",
+      "mcmc_score": 5701.0,
+      "breakdown_total": 336,
+      "combined_score": 6037.0,
+      "dict_words_found": 9,
+      "dict_words_top10": [
+        "CLOCK",
+        "EAST",
+        "HER",
+        "HERE",
+        "NORTH",
+        "NORTHEAST",
+        "SEE",
+        "THE",
+        "THERE"
+      ],
+      "plaintext_preview": "USWXRTHACGLFSDDBANTERVKNORTHEASTHEREBLOQTENBMEREGIMVYSHSUUHVEFNRBERLCLOCKNURITHE",
+      "is_original_anchors": false
+    },
+    {
+      "rank": 2,
+      "transposition": "LATITUDE",
+      "anchor_config": [
+        23,
+        23,
+        64,
+        67
+      ],
+      "shift_label": "E+2NE-2B+1C-2",
+      "period": 28,
+      "key_str": "CWTVSPTBTMRJSECFZOQNQNOOWDTP",
+      "mcmc_score": 5655.0,
+      "breakdown_total": 331,
+      "combined_score": 5986.0,
+      "dict_words_found": 9,
+      "dict_words_top10": [
+        "CLOCK",
+        "EAST",
+        "HER",
+        "HERE",
+        "NORTH",
+        "NORTHEAST",
+        "SEE",
+        "THE",
+        "THERE"
+      ],
+      "plaintext_preview": "USWXRTHACGLWBGRJENTEDGUNORTHEASTHEREBLOHCHBJQERESTWVYSHSUUHVEFNRBERCLOCKONURUERE",
+      "is_original_anchors": false
+    },
+    {
+      "rank": 3,
+      "transposition": "LATITUDE",
+      "anchor_config": [
+        22,
+        23,
+        64,
+        67
+      ],
+      "shift_label": "E+1NE-2B+1C-2",
+      "period": 28,
+      "key_str": "CWTVSPTBTMRJSECFZOQKPCEOWDTP",
+      "mcmc_score": 5553.0,
+      "breakdown_total": 329,
+      "combined_score": 5882.0,
+      "dict_words_found": 9,
+      "dict_words_top10": [
+        "CLOCK",
+        "EAST",
+        "HER",
+        "HERE",
+        "NORTH",
+        "NORTHEAST",
+        "SEE",
+        "THE",
+        "THERE"
+      ],
+      "plaintext_preview": "USWXRTHACGLWBGRJENTHERENORTHEASTHEREBLOHCHBJQERHTEGVYSHSUUHVEFNRBERCLOCKONUUVPBE",
+      "is_original_anchors": false
+    },
+    {
+      "rank": 4,
+      "transposition": "KRYPTOS_w6",
+      "anchor_config": [
+        23,
+        23,
+        65,
+        67
+      ],
+      "shift_label": "E+2NE-2B+2C-2",
+      "period": 27,
+      "key_str": "MIFWBDMIJHVOHLTQBHQIRGTJGUN",
+      "mcmc_score": 5427.0,
+      "breakdown_total": 334,
+      "combined_score": 5761.0,
+      "dict_words_found": 9,
+      "dict_words_top10": [
+        "ALL",
+        "AND",
+        "CLOCK",
+        "EAST",
+        "HAND",
+        "HER",
+        "NORTH",
+        "NORTHEAST",
+        "THE"
+      ],
+      "plaintext_preview": "CSEWOCPLTHANDYKDSUBCRQANORTHEASTHERCQIGLUYYHATHEAHLKQDVOVWVNIALLLBECLOCKLXTEREMH",
+      "is_original_anchors": false
+    },
+    {
+      "rank": 5,
+      "transposition": "KRYPTOS_w7",
+      "anchor_config": [
+        23,
+        23,
+        65,
+        67
+      ],
+      "shift_label": "E+2NE-2B+2C-2",
+      "period": 29,
+      "key_str": "ZCZDXAVDPXGBSAXBHGDUKJWXWYMBQ",
+      "mcmc_score": 5418.0,
+      "breakdown_total": 321,
+      "combined_score": 5739.0,
+      "dict_words_found": 11,
+      "dict_words_top10": [
+        "AND",
+        "CLOCK",
+        "EAST",
+        "HER",
+        "HERE",
+        "NORTH",
+        "NORTHEAST",
+        "THAT",
+        "THE",
+        "THEN"
+      ],
+      "plaintext_preview": "PQEOPONYDLHYTANDZACOMIONORTHEASTHENTWSVQANXZTHATHEREWHHBFDVULIBHOBECLOCKNPQPSRBT",
+      "is_original_anchors": false
+    },
+    {
+      "rank": 6,
+      "transposition": "LATITUDE",
+      "anchor_config": [
+        23,
+        23,
+        65,
+        68
+      ],
+      "shift_label": "E+2NE-2B+2C-1",
+      "period": 28,
+      "key_str": "CWTVRADBIPEUBHQNDOQNCYYOWDTP",
+      "mcmc_score": 5290.0,
+      "breakdown_total": 319,
+      "combined_score": 5609.0,
+      "dict_words_found": 8,
+      "dict_words_top10": [
+        "AND",
+        "CLOCK",
+        "EAST",
+        "NORTH",
+        "NORTHEAST",
+        "SEE",
+        "THE",
+        "THEM"
+      ],
+      "plaintext_preview": "USWXSIXANDYLSDDBANTERVKNORTHEASTITHEMIBWTENBMEREGIMVYSHSUUHVFUDRMBERCLOCKNURITHE",
+      "is_original_anchors": false
+    },
+    {
+      "rank": 7,
+      "transposition": "LATITUDE",
+      "anchor_config": [
+        23,
+        24,
+        65,
+        67
+      ],
+      "shift_label": "E+2NE-1B+2C-2",
+      "period": 28,
+      "key_str": "ZSLWGMGOCPEJSECFWTRXGABXXGVD",
+      "mcmc_score": 5298.0,
+      "breakdown_total": 299,
+      "combined_score": 5597.0,
+      "dict_words_found": 10,
+      "dict_words_top10": [
+        "CLOCK",
+        "EAST",
+        "HER",
+        "HERE",
+        "HIS",
+        "NORTH",
+        "NORTHEAST",
+        "THE",
+        "THEN",
+        "THERE"
+      ],
+      "plaintext_preview": "XWEWDWUNTDYWBGRJHISUNTHENORTHEASTHERSIBHCHBJTZQUCGJMXPFEXYPUQIAESBECLOCKRITHEREV",
+      "is_original_anchors": false
+    },
+    {
+      "rank": 8,
+      "transposition": "LATITUDE",
+      "anchor_config": [
+        23,
+        24,
+        64,
+        67
+      ],
+      "shift_label": "E+2NE-1B+1C-2",
+      "period": 29,
+      "key_str": "SLWGMGTMRJSECFVIOOKEPGRXXGVDZ",
+      "mcmc_score": 5233.0,
+      "breakdown_total": 292,
+      "combined_score": 5525.0,
+      "dict_words_found": 9,
+      "dict_words_top10": [
+        "CLOCK",
+        "EAST",
+        "HER",
+        "HERE",
+        "NORTH",
+        "NORTHEAST",
+        "THE",
+        "THEM",
+        "THERE"
+      ],
+      "plaintext_preview": "EDTMXCHPEJKBRFYGPNZNENRENORTHEASTHEMIGWYQJYTHETHERESXYUMTRIFAOUMBERCLOCKSTWQANQM",
+      "is_original_anchors": false
+    },
+    {
+      "rank": 9,
+      "transposition": "KRYPTOS_w6",
+      "anchor_config": [
+        22,
+        23,
+        65,
+        67
+      ],
+      "shift_label": "E+1NE-2B+2C-2",
+      "period": 27,
+      "key_str": "MIFWBMUTJHVOHLTQBHWMDGPJGUN",
+      "mcmc_score": 5223.0,
+      "breakdown_total": 282,
+      "combined_score": 5505.0,
+      "dict_words_found": 9,
+      "dict_words_top10": [
+        "ALL",
+        "AND",
+        "CLOCK",
+        "EAST",
+        "HAND",
+        "NORTH",
+        "NORTHEAST",
+        "THAT",
+        "THE"
+      ],
+      "plaintext_preview": "CSEWOTHATHANDYKDSUVYFQENORTHEASTYWGCQIGLUYYHANDSALLKQDVOVWVEAPLLLBECLOCKFTHEVEMH",
+      "is_original_anchors": false
+    },
+    {
+      "rank": 10,
+      "transposition": "LATITUDE",
+      "anchor_config": [
+        23,
+        23,
+        65,
+        67
+      ],
+      "shift_label": "E+2NE-2B+2C-2",
+      "period": 29,
+      "key_str": "WTVSPTBPEJSECFAHZANRCPFOWDTPC",
+      "mcmc_score": 5133.0,
+      "breakdown_total": 317,
+      "combined_score": 5450.0,
+      "dict_words_found": 10,
+      "dict_words_top10": [
+        "ARE",
+        "CLOCK",
+        "EAST",
+        "HER",
+        "HERE",
+        "NORTH",
+        "NORTHEAST",
+        "THE",
+        "THERE",
+        "WAY"
+      ],
+      "plaintext_preview": "AVUAUPZMRJKBRFTHEBWAREDNORTHEASTHEREFTWYQJYOITHEREVEGZXOHOEXBCRZTBECLOCKNULEXADD",
+      "is_original_anchors": false
+    },
+    {
+      "rank": 11,
+      "transposition": "KRYPTOS_w8",
+      "anchor_config": [
+        23,
+        23,
+        65,
+        67
+      ],
+      "shift_label": "E+2NE-2B+2C-2",
+      "period": 29,
+      "key_str": "RGYADMOZGIYEKWBFYHJHVQHXXTOCZ",
+      "mcmc_score": 5141.0,
+      "breakdown_total": 308,
+      "combined_score": 5449.0,
+      "dict_words_found": 8,
+      "dict_words_top10": [
+        "CLOCK",
+        "EAST",
+        "HER",
+        "HERE",
+        "NORTH",
+        "NORTHEAST",
+        "THE",
+        "THERE"
+      ],
+      "plaintext_preview": "KUITHERPMLMMMUAWQCLLLZGNORTHEASTIIICLHHWBKERUIOFUIELANAJZJNYVSQCIBECLOCKERESTHER",
+      "is_original_anchors": false
+    },
+    {
+      "rank": 12,
+      "transposition": "LATITUDE",
+      "anchor_config": [
+        22,
+        24,
+        65,
+        67
+      ],
+      "shift_label": "E+1NE-1B+2C-2",
+      "period": 28,
+      "key_str": "ZSLWGPTBCPEJSECFIOQNCPEBXGVD",
+      "mcmc_score": 5095.0,
+      "breakdown_total": 345,
+      "combined_score": 5440.0,
+      "dict_words_found": 8,
+      "dict_words_top10": [
+        "CLOCK",
+        "EAST",
+        "HER",
+        "HERE",
+        "NORTH",
+        "NORTHEAST",
+        "THAT",
+        "THE"
+      ],
+      "plaintext_preview": "XWEWDTHATDYWBGRJVNTEREEANORTHEASTERESIBHCHBJHEREGRGIXPFEXYPUQFNRSBECLOCKFNURICBR",
+      "is_original_anchors": false
+    },
+    {
+      "rank": 13,
+      "transposition": "KRYPTOS_w7",
+      "anchor_config": [
+        23,
+        23,
+        64,
+        67
+      ],
+      "shift_label": "E+2NE-2B+1C-2",
+      "period": 25,
+      "key_str": "YMBQZCZTBPGVUZIACXGBSAGXW",
+      "mcmc_score": 5111.0,
+      "breakdown_total": 309,
+      "combined_score": 5420.0,
+      "dict_words_found": 7,
+      "dict_words_top10": [
+        "CLOCK",
+        "EAST",
+        "HER",
+        "HERE",
+        "NORTH",
+        "NORTHEAST",
+        "THE"
+      ],
+      "plaintext_preview": "QGCBNMJIRTHERBCEEJZHERENORTHEASTRAYIENTOBDAQTWGQESCOSNGLHATHEQEIBERCLOCKETBXJKVD",
+      "is_original_anchors": false
+    },
+    {
+      "rank": 14,
+      "transposition": "KRYPTOS_w8",
+      "anchor_config": [
+        23,
+        23,
+        64,
+        67
+      ],
+      "shift_label": "E+2NE-2B+1C-2",
+      "period": 29,
+      "key_str": "RGYBHDVWTIYEKWOIHFDOZHZXXTOCZ",
+      "mcmc_score": 4961.0,
+      "breakdown_total": 327,
+      "combined_score": 5288.0,
+      "dict_words_found": 8,
+      "dict_words_top10": [
+        "CLOCK",
+        "EAST",
+        "HER",
+        "HERE",
+        "NORTH",
+        "NORTHEAST",
+        "THE",
+        "THERE"
+      ],
+      "plaintext_preview": "KUISDNKSZLMMMUNTHEREHIONORTHEASTHERVOUHWBKEERZQLNENTANAJZJNYVRMLBERCLOCKROVUZAAA",
+      "is_original_anchors": false
+    },
+    {
+      "rank": 15,
+      "transposition": "KRYPTOS_w8",
+      "anchor_config": [
+        22,
+        23,
+        65,
+        67
+      ],
+      "shift_label": "E+1NE-2B+2C-2",
+      "period": 27,
+      "key_str": "CZRGYBHYZMGZGIYEKWNOPLJXXTO",
+      "mcmc_score": 4902.0,
+      "breakdown_total": 327,
+      "combined_score": 5229.0,
+      "dict_words_found": 8,
+      "dict_words_top10": [
+        "CLOCK",
+        "EAST",
+        "HER",
+        "HERE",
+        "NORTH",
+        "NORTHEAST",
+        "NOT",
+        "THE"
+      ],
+      "plaintext_preview": "ZBPNMPYQTHERQIDXENHEREENORTHEASTHEWRYHQOXWWIDTHZQUXVEWRYKCGDMUUCQBECLOCKSINOTRCO",
+      "is_original_anchors": false
+    }
+  ],
+  "sensitivity_summary": {
+    "n_shifted_configs_better_than_original": 19,
+    "best_shifted_label": "E+2NE-2B+1C-1",
+    "best_shifted_score": 6037.0,
+    "original_score": 4825.0
+  },
+  "runtime_seconds": 23.9
+}

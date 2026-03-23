@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from kryptos.catalog import get_strategy_spec
-from kryptos.common import anchor_component_score, build_ranked_candidate, build_strategy_result, decrypt_vigenere_standard, sort_ranked_candidates
+from kryptos.common import anchor_component_score, build_ranked_candidate, build_strategy_result, dedupe_ranked_candidates, decrypt_vigenere_standard
 from kryptos.constants import K4
 from kryptos.runtime import StrategyRuntimeConfig
 
@@ -15,6 +15,10 @@ def generate_running_key_candidates(
     document_ids: tuple[str, ...] = RUNNING_KEY_DOCUMENTS,
 ) -> tuple[list[dict[str, object]], int]:
     config = config or StrategyRuntimeConfig()
+    cache_key = config.stage_cache_key("running-key", ciphertext, tuple(document_ids))
+    cached = config.get_stage_cache(cache_key)
+    if cached is not None:
+        return list(cached), 0
     coarse: list[tuple[int, dict[str, object]]] = []
     attempts = 0
     for window in config.corpora.iter_windows(len(ciphertext), document_ids=document_ids):
@@ -43,7 +47,9 @@ def generate_running_key_candidates(
         )
         for _score, item in shortlisted
     ]
-    return sort_ranked_candidates(candidates), attempts
+    ranked = dedupe_ranked_candidates(candidates)
+    config.set_stage_cache(cache_key, tuple(ranked))
+    return ranked, attempts
 
 
 def run(config: StrategyRuntimeConfig | None = None):

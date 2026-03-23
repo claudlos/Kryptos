@@ -35,9 +35,15 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--hydrate-limit", type=int, help="GPU override: maximum raw GPU candidates to hydrate on CPU.")
     parser.add_argument("--min-anchor-hits", type=int, help="GPU override: minimum anchor-position character matches required before hydration.")
     parser.add_argument("--max-post-key-length", type=int, help="Shared override: longest repeating-key layer to infer.")
+    parser.add_argument("--local-size", type=int, help="GPU override: explicit OpenCL local workgroup size.")
+    parser.add_argument("--focus-budget", type=int, help="GPU override: adaptive follow-up evaluations to allocate after hydration.")
+    parser.add_argument("--focus-seed-limit", type=int, help="GPU override: strongest hydrated candidates to use as follow-up seeds.")
+    parser.add_argument("--focus-neighbor-span", type=int, help="GPU override: survivor-guided local swap distance.")
     parser.add_argument("--beam-width", type=int, help="CPU override: beam width for hybrid search.")
     parser.add_argument("--candidate-limit", type=int, help="CPU override: retained candidates per strategy.")
     parser.add_argument("--width-max", type=int, help="CPU override: largest periodic transposition width.")
+    parser.add_argument("--displacement-window", type=int, help="CPU override: maximum absolute clue displacement to test.")
+    parser.add_argument("--route-followup-limit", type=int, help="CPU override: number of displacement follow-ups per source candidate.")
     parser.add_argument("--dataset-profile", help="CPU override: dataset profile.")
     parser.add_argument("--scorer-profile", help="CPU override: scorer profile.")
     parser.add_argument("--strategy-ids", nargs="+", help="CPU override: explicit strategy IDs to benchmark.")
@@ -73,6 +79,10 @@ def resolve_profile_config(args: argparse.Namespace) -> tuple[str, dict[str, Any
             config["max_post_key_length"] = args.max_post_key_length
         if args.width_max is not None:
             config["width_max"] = args.width_max
+        if args.displacement_window is not None:
+            config["displacement_window"] = args.displacement_window
+        if args.route_followup_limit is not None:
+            config["route_followup_limit"] = args.route_followup_limit
     elif args.runner == "gpu-opencl":
         if args.passes is not None:
             config["passes"] = args.passes
@@ -92,6 +102,14 @@ def resolve_profile_config(args: argparse.Namespace) -> tuple[str, dict[str, Any
             config["min_anchor_hits"] = args.min_anchor_hits
         if args.max_post_key_length is not None:
             config["max_post_key_length"] = args.max_post_key_length
+        if args.local_size is not None:
+            config["local_size"] = args.local_size
+        if args.focus_budget is not None:
+            config["focus_budget"] = args.focus_budget
+        if args.focus_seed_limit is not None:
+            config["focus_seed_limit"] = args.focus_seed_limit
+        if args.focus_neighbor_span is not None:
+            config["focus_neighbor_span"] = args.focus_neighbor_span
     elif args.runner == "mojo-deluxe":
         if args.sweep_count is not None:
             config["sweep_count"] = args.sweep_count
@@ -132,6 +150,8 @@ def build_command(args: argparse.Namespace, profile_name: str, config: dict[str,
         command.extend(["--candidate-limit", str(config["candidate_limit"])])
         command.extend(["--max-post-key-length", str(config["max_post_key_length"])])
         command.extend(["--width-max", str(config["width_max"])])
+        command.extend(["--displacement-window", str(config["displacement_window"])])
+        command.extend(["--route-followup-limit", str(config["route_followup_limit"])])
         if config["strategy_ids"]:
             command.append("--strategy-ids")
             command.extend(str(strategy_id) for strategy_id in config["strategy_ids"])
@@ -156,6 +176,14 @@ def build_command(args: argparse.Namespace, profile_name: str, config: dict[str,
             command.extend(["--min-anchor-hits", str(args.min_anchor_hits)])
         if args.max_post_key_length is not None:
             command.extend(["--max-post-key-length", str(args.max_post_key_length)])
+        if args.local_size is not None:
+            command.extend(["--local-size", str(args.local_size)])
+        if args.focus_budget is not None:
+            command.extend(["--focus-budget", str(args.focus_budget)])
+        if args.focus_seed_limit is not None:
+            command.extend(["--focus-seed-limit", str(args.focus_seed_limit)])
+        if args.focus_neighbor_span is not None:
+            command.extend(["--focus-neighbor-span", str(args.focus_neighbor_span)])
         return command
 
     script_path = resolve_runner_script(args)
@@ -208,6 +236,8 @@ def run_cpu_strategy(profile_name: str, config: dict[str, Any], command: list[st
         candidate_limit=int(config["candidate_limit"]),
         max_post_key_length=int(config["max_post_key_length"]),
         width_max=int(config["width_max"]),
+        displacement_window=int(config["displacement_window"]),
+        route_followup_limit=int(config["route_followup_limit"]),
     )
     started = time.time()
     results = []

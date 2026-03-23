@@ -1,0 +1,79 @@
+{
+  "best_config": {
+    "transposition_keyword": "LATITUDE",
+    "transposition_width": 6,
+    "transposition_permutation": [
+      1,
+      5,
+      3,
+      0,
+      2,
+      4
+    ],
+    "vigenere_period": 28,
+    "vigenere_key": "NPHOHACRQZXDQQTBLRQNCPIJRHYF",
+    "key_pattern": "NPHOHA_RQZXDQQTBLR___PIJRHYF",
+    "free_slots": [
+      6,
+      18,
+      19,
+      20
+    ],
+    "plaintext": "JZIECIYKFTFCDUANSKTEREASTNORTHEASTIOEYINEVKNEBREGRCADOCCJBTCPUEBERLINCLOCKURICXJIDEIOZQLTGLUDAUHI",
+    "project_score": 772,
+    "anchor_score": 1000,
+    "language_score": 698
+  },
+  "other_keyword_matches": [
+    {
+      "keyword": "COURSE",
+      "width": 6,
+      "perm": [
+        0,
+        5,
+        1,
+        3,
+        4,
+        2
+      ],
+      "score": 765
+    },
+    {
+      "keyword": "HIDDEN",
+      "width": 5,
+      "perm": [
+        2,
+        3,
+        0,
+        1,
+        4
+      ],
+      "score": 765
+    },
+    {
+      "keyword": "EGYPT",
+      "width": 6,
+      "perm": [
+        5,
+        0,
+        1,
+        3,
+        4,
+        2
+      ],
+      "score": 741
+    },
+    {
+      "keyword": "PALIMPSEST",
+      "width": 5,
+      "perm": [
+        1,
+        3,
+        2,
+        4,
+        0
+      ],
+      "score": 732
+    }
+  ]
+}

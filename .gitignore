@@ -35,3 +35,18 @@ runs/colab_repo_snapshot_posix.zip
 out.txt
 runs/test_tmp/
 runs/colab_repo_snapshot.zip
+
+# PDFs and large binaries
+*.pdf
+cryptos_conundrum_full_text.txt
+toolkit_test.txt
+
+# Codex/pip temp dirs
+.codex-dist/
+.codex-tmp/
+pip-tmp/
+tmp*/
+
+# Misc
+.ruff_cache/
+.mypy_cache/

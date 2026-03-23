@@ -21,6 +21,9 @@ class ToolkitCliTests(unittest.TestCase):
         )
         self.assertIn("[1] Quagmire III Running Keys", completed.stdout)
         self.assertIn("[13] Hybrid Pipeline Search", completed.stdout)
+        self.assertIn("[14] Displacement Route Search", completed.stdout)
+        self.assertIn("[32] Unknown-Source Running Key Sweep", completed.stdout)
+        self.assertIn("[37] Transposition + Unknown-Source Running Key", completed.stdout)
 
     def test_flagged_strategy_returns_json(self) -> None:
         completed = subprocess.run(
@@ -49,6 +52,25 @@ class ToolkitCliTests(unittest.TestCase):
             sorted(candidate),
             ["breakdown", "corpus_id", "key_material", "matched_clues", "plaintext", "preview", "rank", "total_score", "transform_chain"],
         )
+
+    def test_wrapped_strategies_33_to_36_run_via_toolkit(self) -> None:
+        for strategy_id in ("33", "34", "35", "36"):
+            completed = subprocess.run(
+                [
+                    PYTHON,
+                    str(REPO_ROOT / "kryptos_toolkit.py"),
+                    "--strategy",
+                    strategy_id,
+                    "--json",
+                ],
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+            payload = json.loads(completed.stdout)
+            self.assertEqual(payload["strategy_selection"], strategy_id)
+            self.assertEqual(payload["results"][0]["strategy_id"], strategy_id)
+            self.assertIn("raw_report", payload["results"][0]["artifacts"])
 
     def test_dictionary_generator_writes_requested_path(self) -> None:
         output_path = REPO_ROOT / "generated_dictionary_test.txt"

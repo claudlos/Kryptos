@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "generated_at": "2026-03-06T11:38:34.386946+00:00",
+  "runner": "mojo-scaffold",
+  "profile": {
+    "name": "smoke",
+    "description": "Quick LLVM benchmark scaffold sanity check.",
+    "config": {
+      "outer_iterations": 100,
+      "inner_iterations": 1000,
+      "profile_label": "smoke"
+    }
+  },
+  "host": {
+    "hostname": "DESKTOP-3SHE0AI",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "system": "Windows",
+    "release": "11",
+    "machine": "AMD64",
+    "python_version": "3.13.9",
+    "python_executable": "C:\\Users\\Carlos\\AppData\\Local\\Programs\\Python\\Python313\\python.exe"
+  },
+  "command": [
+    "mojo",
+    "run",
+    "C:\\Users\\Carlos\\Documents\\Kryptos\\linux_native_suite.mojo",
+    "100",
+    "1000",
+    "smoke"
+  ],
+  "notes": [
+    "Plan-only execution; runner not launched."
+  ],
+  "execution": {},
+  "hardware": {},
+  "artifacts": {
+    "planned_dictionary": null
+  }
+}

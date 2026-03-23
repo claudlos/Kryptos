@@ -1,0 +1,110 @@
+{
+  "vigenere": {
+    "forced_key": "BLZCDCYYGCKAZMUYKLGKORNA",
+    "values": [
+      1,
+      11,
+      25,
+      2,
+      3,
+      2,
+      24,
+      24,
+      6,
+      2,
+      10,
+      0,
+      25,
+      12,
+      20,
+      24,
+      10,
+      11,
+      6,
+      10,
+      14,
+      17,
+      13,
+      0
+    ],
+    "consistent_periods": [
+      27,
+      28,
+      29
+    ],
+    "affine_solutions": 0,
+    "quadratic_solutions": 0
+  },
+  "beaufort": {
+    "forced_key": "ZPBYXYCCUYQABOGCQPUQMJNA",
+    "values": [
+      25,
+      15,
+      1,
+      24,
+      23,
+      24,
+      2,
+      2,
+      20,
+      24,
+      16,
+      0,
+      1,
+      14,
+      6,
+      2,
+      16,
+      15,
+      20,
+      16,
+      12,
+      9,
+      13,
+      0
+    ],
+    "consistent_periods": [
+      27,
+      28,
+      29
+    ],
+    "affine_solutions": 0,
+    "quadratic_solutions": 0
+  },
+  "quagmire": {
+    "forced_key": "IRJDHGMIMJAONSYMLWRQOYBQ",
+    "values": [
+      8,
+      17,
+      9,
+      3,
+      7,
+      6,
+      12,
+      8,
+      12,
+      9,
+      0,
+      14,
+      13,
+      18,
+      24,
+      12,
+      11,
+      22,
+      17,
+      16,
+      14,
+      24,
+      1,
+      16
+    ],
+    "consistent_periods": [
+      27,
+      28,
+      29
+    ],
+    "affine_solutions": 0,
+    "quadratic_solutions": 0
+  }
+}

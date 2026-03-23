@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import hashlib
 from statistics import mean
 from typing import TYPE_CHECKING, Any
 
@@ -44,6 +45,10 @@ SCORER_WEIGHTS: dict[str, dict[str, int]] = {
 
 BASE_DOMAIN_TERMS = tuple(sorted({keyword for clue in CONTEXT_CLUES + META_CLUES for keyword in clue["keywords"]}))
 BASE_ENTITY_TERMS = tuple(sorted({"BERLIN", "CLOCK", "WORLD", "EGYPT", "ALEXANDERPLATZ", "ZEITUHR", "LANGLEY", "CIA"}))
+ANCHOR_COMPONENT_POSITIONS = tuple(
+    (clue, int(details["start_index"]) - 1)
+    for clue, details in ANCHOR_COMPONENT_CLUES.items()
+)
 
 def normalize_letters(text: str) -> str:
     return "".join(char for char in text.upper() if char.isalpha())
@@ -465,6 +470,28 @@ def preview_text(text: str, limit: int = 72) -> str:
     return f"{stripped[:limit]}..."
 
 
+def preview_hash(text: str) -> str:
+    return hashlib.sha1(preview_text(text, limit=96).encode("utf-8")).hexdigest()[:16]
+
+
+def transform_family(transform_chain: list[str]) -> tuple[str, ...]:
+    return tuple(step.split(":", 1)[0] for step in transform_chain)
+
+
+def candidate_secondary_total(candidate: dict[str, object]) -> int:
+    totals = []
+    if "anchor_first_total" in candidate:
+        totals.append(int(candidate["anchor_first_total"]))
+    if "geo_route_total" in candidate:
+        totals.append(int(candidate["geo_route_total"]))
+    secondary_scores = candidate.get("secondary_scores")
+    if isinstance(secondary_scores, dict):
+        for breakdown in secondary_scores.values():
+            if isinstance(breakdown, dict) and "total" in breakdown:
+                totals.append(int(breakdown["total"]))
+    return max(totals, default=0)
+
+
 def build_ranked_candidate(
     text: str,
     *,
@@ -494,11 +521,179 @@ def build_ranked_candidate(
     }
 
 
+def dedupe_ranked_candidates(candidates: list[dict[str, object]]) -> list[dict[str, object]]:
+    deduped: list[dict[str, object]] = []
+    seen_signatures: set[tuple[tuple[str, ...], str]] = set()
+    for candidate in sort_ranked_candidates(candidates):
+        signature = (
+            transform_family(list(candidate["transform_chain"])),
+            preview_hash(str(candidate["preview"])),
+        )
+        if signature in seen_signatures:
+            continue
+        deduped.append(candidate)
+        seen_signatures.add(signature)
+    return sort_ranked_candidates(deduped)
+
+
+def rotate_text(text: str, delta: int) -> str:
+    if not text:
+        return text
+    shift = delta % len(text)
+    if shift == 0:
+        return text
+    return text[shift:] + text[:shift]
+
+
+def score_displacement_alignment(text: str, delta: int) -> dict[str, int]:
+    displacement_matches = 0
+    exact_components = 0
+    for clue, start_index in ANCHOR_COMPONENT_POSITIONS:
+        displaced_start = start_index + delta
+        displaced_end = displaced_start + len(clue)
+        if displaced_start < 0 or displaced_end > len(text):
+            continue
+        component_matches = sum(
+            1
+            for left, right in zip(text[displaced_start:displaced_end], clue)
+            if left == right
+        )
+        displacement_matches += component_matches
+        if component_matches == len(clue):
+            exact_components += 1
+    proximity_bonus = 45 if -6 <= delta <= 6 else 25 if -12 <= delta <= 12 else 10
+    return {
+        "delta": delta,
+        "match_count": displacement_matches,
+        "exact_components": exact_components,
+        "score": displacement_matches * 26 + exact_components * 150 + proximity_bonus,
+    }
+
+
+def select_displacement_offsets(
+    text: str,
+    *,
+    displacement_window: int,
+    limit: int,
+    preferred_deltas: tuple[int, ...] = (),
+) -> list[dict[str, int]]:
+    scored_offsets = {
+        delta: score_displacement_alignment(text, delta)
+        for delta in range(-displacement_window, displacement_window + 1)
+        if delta != 0
+    }
+    selected: list[dict[str, int]] = []
+    seen_deltas: set[int] = set()
+    for delta in preferred_deltas:
+        if delta == 0 or abs(delta) > displacement_window or delta in seen_deltas:
+            continue
+        selected.append(scored_offsets.get(delta, score_displacement_alignment(text, delta)))
+        seen_deltas.add(delta)
+        if len(selected) >= limit:
+            return selected
+
+    ranked_offsets = sorted(
+        scored_offsets.values(),
+        key=lambda details: (
+            details["score"],
+            details["exact_components"],
+            details["match_count"],
+            -abs(details["delta"]),
+        ),
+        reverse=True,
+    )
+    for details in ranked_offsets:
+        delta = int(details["delta"])
+        if delta in seen_deltas or details["match_count"] <= 0:
+            continue
+        selected.append(details)
+        seen_deltas.add(delta)
+        if len(selected) >= limit:
+            break
+
+    if selected:
+        return selected
+    return ranked_offsets[:1]
+
+
+def build_displacement_route_candidates(
+    text: str,
+    *,
+    transform_chain: list[str],
+    corpus_bundle: CorpusBundle | None = None,
+    scorer_profile: str = "anchor-first",
+    key_material: dict[str, Any] | None = None,
+    corpus_id: str | None = None,
+    displacement_window: int = 24,
+    route_followup_limit: int = 3,
+    preferred_deltas: tuple[int, ...] = (),
+) -> list[dict[str, object]]:
+    candidates: list[dict[str, object]] = []
+    for alignment in select_displacement_offsets(
+        text,
+        displacement_window=displacement_window,
+        limit=max(route_followup_limit, 1),
+        preferred_deltas=preferred_deltas,
+    ):
+        delta = int(alignment["delta"])
+        rotated = rotate_text(text, delta)
+        structure_hint = min(320, 160 + int(alignment["score"]) // 2)
+        anchor_breakdown = build_score_breakdown(
+            rotated,
+            corpus_bundle=corpus_bundle,
+            scorer_profile="anchor-first",
+            structure_hint=structure_hint,
+        )
+        geo_breakdown = build_score_breakdown(
+            rotated,
+            corpus_bundle=corpus_bundle,
+            scorer_profile="geo-route",
+            structure_hint=structure_hint,
+        )
+        if scorer_profile == "geo-route":
+            primary_breakdown = geo_breakdown
+        elif scorer_profile == "anchor-first":
+            primary_breakdown = anchor_breakdown
+        else:
+            primary_breakdown = build_score_breakdown(
+                rotated,
+                corpus_bundle=corpus_bundle,
+                scorer_profile=scorer_profile,
+                structure_hint=structure_hint,
+            )
+        candidate = {
+            "rank": 0,
+            "total_score": primary_breakdown["total"],
+            "breakdown": primary_breakdown,
+            "anchor_first_total": anchor_breakdown["total"],
+            "geo_route_total": geo_breakdown["total"],
+            "secondary_scores": {
+                "anchor-first": anchor_breakdown,
+                "geo-route": geo_breakdown,
+            },
+            "transform_chain": [*transform_chain, f"displacement:delta={delta}"],
+            "key_material": {
+                **(key_material or {}),
+                "displacement_delta": delta,
+                "alignment_score": int(alignment["score"]),
+                "alignment_matches": int(alignment["match_count"]),
+                "alignment_exact_components": int(alignment["exact_components"]),
+            },
+            "corpus_id": corpus_id,
+            "preview": preview_text(rotated),
+            "matched_clues": extract_clue_hits(rotated),
+            "plaintext": rotated,
+        }
+        candidates.append(candidate)
+    return dedupe_ranked_candidates(candidates)
+
+
 def sort_ranked_candidates(candidates: list[dict[str, object]]) -> list[dict[str, object]]:
     ranked = sorted(
         candidates,
         key=lambda candidate: (
             int(candidate["total_score"]),
+            candidate_secondary_total(candidate),
             int(candidate["breakdown"]["anchor"]),
             len(candidate["matched_clues"]),
             int(candidate["breakdown"]["language"]),

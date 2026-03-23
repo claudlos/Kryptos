@@ -43,6 +43,17 @@ py-modules = [
   "strategy11_corpus_running_key",
   "strategy12_periodic_transposition_hillclimb",
   "strategy13_hybrid_pipeline_search",
+  "strategy14_displacement_route_search",
+  "strategy15_transposition_enumeration",
+  "strategy16_sat_elimination",
+  "strategy17_method_elimination",
+  "strategy18_alternating_optimization",
+  "strategy19_mcmc_search",
+  "strategy20_generalized_ic",
+  "strategy21_gromark",
+  "strategy22_ml_cipher_classification",
+  "strategy23_bayesian_analysis",
+  "strategy24_neural_scoring",
 ]
 include-package-data = true
 

@@ -1,0 +1,109 @@
+{
+  "strategy_id": 35,
+  "strategy_name": "No-Transposition Quagmire III Deep Search",
+  "k4_ciphertext": "OBKRUOXOGHULBSOLIFBBWFLRVQQPRNGKSSOTWTQSJQSSEKZZWATJKLUDIAWINFBNYPVTTMZFPKWGDKZXTJCDIGKUHUAUEKCAR",
+  "kryptos_alphabet": "KRYPTOSABCDEFGHIJLMNQUVWXZ",
+  "keywords_tested": [
+    "KRYPTOS",
+    "PALIMPSEST",
+    "ABSCISSA",
+    "BERLIN",
+    "CLOCK",
+    "SANBORN",
+    "SHADOW",
+    "ILLUSION",
+    "EGYPT",
+    "CARTER",
+    "LANGLEY",
+    "LATITUDE",
+    "LONGITUDE",
+    "DEGREES",
+    "MINUTES",
+    "SECONDS",
+    "POSITION",
+    "NORTHEAST",
+    "EAST",
+    "HIDDEN",
+    "LUCENT",
+    "MESSAGE",
+    "TOMB",
+    "HOWARD",
+    "TREASURE",
+    "SECRET",
+    "ANCIENT",
+    "DISCOVERY",
+    "PASSAGE",
+    "CHAMBER",
+    "TUNNEL",
+    "CORRIDOR",
+    "DESERT",
+    "TEMPLE",
+    "PYRAMID",
+    "VALLEY",
+    "NILE",
+    "PHARAOH",
+    "INFORMATION",
+    "MAGNETIC",
+    "FIELD",
+    "INVISIBLE",
+    "UNDERGROUND",
+    "LOCATION",
+    "IQLUSION",
+    "DESPERATELY",
+    "SLOWLY",
+    "REMAINS",
+    "DEBRIS",
+    "TREMBLING",
+    "CANDLE",
+    "FLICKER",
+    "EMERGED"
+  ],
+  "total_configurations": 1504,
+  "elapsed_seconds": 0.07,
+  "results_above_threshold": 0,
+  "best_result": {
+    "keyword": "UNDERGROUND",
+    "key_offset": 9,
+    "pos_offset": 3,
+    "plaintext": "FXOBEQWMFCKXXEFATEUAMLXLRRDMKSFUEGUCTQCOPNREMJTSGVPPZFKLOFTOBEUMWBPQCZIRYGVBIAIPESXCYFUKUEFYRIBQK",
+    "score": {
+      "combined": 14.7371,
+      "anchor_score": 0.2083,
+      "anchor_matched": 5,
+      "anchor_total": 24,
+      "anchor_detail": {
+        "EAST": {
+          "matched": 1,
+          "total": 4,
+          "expected": "EAST",
+          "got": "UAML"
+        },
+        "NORTHEAST": {
+          "matched": 2,
+          "total": 9,
+          "expected": "NORTHEAST",
+          "got": "XLRRDMKSF"
+        },
+        "BERLIN": {
+          "matched": 2,
+          "total": 6,
+          "expected": "BERLIN",
+          "got": "BEUMWB"
+        },
+        "CLOCK": {
+          "matched": 0,
+          "total": 5,
+          "expected": "CLOCK",
+          "got": "PQCZI"
+        }
+      },
+      "word_coverage": 0.0412,
+      "words_found": [
+        "FATE"
+      ],
+      "unique_long_words": 1
+    }
+  },
+  "top_20": [],
+  "top_anchor_matches": []
+}

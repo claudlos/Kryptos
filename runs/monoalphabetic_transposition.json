@@ -1,0 +1,11 @@
+{
+  "strategy": "monoalphabetic_transposition",
+  "total_candidates": 0,
+  "elapsed_seconds": 1.4417199150000002,
+  "phases": {
+    "transposition_mono": 0,
+    "exhaustive_perm": 0,
+    "reverse_mono": 0
+  },
+  "top_results": []
+}

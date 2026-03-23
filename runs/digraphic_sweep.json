@@ -1,0 +1,542 @@
+{
+  "strategy": "28_digraphic_sweep",
+  "timestamp": "2026-03-21T14:18:15",
+  "elapsed_seconds": 20.7,
+  "total_candidates_tested": 1142,
+  "k4_length": 97,
+  "keywords_used": [
+    "KRYPTOS",
+    "PALIMPSEST",
+    "ABSCISSA",
+    "BERLIN",
+    "CLOCK",
+    "LATITUDE",
+    "LONGITUDE",
+    "SHADOW",
+    "ILLUSION",
+    "EGYPT",
+    "CARTER",
+    "LANGLEY",
+    "SANBORN"
+  ],
+  "anchors": [
+    {
+      "clue": "EAST",
+      "start_0idx": 21
+    },
+    {
+      "clue": "NORTHEAST",
+      "start_0idx": 25
+    },
+    {
+      "clue": "BERLIN",
+      "start_0idx": 63
+    },
+    {
+      "clue": "CLOCK",
+      "start_0idx": 69
+    }
+  ],
+  "top_results": [
+    {
+      "cipher": "Playfair-HC+LatTrans",
+      "params": "seed=CLOCK",
+      "text": "FCCTBSNCNMUCYPUYPCPUTIFKINGRTDEASTOOHIQQMKHOCIFRSESZIAVGZKHPYLVGUPQQAYVHDZAKAVOQHTBHKLHOROQQQHHFP",
+      "standard_total": 326,
+      "anchor": 481,
+      "language": 385,
+      "word_coverage": 0.1134,
+      "combined": 360
+    },
+    {
+      "cipher": "Playfair-HC",
+      "params": "seed=ILLUSION sq=ILAZVNTRPH...",
+      "text": "MXGHMQODKREWCMUZBNCCBEATASORTHEDOOUPULUOAMOOFDAAYLNLEVOEVLBLINMIXRLHNUIDHDYEGDXONLXKAFESTSLQFDYVR",
+      "standard_total": 307,
+      "anchor": 427,
+      "language": 426,
+      "word_coverage": 0.0309,
+      "combined": 316
+    },
+    {
+      "cipher": "Playfair-HC",
+      "params": "seed=LANGLEY sq=LWAGNSUTDF...",
+      "text": "IEECFBVIAXSWEUENODEENUYEQOMRQLAIFFKFAURFOMFFOBYYLWDKEASTKGGBVNOWZRHFDCVUCBLATIYHDKMTDXBTZTWTOBKHR",
+      "standard_total": 289,
+      "anchor": 403,
+      "language": 400,
+      "word_coverage": 0.0722,
+      "combined": 310
+    },
+    {
+      "cipher": "Playfair-HC",
+      "params": "seed=ABSCISSA sq=AWXDPZEFIH...",
+      "text": "RVYOKTARCEGTSVMOFESSXEOLQNHCTBKCVVMRDLNVHNVVZGHHAPNDGOTUZDDEBISBCXNORTHEACGLAUFANDUPEUCYICDKZGKPR",
+      "standard_total": 267,
+      "anchor": 367,
+      "language": 379,
+      "word_coverage": 0.1134,
+      "combined": 301
+    },
+    {
+      "cipher": "Playfair-HC",
+      "params": "seed=CLOCK sq=CPOKANBEFX...",
+      "text": "PECQEMEASTHYFHPYQKNNQXRWILLKTCSAUUCURGSFQSUUFOIIGZSDPQTMZKQZXENXLODHUDIXCOGXICWASDDRZSOSTHOGFOAKR",
+      "standard_total": 253,
+      "anchor": 378,
+      "language": 288,
+      "word_coverage": 0.1134,
+      "combined": 287
+    },
+    {
+      "cipher": "Playfair-HC",
+      "params": "seed=SANBORN sq=XCWMOUIRQF...",
+      "text": "MLAIFXOMHAFSALZFUQAAORAFNUINQHEALLZLOHUBURLLPIYYGRPFSBXVRKCRTQQBENTNNOTOKIGHESDOPFXERESIVRSRPIWKR",
+      "standard_total": 222,
+      "anchor": 240,
+      "language": 467,
+      "word_coverage": 0.0619,
+      "combined": 240
+    },
+    {
+      "cipher": "Playfair-HC",
+      "params": "seed=BERLIN sq=FERLUNPOQB...",
+      "text": "PQIKRBORYALRPCQRVRQQHERETNONFOXAYYQIADPGTOYYRWAAHKIDAREMTKKDFHQBSNMIITHUOWASIWKCIDSMTXZRZFZLRWGZR",
+      "standard_total": 203,
+      "anchor": 201,
+      "language": 477,
+      "word_coverage": 0.1031,
+      "combined": 233
+    },
+    {
+      "cipher": "Playfair-HC",
+      "params": "seed=PALIMPSEST sq=OFIUXSWTCM...",
+      "text": "XNABIXUXHZIYNMIVFORRFEYQLNPNQBHAMMISSWNTLGMMDHKKCHILGDXYUGTFPORBERLSWCHOBHTHBMKOILMYLTAXAFCYDHUCR",
+      "standard_total": 209,
+      "anchor": 312,
+      "language": 205,
+      "word_coverage": 0.0619,
+      "combined": 227
+    },
+    {
+      "cipher": "Playfair-HC",
+      "params": "seed=LONGITUDE sq=YOVGQWTDEX...",
+      "text": "YHAPPQTQOZFMSWVHLDMMDSZFOGOUSAOAUUKOXWYUCVUUTALLENDKIHFXKIDNISSBOSODXHLRTHEYTIMEDKIXAVCPMPCRTAAIR",
+      "standard_total": 184,
+      "anchor": 179,
+      "language": 418,
+      "word_coverage": 0.1134,
+      "combined": 218
+    },
+    {
+      "cipher": "Playfair-HC",
+      "params": "seed=KRYPTOS sq=XKSRWOTLVZ...",
+      "text": "ZIXSIXUXHFPOYWZTYDNNSGVSTNYCAHEWKKZOKZYKBIKKTCVVRMOQSTIONUXBYHNYFYLOZCLGCSMZEXOWOQUEBDXCDAPMTCUPR",
+      "standard_total": 216,
+      "anchor": 248,
+      "language": 401,
+      "word_coverage": 0.0,
+      "combined": 216
+    },
+    {
+      "cipher": "Playfair-HC+LatTrans",
+      "params": "seed=KRYPTOS",
+      "text": "KSBUCYBRIRURNAXLNZLCXAASBQFOMDOGACZZWASSDSETQKRPNCUTCOINULUHAZINCLSSNORTFMUYXGBDKTFUDUETHISSEWBEP",
+      "standard_total": 176,
+      "anchor": 202,
+      "language": 319,
+      "word_coverage": 0.1031,
+      "combined": 206
+    },
+    {
+      "cipher": "Playfair-HC",
+      "params": "seed=EGYPT sq=PZLYIUCFHM...",
+      "text": "BUXHPBQAKFFPETQPLMEEGMYSGNOLTXVGTTNBVESFLATTRWPPAEEZGYPOWEAWQCTOLINCECLCYDKVWGYNEZUVLWDHFMOMRWMNR",
+      "standard_total": 184,
+      "anchor": 235,
+      "language": 275,
+      "word_coverage": 0.0722,
+      "combined": 205
+    },
+    {
+      "cipher": "Playfair-HC",
+      "params": "seed=CARTER sq=UARTIBDPGH...",
+      "text": "EPOAREVEPGTXGZMVFWHHNWVTQOORIODMQQMRSIYQRWQQNEWWYIRTMCABTUNFHWHEQDLRLGWXDOSHADEZRTYATHEABIUINEYCR",
+      "standard_total": 167,
+      "anchor": 164,
+      "language": 390,
+      "word_coverage": 0.1237,
+      "combined": 204
+    },
+    {
+      "cipher": "Playfair-HC+LatTrans",
+      "params": "seed=PALIMPSEST",
+      "text": "OBWOVHOTAEOPDSZPZOREDFADGNWYRSAMCDWWWGLLAWBMNOSQDYEDEUAZBWXWZUAZERLLZHTUSKLFMFUSEKKONBBMACLLWITHP",
+      "standard_total": 162,
+      "anchor": 177,
+      "language": 315,
+      "word_coverage": 0.134,
+      "combined": 202
+    },
+    {
+      "cipher": "Playfair-HC+LatTrans",
+      "params": "seed=BERLIN",
+      "text": "RNCUCZPLXSPCHFUYSARZIFHERDOWAIESSTHHTMPPINVYNBXQFZFPTKEYIRWRSHEYZRPPMULIOKKGKLMKFTLVHNVYVSPPYZGYP",
+      "standard_total": 172,
+      "anchor": 196,
+      "language": 321,
+      "word_coverage": 0.0619,
+      "combined": 190
+    },
+    {
+      "cipher": "Playfair-HC+LatTrans",
+      "params": "seed=ABSCISSA",
+      "text": "MGINOKNREUMSYBATNBCEBPPCWBWZOUTWZQIIBQYYMAYDEMUTIOHRBHERACFLKBERECYYIESNDOOTXTZEUDNLVAYDTDYYQSIUP",
+      "standard_total": 148,
+      "anchor": 47,
+      "language": 564,
+      "word_coverage": 0.0928,
+      "combined": 175
+    },
+    {
+      "cipher": "Playfair-HC",
+      "params": "seed=LATITUDE sq=LCUIPDEBSF...",
+      "text": "KDMKLKVMYVCPEBVGPSEEZEIONXNUTHAOBBTRZMHBUHBBBMYYGWRPOULBUYYCFPFQZINOROTPUTGZBOWNRPLELYQAQIKABMUWR",
+      "standard_total": 145,
+      "anchor": 96,
+      "language": 444,
+      "word_coverage": 0.0619,
+      "combined": 163
+    },
+    {
+      "cipher": "Playfair-HC",
+      "params": "seed=SHADOW sq=SHZDOWYAEF...",
+      "text": "BRRTQDBZISLINOZQQYMMFEQCBIIRKBWGOODREKGOGUOOWTHHFYPUCGEMLYYGBWMBHIMPUTOAKRSWSTXCPUTZGQTGDIELWTLZR",
+      "standard_total": 109,
+      "anchor": 102,
+      "language": 254,
+      "word_coverage": 0.134,
+      "combined": 149
+    },
+    {
+      "cipher": "Two-square-H",
+      "params": "H:L=LONGITUDE,R=LATITUDE",
+      "text": "UTSMPDQVHAODMNLAAUTKUZMIMXPQHSHTSSNAOXSQSTSSHBZZOWLCIGTEOUOYDUKGRWLXBCAZCQCVFBXZLCUGKLINGNIFHBOHR",
+      "standard_total": 129,
+      "anchor": 121,
+      "language": 303,
+      "word_coverage": 0.0,
+      "combined": 129
+    },
+    {
+      "cipher": "Two-square-V+LatTrans",
+      "params": "V:T=PALIMPSEST,B=CLOCK",
+      "text": "QCFZDXVDDDZLDUQEIFHSNULSOQFHKNECZTHAOUANLCWAIIREXVZSCUSBLEEEBLSBCEANGUWDPPMGTUHGUZFVLLWAAIANRTWUP",
+      "standard_total": 129,
+      "anchor": 111,
+      "language": 326,
+      "word_coverage": 0.0,
+      "combined": 129
+    },
+    {
+      "cipher": "Two-square-H+LatTrans",
+      "params": "H:L=ABSCISSA,R=LONGITUDE",
+      "text": "CCVCYTLVMTEZPFURLIDERSBPTHAAUUANGWOBTSIIAPIVSLLQXVFWIRMLCPGQLAMLCRIIPKWUNFGITIMBHWVUBLIVSTIIFMUYP",
+      "standard_total": 126,
+      "anchor": 100,
+      "language": 323,
+      "word_coverage": 0.0,
+      "combined": 126
+    },
+    {
+      "cipher": "Two-square-V",
+      "params": "V:T=EGYPT,B=LANGLEY",
+      "text": "BQQKZHZMEIEUDQNAMBBBZCKSOVNRQGYIRTSQZRRROIRTYHZZVNGOHNXYGIVKSYCAERZQPOFZYMXNCMXZGODCLAHWUHUYYHBNR",
+      "standard_total": 125,
+      "anchor": 138,
+      "language": 257,
+      "word_coverage": 0.0,
+      "combined": 125
+    },
+    {
+      "cipher": "Bifid",
+      "params": "keyword=SHADOW,period=12",
+      "text": "OXWFKGNPZSAYBBHHHUITKEEYXWQKNGNWNTROWSNUPLAAMFTMFSSLQVGCIGKPTHEZEFQOZTPFTFMKEOKHHQGLGCMSILXAHCUAR",
+      "standard_total": 106,
+      "anchor": 92,
+      "language": 278,
+      "word_coverage": 0.0619,
+      "combined": 124
+    },
+    {
+      "cipher": "Two-square-V",
+      "params": "V:T=CLOCK,B=LATITUDE",
+      "text": "ETTIQSVQDNQUGOCTPEEDZEKPXOROUHENUQOTXAUOMPUQMBZZLWKRCIQFLHYAPCGGWRXLNRGZMNVHEHXZKRBLHHAIPLAUMBLLR",
+      "standard_total": 123,
+      "anchor": 135,
+      "language": 241,
+      "word_coverage": 0.0,
+      "combined": 123
+    },
+    {
+      "cipher": "Two-square-H+LatTrans",
+      "params": "H:L=ABSCISSA,R=BERLIN",
+      "text": "OMVHYNBVSNEWPHRTLRTDQULUCKAFUNCRTZMGISIIKUIYDBEUXVRZOPARNUGTLCARNPIIPKWALKGETRDOUZVAKIIYSDIITSIXP",
+      "standard_total": 96,
+      "anchor": 59,
+      "language": 281,
+      "word_coverage": 0.0928,
+      "combined": 123
+    },
+    {
+      "cipher": "Two-square-H",
+      "params": "H:L=LONGITUDE,R=ABSCISSA",
+      "text": "OBSMCHFZEICELMCBASLLUXMSMWMRHTHAIRPCPYNRSBIRHDZZOVLHCOTELIOZDSHKRVMYBFAXCPUYFDXZLHUKACSOROSHHDOKR",
+      "standard_total": 122,
+      "anchor": 113,
+      "language": 287,
+      "word_coverage": 0.0,
+      "combined": 122
+    },
+    {
+      "cipher": "Four-square",
+      "params": "UR=PALIMPSEST,LL=CLOCK",
+      "text": "QGMUSEXCLNREHTRBDIFIYGBSVQUNTOOCHQTRYRSSATHQIBZZZBGNMERKEDWMTFIOZOYQHNYKDAZGOAXZGNGKEIPUPTERIBKER",
+      "standard_total": 103,
+      "anchor": 60,
+      "language": 323,
+      "word_coverage": 0.0619,
+      "combined": 121
+    },
+    {
+      "cipher": "Four-square+LatTrans",
+      "params": "UR=PALIMPSEST,LL=BERLIN+LatTrans",
+      "text": "ULMZLXVBLBWGMUHSHOOSRUUNSAPALTIAZTNPSEEDELYEAGUHXVZSQPFAKNIHHMFAFNEDNUGWBPGKHUPKZUMVEMYEOBEDTTXEP",
+      "standard_total": 112,
+      "anchor": 84,
+      "language": 305,
+      "word_coverage": 0.0309,
+      "combined": 121
+    },
+    {
+      "cipher": "Two-square-V",
+      "params": "V:T=EGYPT,B=ABSCISSA",
+      "text": "GQQMZKZNTEVKCBIQKEGECXKTOWNRLTELQIRQXRYROLQIHAZZUSTIIMAVHBZSQDDLERXQYOWHENXFANWZTIAFLEMRMPFPHAASR",
+      "standard_total": 108,
+      "anchor": 117,
+      "language": 222,
+      "word_coverage": 0.0412,
+      "combined": 120
+    },
+    {
+      "cipher": "Bifid+LatTrans",
+      "params": "keyword=SANBORN,period=3",
+      "text": "OIBVFGYCOAMWITTBNBKBUQGUSHDHKHOOKTXKMXDHGUZVHNHUXOXUXMBBBBWQEMGBQMIIKBOCPAHARRLUFQZCOFOLXFIHGUPVP",
+      "standard_total": 119,
+      "anchor": 107,
+      "language": 269,
+      "word_coverage": 0.0,
+      "combined": 119
+    },
+    {
+      "cipher": "Two-square-V",
+      "params": "V:T=PALIMPSEST,B=LATITUDE",
+      "text": "QEHSNSVQFKNUCRNAMCTCZEIQXOOQUMGKCOQAXAUQLRCOTHZZAWBTDUNFAIYAUDCMWRXLBKCZLGVHGGXZBTSFPMMNKIMATHEUR",
+      "standard_total": 109,
+      "anchor": 92,
+      "language": 284,
+      "word_coverage": 0.0309,
+      "combined": 118
+    },
+    {
+      "cipher": "Four-square",
+      "params": "UR=CARTER,LL=CLOCK",
+      "text": "QFMRSEXCFOREHQRAOFFFYGMSVQUNDNIDSTTQYRSSLQSTDEZZZBBOMBRKPAWMOKILZOYQCOYKTBZGIBXZBOBFPFPRKUERDEEAR",
+      "standard_total": 108,
+      "anchor": 90,
+      "language": 275,
+      "word_coverage": 0.0309,
+      "combined": 117
+    },
+    {
+      "cipher": "Bifid+LatTrans",
+      "params": "keyword=LATITUDE,period=3",
+      "text": "GXQVFGXEFEGWKGQQXBKLUQMOMWOARHOZITXKIVRAROVVAKWSXUXUXLQVBQALBCNBKLIQTPZEHPMICFNNFLZELFSULDIRIUMYP",
+      "standard_total": 108,
+      "anchor": 105,
+      "language": 234,
+      "word_coverage": 0.0309,
+      "combined": 117
+    },
+    {
+      "cipher": "Bifid+LatTrans",
+      "params": "keyword=LANGLEY,period=9",
+      "text": "GOIZKIVIEBDZMGBIKRARTUWGRBSHBHEPNRRNUNTOOYHYQGOSFYZUYXTQDYTWKXSBCRXGPOFKKSMNCIEFFZEFPUIEYHOFODRMP",
+      "standard_total": 108,
+      "anchor": 108,
+      "language": 256,
+      "word_coverage": 0.0309,
+      "combined": 117
+    },
+    {
+      "cipher": "Two-square-H",
+      "params": "H:L=R=ILLUSION",
+      "text": "DUTHOUUZHGLUUCLOELBBFWPSMXPQCMKGSSTOPZURMUSSKEZZAWOMOFBONLLVEANBRWMZMTKWFTFXKDXZOMDCEUOGSGLBKEACR",
+      "standard_total": 107,
+      "anchor": 102,
+      "language": 241,
+      "word_coverage": 0.0309,
+      "combined": 116
+    },
+    {
+      "cipher": "Two-square-V+LatTrans",
+      "params": "V:T=ABSCISSA,B=BERLIN",
+      "text": "OMLVDYVEDREWLPRTSHTDQUUHMLHBDUCRZTMGRIIIUGYIDBUAXVZSPOARUMGTFHARPMIIMPWALKBDSTONUZEVIGYIGRIITSXIP",
+      "standard_total": 107,
+      "anchor": 84,
+      "language": 280,
+      "word_coverage": 0.0309,
+      "combined": 116
+    },
+    {
+      "cipher": "Four-square",
+      "params": "UR=LATITUDE,LL=CLOCK",
+      "text": "QFMSCEXCLLBEHSRADIFHYGBQVQUNTOOASUTQYRSSATSUIBZZZBBNMCBKEDWMOKINZOYQCNYKTBZGIAXZBNGIEIPSPRERIBKDR",
+      "standard_total": 106,
+      "anchor": 90,
+      "language": 269,
+      "word_coverage": 0.0309,
+      "combined": 115
+    },
+    {
+      "cipher": "Two-square-V+LatTrans",
+      "params": "V:T=PALIMPSEST,B=ABSCISSA",
+      "text": "UKFZDXAWALVBFULFSNHROUUMQPKADTEKZTDOQUMCMKWOILTRXVZRRHEACMSFSLEABFMCGIWECISITIGHUZFVMLWOFLMCRTXUP",
+      "standard_total": 97,
+      "anchor": 96,
+      "language": 185,
+      "word_coverage": 0.0619,
+      "combined": 115
+    },
+    {
+      "cipher": "Playfair+LatTrans",
+      "params": "keyword=ABSCISSA",
+      "text": "MNLVDYQWESVBLPRCALCNTPULMTHADUBMZTOOTQCCUKWOCKREZWZRTHBAUNPGDLBANCCCMABQOFSISBMDUOEVIKWOEMCCQRXUP",
+      "standard_total": 96,
+      "anchor": 55,
+      "language": 298,
+      "word_coverage": 0.0619,
+      "combined": 114
+    },
+    {
+      "cipher": "Two-square-H",
+      "params": "H:L=PALIMPSEST,R=KRYPTOS",
+      "text": "ENMECITUKFOQEBOLHYBBFWAYNZLNRNLDEOAQAZTLRTEOAOZZEWQOUEKIBYOUDMRBIXPZQAKWPKFXPDYZQOKOHPZDYDWKAOTCR",
+      "standard_total": 96,
+      "anchor": 80,
+      "language": 245,
+      "word_coverage": 0.0619,
+      "combined": 114
+    },
+    {
+      "cipher": "Two-square-H",
+      "params": "H:L=LONGITUDE,R=LANGLEY",
+      "text": "UASKCFFZHLOYMMLAAETIUZMNMVMRGRHNRTPEPZRRSARTHCZZOVBBIHEBOECVDELKRUMZBDAZCROXFCYZBBUMGEZHYHZYHCOIR",
+      "standard_total": 114,
+      "anchor": 100,
+      "language": 281,
+      "word_coverage": 0.0,
+      "combined": 114
+    },
+    {
+      "cipher": "Two-square-V",
+      "params": "V:T=LANGLEY,B=CLOCK",
+      "text": "HGISWCWKLNVCCRIAMDYDXEAQURTISMGKRTMUXSRRHRRTGAZZZOQPIOVBOLVMGEDIFHXRRPXGSCZEGFWZQPBEODOSOQERGAFOR",
+      "standard_total": 105,
+      "anchor": 90,
+      "language": 262,
+      "word_coverage": 0.0309,
+      "combined": 114
+    },
+    {
+      "cipher": "Two-square-V+LatTrans",
+      "params": "V:T=CLOCK,B=LATITUDE",
+      "text": "HRLYBZXEECLWORUREGEUSSQOTMFAIOQTZIOMTSNAHSVUPUUDXVZTQNEQQRQCMBEQQMNAARDXIKLLAOACAZWECSVUBINASAYSP",
+      "standard_total": 105,
+      "anchor": 66,
+      "language": 310,
+      "word_coverage": 0.0309,
+      "combined": 114
+    },
+    {
+      "cipher": "Playfair+LatTrans",
+      "params": "keyword=PALIMPSEST",
+      "text": "UNFZDXYEHEOWGUECCHTLROONUQHPDITPZRHHRQLLANXMPOOGZWZQQKCTEQSGCFCTLTLLDCAOIKEMBCHDUKFVWFXMGALLQBYUP",
+      "standard_total": 103,
+      "anchor": 105,
+      "language": 207,
+      "word_coverage": 0.0309,
+      "combined": 112
+    },
+    {
+      "cipher": "Four-square",
+      "params": "UR=CARTER,LL=PALIMPSEST",
+      "text": "TFORRUWSIOSEFFSAMLIFWMOSXQQCASKOQISFXGQHNQQIEPZZWBDDNBQPMAYBMPFQVDXFEDWPUMXMKMXZDDALNLPRKUEREPBAR",
+      "standard_total": 94,
+      "anchor": 36,
+      "language": 344,
+      "word_coverage": 0.0619,
+      "combined": 112
+    },
+    {
+      "cipher": "Four-square+LatTrans",
+      "params": "UR=LONGITUDE,LL=ABSCISSA+LatTrans",
+      "text": "ENMZAYWBMCVBMUHALLDTGRUNCSKCLTRPZTLPHREEUMWPIPSHXVZSIGREKLFFFOREIFEENEGYUFLBNBNKZUGXKPWPMNEETTXUP",
+      "standard_total": 85,
+      "anchor": 57,
+      "language": 233,
+      "word_coverage": 0.0928,
+      "combined": 112
+    },
+    {
+      "cipher": "Two-square-H",
+      "params": "H:L=ABSCISSA,R=BERLIN",
+      "text": "IGAKOUMZNAITQRIMHIAEEZBKPWPQFPNCRRUMQYRQUERRLCZZEWCUAMHTHEBZGOEBTVPYNTHZKSLVKCXZCUGLOBPOUFPILCGER",
+      "standard_total": 103,
+      "anchor": 73,
+      "language": 301,
+      "word_coverage": 0.0309,
+      "combined": 112
+    },
+    {
+      "cipher": "Two-square-V",
+      "params": "V:T=PALIMPSEST,B=KRYPTOS",
+      "text": "RSFTNCVAKFOQEBOLLGBBXEAYZIRYRNDYEOURZROAMNEOSRZZXSSMFQNHLBVLQDRBIXZKQAXHPKYEPDYZSMSHHPDZDXPVSRTCR",
+      "standard_total": 103,
+      "anchor": 111,
+      "language": 203,
+      "word_coverage": 0.0309,
+      "combined": 112
+    },
+    {
+      "cipher": "Two-square-V",
+      "params": "V:T=ABSCISSA,B=LATITUDE",
+      "text": "MFNOPSVQEMPUIPKUHUSEZENPXOQPUKFMIQMUXAUPSSIQFHZZBWCRAGPFBUYAOCIHWRXLNRHZRGVHFGXZCRACANOLIFILFHBIR",
+      "standard_total": 94,
+      "anchor": 84,
+      "language": 222,
+      "word_coverage": 0.0619,
+      "combined": 112
+    },
+    {
+      "cipher": "Two-square-V",
+      "params": "V:T=LONGITUDE,B=LATITUDE",
+      "text": "NEHSTPVQOMTAKOLAAUFDZEGOXOPQSMNMSSNAXASQNSSSDMZZOWELBUTEOUYAIBKGWRXLEGAZQHVHFBXZELBELNINKIIFDMOHR",
+      "standard_total": 103,
+      "anchor": 90,
+      "language": 253,
+      "word_coverage": 0.0309,
+      "combined": 112
+    }
+  ]
+}

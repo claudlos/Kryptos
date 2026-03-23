@@ -1,0 +1,531 @@
+{
+  "strategy_id": "38",
+  "name": "Full Carter Diary Running-Key Attack",
+  "total_attempts": 146989,
+  "elapsed_seconds": 2.1077418327331543,
+  "diary_length_alpha": 3285,
+  "cipher_models_tested": [
+    "Vigenere",
+    "Beaufort",
+    "Quagmire_III"
+  ],
+  "transposition_keywords_tested": [
+    "KRYPTOS",
+    "PALIMPSEST",
+    "ABSCISSA",
+    "BERLIN",
+    "CLOCK",
+    "LATITUDE",
+    "SANBORN",
+    "CARTER",
+    "HOWARD",
+    "EGYPT",
+    "TOMB",
+    "PHARAOH",
+    "TUTANKHAMUN",
+    "CANDLE"
+  ],
+  "candidate_count": 1962,
+  "top_candidates": [
+    {
+      "score": 295.0,
+      "anchor_hits": 7,
+      "english_score": 15.0,
+      "model": "Beaufort",
+      "transposition": "HOWARD",
+      "diary_offset": 2727,
+      "key_window": "REWASMOREBEYONDANDWITHTHENUMER...",
+      "plaintext": "ZENMDEWYCAJTAEAQUCDYLQAGICOSSVVAIOBMDLAFCTATXMCREGZBUSKQEHJDCLGTERIZACLYIJISEOJGCWCWFPTEEYGQATBIX"
+    },
+    {
+      "score": 289.0,
+      "anchor_hits": 7,
+      "english_score": 9.0,
+      "model": "Quagmire_III",
+      "transposition": "CLOCK",
+      "diary_offset": 2336,
+      "key_window": "LSHAPESANDDESIGNOFBOTHCOMMONAN...",
+      "plaintext": "ORLQDXJRTGQIYCHIHETBRUARONORNSOBITPNWJSYYPJVSVUEMRRNMGYMZJFYTUOBEBQKFWKCSUHOTZAPKLAJDLYCAJVTMBDTH"
+    },
+    {
+      "score": 286.0,
+      "anchor_hits": 7,
+      "english_score": 6.0,
+      "model": "Vigenere",
+      "transposition": "CANDLE",
+      "diary_offset": 910,
+      "key_window": "RCASEINACCORDANCETOTHEORDINARY...",
+      "plaintext": "RMJALSSBAMHCYKQRPQNYBSFTTMTTVNOAMQOBETTSSKDCGUEIISDEKCPDAQPWETQBEICITALRNKGVTRLYLVWIZKAOMFYWDFAYF"
+    },
+    {
+      "score": 261.0,
+      "anchor_hits": 6,
+      "english_score": 21.0,
+      "model": "Vigenere",
+      "transposition": "HOWARD",
+      "diary_offset": 2684,
+      "key_window": "OORWAYBETWEENTHETWOSENTINELSTA...",
+      "plaintext": "EMSSPKRPJFRBBQWGAFFSEEATJHVCTWAAGWKOCIQUMEORDSPZXMDCJRSINEWDPMMBZXLJRRRLNRQJIRTIOYXGVVZKXPRLLSMGJ"
+    },
+    {
+      "score": 258.0,
+      "anchor_hits": 6,
+      "english_score": 18.0,
+      "model": "Vigenere",
+      "transposition": "CARTER",
+      "diary_offset": 1813,
+      "key_window": "RANGEEBONYBLACKEFFIGIESOFAKING...",
+      "plaintext": "RONDOLENGENKBIZZOOTLCEEFRUBYGGZAJHYZYUDJHBONEHSHIAIBQFLHJXGWOQXGEULIZKLYANTRDGLHNCPLBLNJPKGTGLOIP"
+    },
+    {
+      "score": 257.0,
+      "anchor_hits": 6,
+      "english_score": 17.0,
+      "model": "Beaufort",
+      "transposition": "PALIMPSEST",
+      "diary_offset": 541,
+      "key_window": "HSEEMEDTOSUBSTANTIATEOURFIRSTC...",
+      "plaintext": "HERDUWRZRLBAMXRAUXHZVEKMPDMRKCEWRTKSFZCZWGBFMUQPCKAZPFYCGWWVBYLBYDBDSUWOPOBWBYQWASASFYULGRRBXPPHT"
+    },
+    {
+      "score": 257.0,
+      "anchor_hits": 6,
+      "english_score": 17.0,
+      "model": "Quagmire_III",
+      "transposition": "EGYPT",
+      "diary_offset": 1977,
+      "key_window": "ITELYPAINTEDINLAIDANDORNAMENTA...",
+      "plaintext": "QTOZNFFJBPPHPNVUMGZPLRISMNJRWVHLITDUZHNFIEPWYHCOZXPJDDWKUKKTDOWSBZLRCRKOUTPTTRPTENEDWHAMBDPKYQXGF"
+    },
+    {
+      "score": 254.0,
+      "anchor_hits": 6,
+      "english_score": 14.0,
+      "model": "Quagmire_III",
+      "transposition": "PHARAOH",
+      "diary_offset": 968,
+      "key_window": "HAMBERCANDLESWEREPROCUREDTHEAL...",
+      "plaintext": "EUNCUJXSAYYGJJBMPKOCCIZQQIJPTPEGQMUWCYVEPOWOUOGBLFDTCRRUTRCPUFTGZLAINXLNCTDULTNNDZONFPHABTOQJISWI"
+    },
+    {
+      "score": 253.0,
+      "anchor_hits": 6,
+      "english_score": 13.0,
+      "model": "Vigenere",
+      "transposition": "LATITUDE",
+      "diary_offset": 1049,
+      "key_window": "UBTERRANEANEXCAVATIONIWIDENEDT...",
+      "plaintext": "CNMSTPBIWBOPZISVTRFCTMSIGNLOAOELJDLJINIEINXEVASVGSALTSBTADPHFQRGFYZICCLOPEXZCZHOWHCXDPAKVILIMJYMU"
+    },
+    {
+      "score": 253.0,
+      "anchor_hits": 6,
+      "english_score": 13.0,
+      "model": "Beaufort",
+      "transposition": "PHARAOH",
+      "diary_offset": 3098,
+      "key_window": "NINGOFTHEFIRSTDOORWAYANDASKEDH...",
+      "plaintext": "BRZDACBIREAGKBYIELOAULDMQNOUTPOSSGDSUQTRFPIZDYTJWPPNLZORUJYXPOSZAAAOQCOYCYSRQMBTPXTDEKNEXHHJOCBEV"
+    },
+    {
+      "score": 252.0,
+      "anchor_hits": 6,
+      "english_score": 12.0,
+      "model": "Vigenere",
+      "transposition": "CANDLE",
+      "diary_offset": 141,
+      "key_window": "DSEALEDDOORWAYWHICHWASALMOSTTH...",
+      "plaintext": "FWFSEWCYOAEXBMHMLHUVIETZKGOATEBKNQXBUTFHXBRACQIEQYDYRSXGMBSEIIMHGRXHETVBCKGSSXZFKZMYZOXHPBCARFAHS"
+    },
+    {
+      "score": 251.0,
+      "anchor_hits": 6,
+      "english_score": 11.0,
+      "model": "Beaufort",
+      "transposition": "PALIMPSEST",
+      "diary_offset": 612,
+      "key_window": "CLEAREDAWAYTHEREMAININGLASTSCR...",
+      "plaintext": "CXRZZWRGZTFSBIIRNPPTZDWGKNORTRQYADNQFJZOHNWWBUURIKUDAKPJIESIPDNORPZGLCLTINPTORQYUHATMDUGGMSGVHXOF"
+    },
+    {
+      "score": 249.0,
+      "anchor_hits": 6,
+      "english_score": 9.0,
+      "model": "Beaufort",
+      "transposition": "TOMB",
+      "diary_offset": 2298,
+      "key_window": "INGCUPINTRANSLUCENTALABASTERST...",
+      "plaintext": "TRLOKPSMXYKDMCFLBDCGBPOMTZYUVQEASKWZRLTLFEBKPSUSVRWHAIVNRNDTIBUBHPRFJCKMERISKYQZHZWRTZQNRMZPCJOOD"
+    },
+    {
+      "score": 248.0,
+      "anchor_hits": 6,
+      "english_score": 8.0,
+      "model": "Vigenere",
+      "transposition": "KRYPTOS",
+      "diary_offset": 2363,
+      "key_window": "NANDRAREMATERIALSANDLASTLYACON...",
+      "plaintext": "BSQOVORXGIUVUSKTOGSFLRSRZRFGGMPYSTZBLCEBXOECDBCTMOJHBPALZTDOWSGBYWGGJCOOCXQPHAINOPZLOOVSVETGPEKKW"
+    },
+    {
+      "score": 248.0,
+      "anchor_hits": 6,
+      "english_score": 8.0,
+      "model": "Vigenere",
+      "transposition": "PALIMPSEST",
+      "diary_offset": 338,
+      "key_window": "LNECROPOLISBUTNOTINANYWAYSOCLE...",
+      "plaintext": "PBJZBUXGMZBAMDWZGDGUWMOFSNRZYWKASTZUBAYGYBLNNFTWKBGAXZEADEEGQECQXNCITZTOEYZPZEWHTYGAOTXBHOOUYYYIV"
+    },
+    {
+      "score": 248.0,
+      "anchor_hits": 6,
+      "english_score": 8.0,
+      "model": "Vigenere",
+      "transposition": "CARTER",
+      "diary_offset": 1356,
+      "key_window": "ITSSTRANGEANDWONDERFULMEDLEYOF...",
+      "plaintext": "AVIRZYFONYOIYOVQQPKMQXKPTJHIFHBRBTQLUUVHSOTOVEILVMHMLQFTVROUXCBQSRLITPQQDOBKXWULXLGSCXJEZFXLFXFTH"
+    },
+    {
+      "score": 247.0,
+      "anchor_hits": 6,
+      "english_score": 7.0,
+      "model": "Vigenere",
+      "transposition": "KRYPTOS",
+      "diary_offset": 2069,
+      "key_window": "PAPYRUSDEVICESTRANGEBLACKSHRIN...",
+      "plaintext": "ZSOTVUQYONFXHIRNGTZEVGKIAXYRMMQAOTUHZBKLYBUKGBODXXINTTBNREQWTDLBENFNVHBDCDHBNSHOBQIGBDCYVCJKQLUVH"
+    },
+    {
+      "score": 247.0,
+      "anchor_hits": 6,
+      "english_score": 7.0,
+      "model": "Vigenere",
+      "transposition": "LATITUDE",
+      "diary_offset": 1087,
+      "key_window": "ANDBYMEANSOFTHECANDLELOOKEDINW...",
+      "plaintext": "WBCVMUXVNJNODDOOTXKFCJACZNVKQLEHZQEGIJIONKVDWYFCJTGPTDFYKHALPNXCQCUIJCDOXZMKPFXECCBCOWJVISHLVJYXN"
+    },
+    {
+      "score": 247.0,
+      "anchor_hits": 6,
+      "english_score": 7.0,
+      "model": "Vigenere",
+      "transposition": "CARTER",
+      "diary_offset": 106,
+      "key_window": "IDDLEOFTHEAFTERNOONWECAMEUPONA...",
+      "plaintext": "ALXYOBAIMYOQIGSQFFOVGGWHSAWSGMNKSWDWTTDJOCOAUQNPXKTMODUHEAHKCCPBLCLONCLMNMUCIKZNIVVUYXVHREJXHNELG"
+    },
+    {
+      "score": 247.0,
+      "anchor_hits": 6,
+      "english_score": 7.0,
+      "model": "Vigenere",
+      "transposition": "EGYPT",
+      "diary_offset": 1025,
+      "key_window": "SESWHENOPENINGANANCIENTSUBTERR...",
+      "plaintext": "WSHNBXSJBJXDGMFERWQTQIJMTNXZTHXDEZCKSEZAGYCIGZRMXPHCEAFHJDFZZLAXCRUIHPBWQPREPIDJFLYXSRJWXVOUKOZXH"
+    },
+    {
+      "score": 246.0,
+      "anchor_hits": 6,
+      "english_score": 6.0,
+      "model": "Beaufort",
+      "transposition": "PALIMPSEST",
+      "diary_offset": 3049,
+      "key_window": "ESDEPARTMENTWHOWASWITHUSATTHEC...",
+      "plaintext": "EEQDXSFZPXUSQLFJBHDOKXKNKOOGVCEVUTVBPUCTIUNCPREBBJOZSTBVLTXYOVANEZLOUWSZHKTPBYXIMNVNPTUZYBSHXJWWP"
+    },
+    {
+      "score": 246.0,
+      "anchor_hits": 6,
+      "english_score": 6.0,
+      "model": "Beaufort",
+      "transposition": "LATITUDE",
+      "diary_offset": 101,
+      "key_window": "TTHEMIDDLEOFTHEAFTERNOONWECAME...",
+      "plaintext": "XFCICCCILDNMXXMKMJRBHUAXNNEIJXJAETLJUIGWSEJKMEYQURYEDEVBFOOEHOZBEIGPKXIMXTDJPCKTMIVPCTWQXXCTLRCIB"
+    },
+    {
+      "score": 246.0,
+      "anchor_hits": 6,
+      "english_score": 6.0,
+      "model": "Vigenere",
+      "transposition": "CANDLE",
+      "diary_offset": 1714,
+      "key_window": "TONISHMENTAREDIFFICULTTODESCRI...",
+      "plaintext": "PAWKXTTXPVVCXHVOOBZXXDAWTQORVDEKKYGNHWQZMZADZDIPECZMKPMEHECEXNQGGRUHTTPTZZWZZBLZULMNBVJVXVQUNEACE"
+    },
+    {
+      "score": 245.0,
+      "anchor_hits": 6,
+      "english_score": 5.0,
+      "model": "Vigenere",
+      "transposition": "KRYPTOS",
+      "diary_offset": 239,
+      "key_window": "ESOFSUCCESSIVEREOPENINGSANDREC...",
+      "plaintext": "KAPMUUGZOQVRQWTASRBVOEESKCCRQXJESTAIHZFDUBILUWNSKGNUAWBVCTJOYWHDRMLLEXYGTMJQCRSCFJJTPQNJWNFNKKMLB"
+    },
+    {
+      "score": 245.0,
+      "anchor_hits": 6,
+      "english_score": 5.0,
+      "model": "Beaufort",
+      "transposition": "SANBORN",
+      "diary_offset": 1892,
+      "key_window": "LOAKOFDARKNESSGILDEDCOUCHESINS...",
+      "plaintext": "IAJWLTLSQXCWTAAYFVEYYEDSCIDYTYBQSDHXRWQZWMORZLZUHEPOVSEOXBIPQUKWGKKGBJJOXKPUDYAMHVBXSHKOSPVJQXELB"
+    },
+    {
+      "score": 245.0,
+      "anchor_hits": 6,
+      "english_score": 5.0,
+      "model": "Beaufort",
+      "transposition": "PHARAOH",
+      "diary_offset": 661,
+      "key_window": "OOROFTHEPASSAGEBEFORETHEDOORWA...",
+      "plaintext": "CXDLRQPFCZKHSOZVUZGRAEXNTJSHMIEAMLJPEQAZQPHXBZLZGILMNNDABIXJDBYXHRXNHFUOAINYMOQRFKKIVILAUPTEZZNWP"
+    },
+    {
+      "score": 244.0,
+      "anchor_hits": 6,
+      "english_score": 4.0,
+      "model": "Vigenere",
+      "transposition": "CARTER",
+      "diary_offset": 860,
+      "key_window": "THATTHEREWASEMPTYSPACEPERHAPSA...",
+      "plaintext": "PHAQZIBKPGODXYUKVBMRIEHPFNLRBMSABDMIITLSOSOGVBRWVYJSQSMZJAQUCDFUFELSZLXZDKCCXKWUKOBZVVGWYXXSKFVEH"
+    },
+    {
+      "score": 244.0,
+      "anchor_hits": 6,
+      "english_score": 4.0,
+      "model": "Vigenere",
+      "transposition": "EGYPT",
+      "diary_offset": 1754,
+      "key_window": "TERLIGHTREVEALEDTOUSTHEMARVELL...",
+      "plaintext": "VSIYAVYEZJPHTHBOYVYJBOYSNXVZZNJWQXBDECXCYDXIOOWQABAPDBTPWCQIBFUGBREHNODOCKGGOCXOEEODGVLNUXNFOEKOP"
+    },
+    {
+      "score": 244.0,
+      "anchor_hits": 6,
+      "english_score": 4.0,
+      "model": "Quagmire_III",
+      "transposition": "EGYPT",
+      "diary_offset": 3159,
+      "key_window": "BLYTHEFOLLOWINGAFTERNOONTOENAB...",
+      "plaintext": "XGXMBXATDCVUPNZUPMVHCRESPAJRTUHJUTZAAMOTGAPQLDCKYAUYFXBCHPMSRPAWXBNJMCWYKKOWNLRRMMALYHLCVGUFVMCEF"
+    },
+    {
+      "score": 243.0,
+      "anchor_hits": 6,
+      "english_score": 3.0,
+      "model": "Beaufort",
+      "transposition": "PALIMPSEST",
+      "diary_offset": 167,
+      "key_window": "STTHEEXACTREPLICAOFTHEFIRSTITB...",
+      "plaintext": "SFGGMWLGFMYDJPZPBDMZYUVDBNOHKBEAMHQLTTYXHKIUQZFDBOYUASOCRSZQAVPWYWUJNPSOICPKPPSCEMZTWLHDUYIGSWKZB"
+    },
+    {
+      "score": 243.0,
+      "anchor_hits": 6,
+      "english_score": 3.0,
+      "model": "Beaufort",
+      "transposition": "PALIMPSEST",
+      "diary_offset": 569,
+      "key_window": "TCONJECTURETHATWEHADFOUNDACACH...",
+      "plaintext": "TOBMRWQZXKLSBEKJFWHJWEKINVXZTHUOMKMQTAFRNCMLTRQDBZGIMDPJIGWCXLUSDRFSMRKOVKQXLAHUBVPDIVDSNNJEYXVVG"
+    },
+    {
+      "score": 243.0,
+      "anchor_hits": 6,
+      "english_score": 3.0,
+      "model": "Beaufort",
+      "transposition": "CARTER",
+      "diary_offset": 108,
+      "key_window": "DLEOFTHEAFTERNOONWECAMEUPONASE...",
+      "plaintext": "VXEFNECDHDFJQDFLUDDLQEIBTUCUZSXATTCFPOBJLJXDOTPHMCCNGQCTPMWWDZZKMRLRGNAMUHXQEVGPDDJSMFVTCRHTURQPT"
+    },
+    {
+      "score": 243.0,
+      "anchor_hits": 6,
+      "english_score": 3.0,
+      "model": "Quagmire_III",
+      "transposition": "TOMB",
+      "diary_offset": 633,
+      "key_window": "NGLASTSCRAPSOFRUBBISHONTHEFLOO...",
+      "plaintext": "KKFYUDOZWXRUIECGCSMPMMABLKBHTFZASLSCNAAICKUNZDZQEPJXDHZFDBSKCPRARRCILYBVFSSXMNVBSYAQJHQCEUYUAKRQP"
+    },
+    {
+      "score": 243.0,
+      "anchor_hits": 6,
+      "english_score": 3.0,
+      "model": "Quagmire_III",
+      "transposition": "TUTANKHAMUN",
+      "diary_offset": 2669,
+      "key_window": "YACACHEASEALEDDOORWAYBETWEENTH...",
+      "plaintext": "GXDYRPXHRKOCFTYUWHYXFCRFDPOATDJRSYEMITYTXPFDPLSKBXQBUPNAZZETJUZCEOTSPWLNMKNXWDRLBMUBUOQLUTSEKDQHQ"
+    },
+    {
+      "score": 221.0,
+      "anchor_hits": 5,
+      "english_score": 21.0,
+      "model": "Vigenere",
+      "transposition": "ABSCISSA",
+      "diary_offset": 2935,
+      "key_window": "PONTHEFIRSTDOORWAYWEMOUNTEDOUR...",
+      "plaintext": "ZCSATGBKKYINFITSKRROXSAYYNVVQMEUHDLSTKHCXCCYDMTNLGREQEQPZHTLAGYAZSTOWCKCPKVMWZHDCPCGBZYKDSKOAQCRZ"
+    },
+    {
+      "score": 217.0,
+      "anchor_hits": 5,
+      "english_score": 17.0,
+      "model": "Vigenere",
+      "transposition": null,
+      "diary_offset": 1928,
+      "key_window": "FORMSLIONHEADEDHATHORHEADEDAND...",
+      "plaintext": "JNTFCDPATAQLYOLEIMUNFYHRSMNPEKFGSAVLJOMBWQHOHUFRESAFZNFDANDEKXOCYHSTGJLOCKKCQRZMRJKTENSPWGEQNSCPR"
+    },
+    {
+      "score": 217.0,
+      "anchor_hits": 5,
+      "english_score": 17.0,
+      "model": "Vigenere",
+      "transposition": "CARTER",
+      "diary_offset": 968,
+      "key_window": "HAMBERCANDLESWEREPROCUREDTHEAL...",
+      "plaintext": "BOOIOYDBGZDRJOFMPEKDIOFPTBECTBUGIVCISXQBZBGDPHYLQSJPCQFBWIOEUNEHERLYFRYDEBSICGAZJIYGCXWAMTKYUUUTX"
+    },
+    {
+      "score": 216.0,
+      "anchor_hits": 5,
+      "english_score": 16.0,
+      "model": "Vigenere",
+      "transposition": "KRYPTOS",
+      "diary_offset": 1903,
+      "key_window": "ESSGILDEDCOUCHESINSTRANGEFORMS...",
+      "plaintext": "KALLEDFXPGZFJTGMYTNPFRXEGKRRIHJKWOGKZEOTUFEPGXZSBLWXTQCMCTCDCYTDSRTONSEQCYPCRANNSLDAXRSWYQLPDENOY"
+    },
+    {
+      "score": 216.0,
+      "anchor_hits": 5,
+      "english_score": 16.0,
+      "model": "Beaufort",
+      "transposition": "BERLIN",
+      "diary_offset": 2663,
+      "key_window": "RMERELYACACHEASEALEDDOORWAYBET...",
+      "plaintext": "DHVRMWXZAHOMUZPVHSNHVESYCVSQLHITUTDIHCCLAZZYBFVWMDGTEULZRSDIJENWZYLJOZKODOUTEDLULCXJFXTUFQJUNTSBK"
+    },
+    {
+      "score": 216.0,
+      "anchor_hits": 5,
+      "english_score": 16.0,
+      "model": "Beaufort",
+      "transposition": "LATITUDE",
+      "diary_offset": 1504,
+      "key_window": "DCARNARVONSAIDTOMECANYOUSEEANY...",
+      "plaintext": "HOVVDUQAOMRHMTBYTUPKHEAEJNGIKRISYTRZHKHUXQIDPHDZEHZQWORQLZKMYBTBANVAEMMBHISUAYPBMUINXDTFZTSPDNBBS"
+    },
+    {
+      "score": 216.0,
+      "anchor_hits": 5,
+      "english_score": 16.0,
+      "model": "Vigenere",
+      "transposition": "SANBORN",
+      "diary_offset": 2367,
+      "key_window": "RAREMATERIALSANDLASTLYACONFUSI...",
+      "plaintext": "MOAKRMZEKFLXHSTHVIIMTMRIRJKQCMEOUFLMKBITFMQUZWONEMJRYBMSGNEFCCGLZGLCRQDOCKMIGYUKDPOUMPJEFWOZZUILA"
+    },
+    {
+      "score": 216.0,
+      "anchor_hits": 5,
+      "english_score": 16.0,
+      "model": "Vigenere",
+      "transposition": "CARTER",
+      "diary_offset": 910,
+      "key_window": "RCASEINACCORDANCETOTHEORDINARY...",
+      "plaintext": "RMAROHSBRAAEYKWBPANYDEICTMYGCOOAWKFGETCUFMDCHSYPISJIQMPDWYLWETEDQGCICAMHNKBVTWLYKYWGZKNPOPYWKADTF"
+    },
+    {
+      "score": 216.0,
+      "anchor_hits": 5,
+      "english_score": 16.0,
+      "model": "Vigenere",
+      "transposition": "CANDLE",
+      "diary_offset": 2299,
+      "key_window": "NGCUPINTRANSLUCENTALABASTERSTO...",
+      "plaintext": "VIHYASSILOIBQQBPGQBGIVTSDQPBTXRDSCUUAMCLFONWHWMFROMKXMLGMZPUCIIETICINEMJFBRGTXNHKZMYVOIGMPKJDJOEA"
+    },
+    {
+      "score": 215.0,
+      "anchor_hits": 5,
+      "english_score": 15.0,
+      "model": "Beaufort",
+      "transposition": "PALIMPSEST",
+      "diary_offset": 1326,
+      "key_window": "ERGRADUALLYLOOMEDBEFOREONEWITH...",
+      "plaintext": "EDTQIVIGOEFKISDREQLLFHUJXZRHKHYCAHBQLVEKPTLFWATQOBAXYJZNINGVBAABQZLVCLSDCKOIYZQUTCMFMVRIKLXLRNEWF"
+    },
+    {
+      "score": 215.0,
+      "anchor_hits": 5,
+      "english_score": 15.0,
+      "model": "Beaufort",
+      "transposition": "CARTER",
+      "diary_offset": 1694,
+      "key_window": "INOURSENSATIONSANDASTONISHMENT...",
+      "plaintext": "AZOLZDZMZYFNNDJXUKZBJGRPWNBYUHVDKTSGULZATOCAVXJNWCBKKIDAIBMXDKJRQASIEARBJKZTJEHASFFNUDIEMOEJULSST"
+    },
+    {
+      "score": 214.0,
+      "anchor_hits": 5,
+      "english_score": 14.0,
+      "model": "Vigenere",
+      "transposition": "KRYPTOS",
+      "diary_offset": 1443,
+      "key_window": "WASNATURALLYSHORTSUSPENSEFORTH...",
+      "plaintext": "SSLEMVOKSXCBTTWNNOLQHNXSGKRRBSGAGMWKHDFDFYJUGUVTOAHIPZJGCGJITIWHSRTIWBHSKIUCHZHASGSFHCWFJDVZWJDWH"
+    },
+    {
+      "score": 214.0,
+      "anchor_hits": 5,
+      "english_score": 14.0,
+      "model": "Beaufort",
+      "transposition": "KRYPTOS",
+      "diary_offset": 815,
+      "key_window": "ATWASBEYONDDARKNESSANDTHEIRONT...",
+      "plaintext": "MBTJGNWXWFQEPRAJYMNSRMJXUTMGTUKAJHASSHLXNGGYYFBESFHEYBRNMLSTJNUIRYLQNCNQFCDSTIWCZKOZBKNUZXNAQJSPN"
+    },
+    {
+      "score": 214.0,
+      "anchor_hits": 5,
+      "english_score": 14.0,
+      "model": "Beaufort",
+      "transposition": "KRYPTOS",
+      "diary_offset": 2476,
+      "key_window": "NTHEFIRSTIMPRESSIONOFWHICHSUGG...",
+      "plaintext": "ZBENTUJRBAZQGEIOCIIGJFXYSSNMMHKAJDQFIXXVNKHVZKLSNYOFHKJCYYGSVPXTEEZINOIYLSONEPIGWUYBQYEEJKAQLWCUP"
+    },
+    {
+      "score": 214.0,
+      "anchor_hits": 5,
+      "english_score": 14.0,
+      "model": "Quagmire_III",
+      "transposition": "CLOCK",
+      "diary_offset": 140,
+      "key_window": "NDSEALEDDOORWAYWHICHWASALMOSTT...",
+      "plaintext": "MNTMZREOCLVSHKSEYBSSYBDPPNOEQHKREWTWZMSWWHRUUCAHILGDIJSNKQZTCKPRZZLPVTOOTCQGUUPQWRCEAYGXYAQVKNGEZ"
+    },
+    {
+      "score": 214.0,
+      "anchor_hits": 5,
+      "english_score": 14.0,
+      "model": "Vigenere",
+      "transposition": "LATITUDE",
+      "diary_offset": 2743,
+      "key_window": "NDWITHTHENUMEROUSCARTOUCHESBEA...",
+      "plaintext": "JLJORZIOWOHHSTEWBINZNGUOCNGRZHUHXOWCGHIFHAQXFHFAKQTGTHNTRABZFZIDESLVFIDAZDUWLYLADNBIZELWXDWGXNOFT"
+    }
+  ]
+}

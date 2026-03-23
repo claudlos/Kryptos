@@ -1,0 +1,133 @@
+{
+  "strategy": "key_derivation_analysis",
+  "best_key": "NPHOHACRQZXDQQTBLRQNCPIJRHYF",
+  "constrained_key": "NPHOHA?RQZXDQQTBLR???PIJRHYF",
+  "constrained_slots": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27
+  ],
+  "unconstrained_slots": [
+    6,
+    18,
+    19,
+    20
+  ],
+  "elapsed_seconds": 7.925035141000002,
+  "findings": [
+    {
+      "test": "running_key",
+      "source": "K3_PT",
+      "offset": 84,
+      "window": "YWEREREMOVEDWITHTREMBLINGHAN",
+      "matches": 5,
+      "total_constrained": 24
+    },
+    {
+      "test": "shift_running_key",
+      "source": "K3_PT",
+      "offset": 84,
+      "window": "YWEREREMOVEDWITHTREMBLINGHAN",
+      "matches": 5
+    },
+    {
+      "test": "repeating_keyword",
+      "sub_len": 14,
+      "sub_key": "NPHOHACRQZXDQQ",
+      "matches": 13
+    },
+    {
+      "test": "key_patterns",
+      "fibonacci_matches": 4,
+      "linear_recurrence": {
+        "a": 9,
+        "b": 2,
+        "matches": 5
+      },
+      "most_common_diff": {
+        "diff": 19,
+        "count": 3
+      }
+    },
+    {
+      "test": "key_stats",
+      "ioc": 0.03968253968253968,
+      "entropy": 3.9677201004744993,
+      "unique_chars": 18,
+      "frequency": {
+        "N": 2,
+        "P": 2,
+        "H": 3,
+        "O": 1,
+        "A": 1,
+        "C": 2,
+        "R": 3,
+        "Q": 4,
+        "Z": 1,
+        "X": 1,
+        "D": 1,
+        "T": 1,
+        "B": 1,
+        "L": 1,
+        "I": 1,
+        "J": 1,
+        "Y": 1,
+        "F": 1
+      }
+    },
+    {
+      "test": "beaufort_key",
+      "key": "ZDPORM?TYHTTQUPDPL???XITDHAN",
+      "consistent": true
+    },
+    {
+      "test": "quagmire_key",
+      "key": "CCSXNK?XDNXYLWQXDB???NBYVYGV",
+      "consistent": true
+    },
+    {
+      "test": "position_patterns",
+      "affine": {
+        "a": 10,
+        "b": 13,
+        "matches": 5
+      },
+      "quadratic": {
+        "a": 1,
+        "b": 25,
+        "c": 5,
+        "matches": 6
+      }
+    },
+    {
+      "test": "exhaustive_unconstrained",
+      "combinations": 456976,
+      "best_key": "NPHOHACRQZXDQQTBLRQNCPIJRHYF",
+      "best_text": "JZIECIYKFTFCDUANSKTEREASTNORTHEASTIOEYINEVKNEBREGRCADOCCJBTCPUEBERLINCLOCKURICXJIDEIOZQLTGLUDAUHI",
+      "best_bigram_score": -357.96,
+      "project_score": 772,
+      "anchor_hits": 24
+    }
+  ]
+}

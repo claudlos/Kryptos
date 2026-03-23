@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from kryptos.catalog import get_strategy_spec
-from kryptos.common import analyze_layered_candidate, build_ranked_candidate, build_strategy_result, sort_ranked_candidates
+from kryptos.common import analyze_layered_candidate, build_ranked_candidate, build_strategy_result, dedupe_ranked_candidates
 from kryptos.constants import K4
 from kryptos.runtime import StrategyRuntimeConfig
 from strategy10_fractionation import generate_fractionation_candidates
@@ -47,7 +47,7 @@ def run(config: StrategyRuntimeConfig | None = None):
         + running_stage[: min(stage_beam, 8)]
     )
     stage_one.extend(generate_direct_key_layer_candidates(K4, config))
-    stage_one = sort_ranked_candidates(stage_one)[: min(stage_beam, 10)]
+    stage_one = dedupe_ranked_candidates(stage_one)[: min(stage_beam, 10)]
 
     for candidate in stage_one:
         plaintext = str(candidate["plaintext"])
@@ -83,7 +83,7 @@ def run(config: StrategyRuntimeConfig | None = None):
                     structure_hint=240,
                 )
             )
-    ranked = sort_ranked_candidates(candidates)
+    ranked = dedupe_ranked_candidates(candidates)
     retained = ranked[: max(config.candidate_limit, 8)]
     result = build_strategy_result(
         SPEC,
