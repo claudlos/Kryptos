@@ -1,10 +1,10 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kryptos K4 Research Dashboard</title>
-    <meta name="description" content="Structured run results, clue anchors, and benchmark notes for the Kryptos K4 research repository.">
+    <title>Kryptos K4 Research Toolkit</title>
+    <meta name="description" content="40 cryptanalytic strategies, exhaustive elimination testing, and structured research against the unsolved Kryptos K4 cipher.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
@@ -16,68 +16,184 @@
         <div class="ambient ambient-two"></div>
 
         <header class="hero reveal">
-            <p class="eyebrow">Kryptos K4</p>
-            <h1 id="project-title">Research Dashboard</h1>
-            <p class="hero-copy" id="project-tagline">Loading structured research metadata...</p>
+            <p class="eyebrow">Kryptos K4 · Unsolved since 1990</p>
+            <h1>Research Toolkit</h1>
+            <p class="hero-copy">40 cryptanalytic strategies. 10+ cipher families eliminated. 5M+ running-key trials. The most systematic open-source assault on K4.</p>
             <div class="hero-actions">
-                <a class="button primary" href="#latest-run">Latest Run</a>
-                <a class="button secondary" id="raw-data-link" href="data/dashboard.json">Raw JSON</a>
+                <a class="button primary" href="#elimination">Elimination Matrix</a>
+                <a class="button secondary" href="#findings">Key Findings</a>
+                <a class="button secondary" href="https://github.com/claudlos/Kryptos" target="_blank">GitHub</a>
             </div>
-            <div class="hero-metrics" id="hero-metrics"></div>
         </header>
 
         <main>
-            <section class="panel reveal" id="anchors-section">
+            <!-- K4 Ciphertext Visual -->
+            <section class="panel reveal" id="k4-visual">
                 <div class="section-header">
-                    <p class="section-kicker">Known Plaintext</p>
-                    <h2>Anchor Explorer</h2>
+                    <p class="section-kicker">The Ciphertext</p>
+                    <h2>97 Unsolved Characters</h2>
                 </div>
-                <div class="anchor-grid" id="anchor-grid"></div>
+                <div class="k4-display">
+                    <div class="k4-text" id="k4-text"></div>
+                    <div class="k4-legend">
+                        <span class="legend-item"><span class="legend-dot unknown"></span> Unknown (73 chars)</span>
+                        <span class="legend-item"><span class="legend-dot known-east"></span> EASTNORTHEAST (pos 22–34)</span>
+                        <span class="legend-item"><span class="legend-dot known-berlin"></span> BERLINCLOCK (pos 64–74)</span>
+                    </div>
+                </div>
             </section>
 
-            <section class="panel reveal" id="benchmarks-section">
-                <div class="section-header">
-                    <p class="section-kicker">Execution Paths</p>
-                    <h2>Benchmark Notes</h2>
+            <!-- Stats Bar -->
+            <section class="panel reveal stats-bar">
+                <div class="stat">
+                    <span class="stat-number">40</span>
+                    <span class="stat-label">Strategies</span>
                 </div>
-                <div class="benchmark-grid" id="benchmark-grid"></div>
+                <div class="stat">
+                    <span class="stat-number">10+</span>
+                    <span class="stat-label">Families Eliminated</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">5M+</span>
+                    <span class="stat-label">Running-Key Trials</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">24</span>
+                    <span class="stat-label">Known Characters</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">0.036</span>
+                    <span class="stat-label">Index of Coincidence</span>
+                </div>
             </section>
 
-            <section class="panel reveal" id="latest-run">
+            <!-- Elimination Matrix -->
+            <section class="panel reveal" id="elimination">
                 <div class="section-header">
-                    <p class="section-kicker">Run Artifact</p>
-                    <h2>Latest Structured Sweep</h2>
-                    <p class="section-copy" id="run-generated-at"></p>
+                    <p class="section-kicker">Systematic Elimination</p>
+                    <h2>What K4 Is NOT</h2>
+                    <p class="section-copy">Each row represents a cipher family tested to destruction against the 24 known plaintext characters.</p>
                 </div>
-                <div class="run-summary" id="run-summary"></div>
                 <div class="table-wrap">
-                    <table>
+                    <table class="elimination-table">
                         <thead>
                             <tr>
-                                <th>Strategy</th>
+                                <th>Cipher Family</th>
                                 <th>Status</th>
-                                <th>Attempts</th>
-                                <th>Elapsed</th>
-                                <th>Preview</th>
+                                <th>Evidence</th>
                             </tr>
                         </thead>
-                        <tbody id="run-results"></tbody>
+                        <tbody>
+                            <tr class="eliminated"><td>Simple Monoalphabetic</td><td>✗ Eliminated</td><td>Mapping contradiction at known positions for every transposition (0/13,136 consistent)</td></tr>
+                            <tr class="eliminated"><td>Affine Cipher</td><td>✗ Eliminated</td><td>No valid (a,b) pair satisfies 24 known positions</td></tr>
+                            <tr class="eliminated"><td>Autokey Vigenère</td><td>✗ Eliminated</td><td>Zero consistent configurations across all transpositions</td></tr>
+                            <tr class="eliminated"><td>Gromark Cipher</td><td>✗ Eliminated</td><td>22,000 primers (2-5 digit seeds), all fail at anchors</td></tr>
+                            <tr class="eliminated"><td>Hill 2×2 Cipher</td><td>✗ Eliminated</td><td>157,248 invertible matrices tested, zero produce ≥16 anchor matches</td></tr>
+                            <tr class="eliminated"><td>Single Vigenère</td><td>✗ Eliminated</td><td>No single period satisfies all 4 anchor groups simultaneously</td></tr>
+                            <tr class="eliminated"><td>Carter Diary Running Key</td><td>✗ Eliminated</td><td>Full Nov 26, 1922 diary — 147K attempts, best 7/24 = noise</td></tr>
+                            <tr class="eliminated"><td>Carter Journals (All 3 Seasons)</td><td>✗ Eliminated</td><td>77K alpha chars from Griffith Institute — 5M+ attempts, best 8/24 = noise</td></tr>
+                            <tr class="eliminated"><td>K1-K3 Plaintexts as Key</td><td>✗ Eliminated</td><td>Direct running-key test, no anchor matches</td></tr>
+                            <tr class="eliminated"><td>Mathematical Key Derivation</td><td>✗ Eliminated</td><td>Coordinates, Fibonacci, primes, modular, positional — none fit forced key</td></tr>
+                            <tr class="unlikely"><td>Pure Playfair</td><td>△ Unlikely</td><td>97 chars (odd), double letters (BB, SS), best 7/9 partial match</td></tr>
+                            <tr class="unlikely"><td>Pure Four-square / Two-square</td><td>△ Unlikely</td><td>No anchor matches under any keyword configuration</td></tr>
+                            <tr class="possible"><td>Polyalphabetic + Transposition</td><td>? Possible</td><td>Consistent configs exist but no English plaintext outside anchors</td></tr>
+                            <tr class="possible"><td>Running Key (Unknown Source)</td><td>? Possible</td><td>Key appears text-derived — source not yet identified</td></tr>
+                            <tr class="possible"><td>Modified Vigenère</td><td>? Possible</td><td>"Make the Vigenère more abstruse" — per Scheidt</td></tr>
+                            <tr class="possible"><td>3+ Layer Compound</td><td>? Untested</td><td>Every 2-layer combo searched; third layer not yet attempted</td></tr>
+                        </tbody>
                     </table>
                 </div>
             </section>
 
+            <!-- Key Findings -->
+            <section class="panel reveal" id="findings">
+                <div class="section-header">
+                    <p class="section-kicker">Analysis</p>
+                    <h2>Key Findings</h2>
+                </div>
+                <div class="findings-grid">
+                    <div class="finding-card">
+                        <h3>The Forced Key</h3>
+                        <code>BLZCDCYYGCKAZMUYKLGKORNA</code>
+                        <p>Under Vigenère, the 24 known plaintext chars force these key values. No mathematical function (linear, quadratic, Fibonacci, prime, coordinate-derived) fits them. <strong>The key is almost certainly text-derived.</strong></p>
+                    </div>
+                    <div class="finding-card">
+                        <h3>Period-26 Near-Miss</h3>
+                        <p>With key length 26, only <strong>1 conflict</strong> exists (B vs A, off by exactly 1). 23 of 26 key slots are determined. Periods 27-29 have zero conflicts but more unknowns. This could indicate a Quagmire variant with nonstandard indexing.</p>
+                    </div>
+                    <div class="finding-card">
+                        <h3>K3 ≠ Carter Diary</h3>
+                        <p>Sanborn made <strong>9 deliberate creative changes</strong> when adapting Carter's diary for K3: changed pronouns (we→I), substituted words (top→upper, candle→flame), added emotional phrases. These are artistic choices, not errors.</p>
+                    </div>
+                    <div class="finding-card">
+                        <h3>IC Below Random</h3>
+                        <p>K4's Index of Coincidence (0.036) is <strong>below pure random</strong> (0.038), far below English (0.067). This suggests multi-layer encryption or a very long/random key.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Strategy Catalog -->
             <section class="panel reveal" id="catalog-section">
                 <div class="section-header">
-                    <p class="section-kicker">Research Catalog</p>
-                    <h2>Implemented Strategies</h2>
+                    <p class="section-kicker">Arsenal</p>
+                    <h2>40 Strategies</h2>
+                    <p class="section-copy">Each strategy is a standalone Python script producing structured JSON output.</p>
                 </div>
                 <div class="catalog-grid" id="catalog-grid"></div>
+            </section>
+
+            <!-- K3 vs Diary -->
+            <section class="panel reveal" id="diary-section">
+                <div class="section-header">
+                    <p class="section-kicker">Discovery</p>
+                    <h2>Sanborn's Creative Changes to the Carter Diary</h2>
+                </div>
+                <div class="table-wrap">
+                    <table class="diff-table">
+                        <thead><tr><th>K3 Plaintext</th><th>Actual Diary</th><th>Change</th></tr></thead>
+                        <tbody>
+                            <tr><td>I MADE A TINY BREACH</td><td>WE MADE A TINY BREACH</td><td>we → I</td></tr>
+                            <tr><td>IN THE UPPER LEFT HAND CORNER</td><td>IN THE TOP LEFT HAND CORNER</td><td>top → upper</td></tr>
+                            <tr><td>I INSERTED THE CANDLE AND PEERED IN</td><td>I WIDENED THE BREACH AND BY MEANS OF THE CANDLE LOOKED IN</td><td>Simplified</td></tr>
+                            <tr><td>THE FLAME TO FLICKER</td><td>THE CANDLE TO FLICKER</td><td>candle → flame</td></tr>
+                            <tr><td>PRESENTLY DETAILS ... EMERGED FROM THE MIST</td><td>ONE'S EYES BECAME ACCUSTOMED TO THE GLIMMER OF LIGHT ...</td><td>Complete rewrite</td></tr>
+                            <tr><td>SLOWLY DESPARATLY SLOWLY</td><td><em>(not in diary)</em></td><td>Added by Sanborn</td></tr>
+                            <tr><td>WITH TREMBLING HANDS</td><td><em>(not in diary)</em></td><td>Added by Sanborn</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- What Remains -->
+            <section class="panel reveal" id="remaining">
+                <div class="section-header">
+                    <p class="section-kicker">Open Questions</p>
+                    <h2>What Could K4 Be?</h2>
+                </div>
+                <div class="findings-grid">
+                    <div class="finding-card">
+                        <h3>Modified Vigenère + Transposition</h3>
+                        <p>The leading hypothesis. Consistent configurations exist, but no key source has been identified. Ed Scheidt confirmed methods from Friedman's Military Cryptanalysis texts.</p>
+                    </div>
+                    <div class="finding-card">
+                        <h3>Unknown Running Key Source</h3>
+                        <p>The forced key values look random — exactly what a running key from natural text produces. Carter is eliminated. Untested: Friedman's texts, Sanborn's other sculptures, CIA documents.</p>
+                    </div>
+                    <div class="finding-card">
+                        <h3>Three or More Layers</h3>
+                        <p>Every two-layer combination has been searched. A third layer (fractionation, additional transposition) could explain the below-random IC.</p>
+                    </div>
+                    <div class="finding-card">
+                        <h3>Sanborn's Own Invention</h3>
+                        <p>Something close to but not exactly standard Vigenère. The ±1 offset at period 26 could be a signature of a modified algorithm.</p>
+                    </div>
+                </div>
             </section>
         </main>
 
         <footer class="footer reveal">
-            <p id="footer-copy">Structured data powers this dashboard.</p>
-            <a id="repo-link" href="https://github.com/Carlos/Kryptos" target="_blank" rel="noreferrer">Repository</a>
+            <p>Kryptos K4 Research Toolkit · 40 strategies · Open source</p>
+            <a href="https://github.com/claudlos/Kryptos" target="_blank" rel="noreferrer">GitHub Repository</a>
         </footer>
     </div>
 
